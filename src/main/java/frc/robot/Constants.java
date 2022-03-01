@@ -12,4 +12,13 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+    // SHIT TO PUT HERE:
+    //general/avg motor speeds
+    //max motor speeds
+    //voltage limits
+    //pressure limits
+    //CAN IDs
+    //Voltage distribution hub numbers
+
+}
