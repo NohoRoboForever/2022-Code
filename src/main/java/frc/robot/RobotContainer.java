@@ -15,6 +15,28 @@ import edu.wpi.first.wpilibj2.command.Command;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  public static int RFWheel = 5;
+  public static int RMWheel = 4;
+  public static int RBWheel = 3;
+  public static int LFWheel = 2;
+  public static int LMWheel = 1;
+  public static int LBWheel = 0;
+  //flywheel
+  public static int Flywheel1 = 6;
+  public static int Flywheel2 = 7;
+  public static int HoodAdjuster = 8;
+  public static int HoodEncoderA = 3;
+  public static int HoodEncoderB = 4; 
+  //intake
+  public static int Intake = 8;
+  public static int IntakeEncoderA = 1;
+  public static int IntakeEncoderB = 2; 
+  public static int Feeder = 9;
+  public static int Indexer = 10;
+  public static int IndexerEncoderA = 3;
+  public static int IndexerEncoderB = 4;
+  //vision
+  public static int Limelight = 0;
   // The robot's subsystems and commands are defined here...
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 

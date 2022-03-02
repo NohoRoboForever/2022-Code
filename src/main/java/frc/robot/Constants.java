@@ -21,4 +21,7 @@ public final class Constants {
     //CAN IDs
     //Voltage distribution hub numbers
 
+    private final double climbSpeed = 0.5;
+    private final double defaultFlywheelSpeed = 0.5;
+
 }
