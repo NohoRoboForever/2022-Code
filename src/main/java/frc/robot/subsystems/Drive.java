@@ -14,6 +14,8 @@ import com.revrobotics.CANSparkMaxLowLevel.*;
 
 public class Drive extends SubsystemBase {
   /** Creates a new Drive. */
+
+  //Consider changing this so variables are created but only assigned in constructor
   CANSparkMax LF = new CANSparkMax(RobotContainer.LFWheel, MotorType.kBrushless);
   CANSparkMax LM = new CANSparkMax(RobotContainer.LMWheel, MotorType.kBrushless);
   CANSparkMax LB = new CANSparkMax(RobotContainer.LBWheel, MotorType.kBrushless);
@@ -21,7 +23,7 @@ public class Drive extends SubsystemBase {
   CANSparkMax RM = new CANSparkMax(RobotContainer.RMWheel, MotorType.kBrushless);
   CANSparkMax RB = new CANSparkMax(RobotContainer.RBWheel, MotorType.kBrushless);
 
-  /* HOW DO YOU MAKE ENCODERS WITH 2022 WPILIB
+  /* HOW DO YOU MAKE ENCODERS WITH 2022 REV/WPILIB?
   RelativeEncoder leftFrontEncoder = new RelativeEncoder(LF);
   RelativeEncoder leftMiddleEncoder = new RelativeEncoder(LM);
   RelativeEncoder leftBackEncoder = new RelativeEncoder(LB);

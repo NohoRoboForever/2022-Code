@@ -4,11 +4,36 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class ClimbArm extends SubsystemBase {
+
+  CANSparkMax climb1;
+  CANSparkMax climb2;
   /** Creates a new ClimbArm. */
-  public ClimbArm() {}
+  public ClimbArm() {
+    climb1 = new CANSparkMax(RobotContainer.Climb1, MotorType.kBrushless);
+    climb2 = new CANSparkMax(RobotContainer.Climb2, MotorType.kBrushless);
+  }
+
+  public void extend(){
+    climb1.set(Constants.climbSpeed);
+    climb2.set(Constants.climbSpeed);
+  }
+
+  public void retract(){
+    climb1.set(Constants.climbSpeed*-1);
+    climb2.set(Constants.climbSpeed*-1);
+  }
+  public void halt(){
+    climb1.stopMotor();
+    climb2.stopMotor();
+  }
 
   @Override
   public void periodic() {
