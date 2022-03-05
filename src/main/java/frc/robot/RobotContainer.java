@@ -15,26 +15,31 @@ import edu.wpi.first.wpilibj2.command.Command;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  public static int RFWheel = 5;
-  public static int RMWheel = 4;
-  public static int RBWheel = 3;
-  public static int LFWheel = 2;
-  public static int LMWheel = 1;
-  public static int LBWheel = 0;
+  //**potentially add encoder numbers for some motors */
+  //NEO MOTORS (BOTH CANSPARK IDs and PDP ports)
+  //(drive)
+  public static int RFWheel = 0;
+  public static int RMWheel = 1;
+  public static int RBWheel = 2;
+  public static int LFWheel = 3;
+  public static int LMWheel = 4;
+  public static int LBWheel = 5;
   //flywheel
-  public static int Flywheel1 = 6;
-  public static int Flywheel2 = 7;
-  public static int HoodAdjuster = 8;
-  public static int HoodEncoderA = 3;
-  public static int HoodEncoderB = 4; 
+  public static int ShootWheel1 = 6;
+  public static int ShootWheel2 = 7;
   //intake
   public static int Intake = 8;
-  public static int IntakeEncoderA = 1;
-  public static int IntakeEncoderB = 2; 
-  public static int Feeder = 9;
-  public static int Indexer = 10;
-  public static int IndexerEncoderA = 3;
-  public static int IndexerEncoderB = 4;
+  //indexer
+  public static int Indexer = 9;
+  //turret 
+  public static int Turret = 10;
+  //climb
+  public static int Climb1 = 11;
+  public static int Climb2 = 12;
+
+
+
+  //SENSORS
   //vision
   public static int Limelight = 0;
   // The robot's subsystems and commands are defined here...
@@ -56,6 +61,24 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {}
 
+  public static final int RIGHT_AXIS_X = 1;
+  public static final int RIGHT_AXIS_Y = 2;
+  public static final int LEFT_AXIS_X = 3;
+  public static final int LEFT_AXIS_Y = 4;
+
+    //button numbers, not sure if necessary
+
+    //controller deadzones
+
+  //joystick instantiations
+  XboxController sticky = new XboxController(0);
+  // create buttons as buttons of that joystick, w new ports
+  public double getJoystickAxis(int analogNumber){
+      return sticky.getRawAxis(analogNumber);
+    }
+  public boolean getButtonValue(int buttonNumber){
+      return sticky.getRawButton(buttonNumber);
+  }  
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *

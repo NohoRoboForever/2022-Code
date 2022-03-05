@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 //DOCS: https://first.wpi.edu/FRC/roborio/release2017/docs/java/edu/wpi/first/wpilibj/XboxController.html
 
 public class OI {
-    //here, basically set up the all button/joystick bindings for the XboxControllers
+    //NEED TO PUT ALL OF THIS DATA IN ROBOTCONTAINER.JAVA
 
     //joystick axes for one controller
     public static final int RIGHT_AXIS_X = 1;
@@ -21,19 +21,13 @@ public class OI {
 
     //controller deadzones
 
-
     //joystick instantiations
-
     XboxController sticky = new XboxController(0);
     // create buttons as buttons of that joystick, w new ports
-
     public double getJoystickAxis(int analogNumber){
         return sticky.getRawAxis(analogNumber);
       }
     public boolean getButtonValue(int buttonNumber){
         return sticky.getRawButton(buttonNumber);
-    }
-
-
-    
+    }   
 }
