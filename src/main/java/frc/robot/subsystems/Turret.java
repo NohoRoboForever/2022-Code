@@ -4,11 +4,14 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class TurretPID extends SubsystemBase {
-  /** Creates a new TurretPID. */
-  public TurretPID() {}
+public class Turret extends SubsystemBase {
+  private CANSparkMax motor;
+  /** Creates a new Turret. */
+  public Turret() {}
 
   @Override
   public void periodic() {

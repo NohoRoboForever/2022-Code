@@ -13,8 +13,8 @@ import frc.robot.RobotContainer;
 
 public class ClimbArm extends SubsystemBase {
 
-  CANSparkMax climb1;
-  CANSparkMax climb2;
+  private CANSparkMax climb1;
+  private CANSparkMax climb2;
   /** Creates a new ClimbArm. */
   public ClimbArm() {
     climb1 = new CANSparkMax(RobotContainer.Climb1, MotorType.kBrushless);

@@ -4,9 +4,12 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class HoodPistons extends SubsystemBase {
+  private DoubleSolenoid leftPiston;
+  private DoubleSolenoid rightPiston;
   /** Creates a new HoodPistons. */
   public HoodPistons() {}
 
