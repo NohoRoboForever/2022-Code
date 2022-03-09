@@ -8,8 +8,10 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Subsystem;
+import frc.robot.commands.DriveTeleop;
 import frc.robot.subsystems.ClimbArm;
 import frc.robot.subsystems.Drive;
+import edu.wpi.first.math.controller.PIDController;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -26,18 +28,28 @@ public class Robot extends TimedRobot {
   public static RobotContainer robotContainer;
 
   private Command m_autonomousCommand;
+  private Command m_teleopCommand;
 
-  private RobotContainer m_robotContainer;
+  public static RobotContainer m_robotContainer;
+
+  private PIDController pid;
+
+  private final double kp = 0.03;
+  private final double ki = 0.03;
+  private final double kd = 0.03;
 
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
+  
   @Override
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    if (m_teleopCommand != null) m_teleopCommand.initialize();
+    drive = new Drive();
   }
 
   /**
@@ -76,7 +88,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    
+  }
 
   @Override
   public void teleopInit() {
@@ -87,11 +101,20 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    
   }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    if (Math.abs(Robot.m_robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .15 || Math.abs(Robot.m_robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)) > .15) {
+      Robot.drive.setDriveL(Math.pow((Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)), 1.5));
+      Robot.drive.setDriveR(Math.pow((Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)), 1.5));
+    } else {
+        Robot.drive.driveStop();
+        Robot.drive.driveStop();
+    }
+  }
 
   @Override
   public void testInit() {

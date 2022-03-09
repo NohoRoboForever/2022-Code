@@ -71,7 +71,7 @@ public class RobotContainer {
     //controller deadzones
 
   //joystick instantiations
-  XboxController sticky = new XboxController(0);
+  XboxController sticky = new XboxController(0); // is joystick number
   // create buttons as buttons of that joystick, w new ports
   public double getJoystickAxis(int analogNumber){
       return sticky.getRawAxis(analogNumber);
