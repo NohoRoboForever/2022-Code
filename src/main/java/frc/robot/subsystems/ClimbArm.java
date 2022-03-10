@@ -17,8 +17,8 @@ public class ClimbArm extends SubsystemBase {
   private CANSparkMax climb2;
   /** Creates a new ClimbArm. */
   public ClimbArm() {
-    climb1 = new CANSparkMax(RobotContainer.Climb1, MotorType.kBrushless);
-    climb2 = new CANSparkMax(RobotContainer.Climb2, MotorType.kBrushless);
+    climb1 = new CANSparkMax(Constants.Climb1, MotorType.kBrushless);
+    climb2 = new CANSparkMax(Constants.Climb2, MotorType.kBrushless);
   }
 
   public void extend(){

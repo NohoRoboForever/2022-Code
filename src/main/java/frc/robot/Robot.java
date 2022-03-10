@@ -13,6 +13,9 @@ import frc.robot.subsystems.ClimbArm;
 import frc.robot.subsystems.Drive;
 import edu.wpi.first.math.controller.PIDController;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.*;
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -30,13 +33,13 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private Command m_teleopCommand;
 
-  public static RobotContainer m_robotContainer;
-
   private PIDController pid;
 
   private final double kp = 0.03;
   private final double ki = 0.03;
   private final double kd = 0.03;
+
+  private CANSparkMax LF;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -47,7 +50,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer();
+    robotContainer = new RobotContainer();
     if (m_teleopCommand != null) m_teleopCommand.initialize();
     drive = new Drive();
   }
@@ -107,12 +110,11 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    if (Math.abs(Robot.m_robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .15 || Math.abs(Robot.m_robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)) > .15) {
-      Robot.drive.setDriveL(Math.pow((Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)), 1.5));
-      Robot.drive.setDriveR(Math.pow((Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)), 1.5));
+    if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .15 || Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)) > .15) {
+      Robot.drive.setDriveL(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)*0.3);
+      Robot.drive.setDriveR(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)*0.3);
     } else {
-        Robot.drive.driveStop();
-        Robot.drive.driveStop();
+      drive.driveStop();
     }
   }
 

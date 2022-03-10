@@ -22,6 +22,42 @@ public final class Constants {
     //Voltage distribution hub numbers
 
     public final static double climbSpeed = 0.5;
-    private final double defaultFlywheelSpeed = 0.5;
+    public final double defaultFlywheelSpeed = 0.5;
+
+    // drive
+    public static final int RFWheel = 4;
+    public static final int RMWheel = 5;
+    public static final int RBWheel = 6;
+    public static final int LFWheel = 1;
+    public static final int LMWheel = 2;
+    public static final int LBWheel = 3;
+
+    // controller
+    public static final int XBOX_CONTROLLER = 0;
+
+    //flywheel
+    //public static final int ShootWheel1;
+    //public static final int ShootWheel2;
+
+    //intake
+    //public static final int Intake;
+
+    // constants below are temp
+
+    //indexer
+    public static final int Indexer = 9;
+
+    //turret 
+    public static final int Turret = 10;
+
+    //climb
+    public static final int Climb1 = 11;
+    public static final int Climb2 = 12;
+
+    //SENSORS
+
+
+    //vision
+    public static final int Limelight = 0;
 
 }

@@ -11,17 +11,20 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.*;
+import frc.robot.Constants;
 
 public class Drive extends SubsystemBase {
   /** Creates a new Drive. */
 
   //Consider changing this so variables are created but only assigned in constructor
-  CANSparkMax LF = new CANSparkMax(RobotContainer.LFWheel, MotorType.kBrushless);
-  CANSparkMax LM = new CANSparkMax(RobotContainer.LMWheel, MotorType.kBrushless);
-  CANSparkMax LB = new CANSparkMax(RobotContainer.LBWheel, MotorType.kBrushless);
-  CANSparkMax RF = new CANSparkMax(RobotContainer.RFWheel, MotorType.kBrushless);
-  CANSparkMax RM = new CANSparkMax(RobotContainer.RMWheel, MotorType.kBrushless);
-  CANSparkMax RB = new CANSparkMax(RobotContainer.RBWheel, MotorType.kBrushless);
+  // Mitchell: done this
+  private CANSparkMax LF;
+  private CANSparkMax LM;
+  private CANSparkMax LB;
+
+  private CANSparkMax RF;
+  private CANSparkMax RM;
+  private CANSparkMax RB;
 
   /* HOW DO YOU MAKE ENCODERS WITH 2022 REV/WPILIB?
   RelativeEncoder leftFrontEncoder = new RelativeEncoder(LF);
@@ -33,7 +36,12 @@ public class Drive extends SubsystemBase {
   */
 
   public Drive() {
-
+    LF = new CANSparkMax(Constants.LFWheel, MotorType.kBrushless);
+    LM = new CANSparkMax(Constants.LMWheel, MotorType.kBrushless);
+    LB = new CANSparkMax(Constants.LBWheel, MotorType.kBrushless);
+    RF = new CANSparkMax(Constants.RFWheel, MotorType.kBrushless);
+    RM = new CANSparkMax(Constants.RMWheel, MotorType.kBrushless);
+    RB = new CANSparkMax(Constants.RBWheel, MotorType.kBrushless);
   }
 
   @Override
