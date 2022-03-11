@@ -88,7 +88,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
-    m_autonSequence.initialize();
+    //m_autonSequence.initialize(); // not sure if this is right, correct the control flow if not
 
     m_teleopCommand.cancel();
   }
@@ -96,7 +96,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    // nothing here cause autonomous command
+
   }
 
   @Override
@@ -105,7 +105,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    m_autonSequence.cancel();
+    //m_autonSequence.cancel();
     
     m_teleopCommand.schedule();
   }
