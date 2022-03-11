@@ -18,7 +18,6 @@ public class DriveDistance extends CommandBase {
   
   private ProfiledPIDController controller;
   private double distance;
-  private Drive drive = Drive.getInstance();
   private MotorController mController;
   private RelativeEncoder encoder;
 
@@ -38,7 +37,7 @@ public class DriveDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    mController.set(controller.calculate(.getDistance(), goal));
+    mController.set(controller.calculate(encoder.getPosition(), distance));
   }
 
   // Called once the command ends or is interrupted.
