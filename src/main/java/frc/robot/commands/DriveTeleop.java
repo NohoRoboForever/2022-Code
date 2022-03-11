@@ -14,7 +14,7 @@ public class DriveTeleop extends CommandBase {
   /** Creates a new DriveTeleop. */
   private Drive drive;
   public DriveTeleop() {
-    addRequirements(Robot.drive);
+    //addRequirements(Robot.drive);  // -- THIS IS WHAT WAS CAUSING THE NULL POINTER EXCEPTION EARLIER, NOT MY SHIT CODE --
     this.drive = Robot.drive;
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -36,6 +36,7 @@ public class DriveTeleop extends CommandBase {
     //     Robot.drive.driveStop();
     //     Robot.drive.driveStop();
     // }
+    // why was this in initialize!?!?
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -47,7 +48,6 @@ public class DriveTeleop extends CommandBase {
       Robot.drive.setDriveR(Math.pow((Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)), 3));
     }
     else{
-        Robot.drive.driveStop();
         Robot.drive.driveStop();
     }
   }

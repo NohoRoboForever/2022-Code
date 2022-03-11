@@ -38,10 +38,10 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {}
 
-  public static final int RIGHT_AXIS_X = 4;
-  public static final int RIGHT_AXIS_Y = 5;
-  public static final int LEFT_AXIS_X = 0;
-  public static final int LEFT_AXIS_Y = 1;
+  // public static final int RIGHT_AXIS_X = 4;
+  public static final int LEFT_AXIS_Y = 5;
+  // public static final int LEFT_AXIS_X = 0;
+  public static final int RIGHT_AXIS_Y = 1;
 
     //button numbers, not sure if necessary
 

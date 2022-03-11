@@ -18,22 +18,16 @@ public class Drive extends SubsystemBase {
 
   //Consider changing this so variables are created but only assigned in constructor
   // Mitchell: done this
-  private CANSparkMax LF;
-  private CANSparkMax LM;
-  private CANSparkMax LB;
+  private CANSparkMax LF, LM, LB, RF, RM, RB;
 
-  private CANSparkMax RF;
-  private CANSparkMax RM;
-  private CANSparkMax RB;
-
-  /* HOW DO YOU MAKE ENCODERS WITH 2022 REV/WPILIB?
+  // HOW DO YOU MAKE ENCODERS WITH 2022 REV/WPILIB?
   RelativeEncoder leftFrontEncoder = new RelativeEncoder(LF);
   RelativeEncoder leftMiddleEncoder = new RelativeEncoder(LM);
   RelativeEncoder leftBackEncoder = new RelativeEncoder(LB);
   RelativeEncoder rightFrontEncoder = new RelativeEncoder(RF);
   RelativeEncoder rightMiddleEncoder = new RelativeEncoder(RM);
   RelativeEncoder rightBackEncoder = new RelativeEncoder(RB);
-  */
+  
 
   public Drive() {
     LF = new CANSparkMax(Constants.LFWheel, MotorType.kBrushless);
@@ -44,27 +38,30 @@ public class Drive extends SubsystemBase {
     RB = new CANSparkMax(Constants.RBWheel, MotorType.kBrushless);
   }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+  // is drive a command!!!??
+  // @Override
+  // public void periodic() {
+  //   // This method will be called once per scheduler run
+  // }
 
-  public void setDriveL(double speed){
+  public void setDriveL(double speed) {
     LF.set(speed);
     LM.set(speed);
     LB.set(speed);
   }
-  public void setDriveR(double speed){
+
+  public void setDriveR(double speed) {
     RF.set(speed);
     RM.set(speed);
     RB.set(speed);
   }
-  public void setDrive(double leftSpeed, double rightSpeed){
+
+  public void setDrive(double leftSpeed, double rightSpeed) {
     setDriveL(leftSpeed);
     setDriveR(rightSpeed);
   }
 
-  public void driveBrake(){
+  public void driveBrake() {
     LF.setIdleMode(IdleMode.kBrake);
     LM.setIdleMode(IdleMode.kBrake);
     LB.setIdleMode(IdleMode.kBrake);
@@ -73,7 +70,7 @@ public class Drive extends SubsystemBase {
     RB.setIdleMode(IdleMode.kBrake);
   }
 
-  public void driveCoast(){
+  public void driveCoast() {
     LF.setIdleMode(IdleMode.kCoast);
     LM.setIdleMode(IdleMode.kCoast);
     LB.setIdleMode(IdleMode.kCoast);
@@ -82,7 +79,7 @@ public class Drive extends SubsystemBase {
     RB.setIdleMode(IdleMode.kCoast);
   }
 
-  public void driveStop(){
+  public void driveStop() {
     LF.stopMotor();
     LM.stopMotor();
     LB.stopMotor();
