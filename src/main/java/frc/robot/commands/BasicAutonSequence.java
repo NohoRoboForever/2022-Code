@@ -14,6 +14,8 @@ public class BasicAutonSequence extends SequentialCommandGroup {
   public BasicAutonSequence() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands();
+    addCommands(
+      new DriveDistance()
+    );
   }
 }

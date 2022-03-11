@@ -21,12 +21,8 @@ public class Drive extends SubsystemBase {
   private CANSparkMax LF, LM, LB, RF, RM, RB;
 
   // HOW DO YOU MAKE ENCODERS WITH 2022 REV/WPILIB?
-  RelativeEncoder leftFrontEncoder = new RelativeEncoder(LF);
-  RelativeEncoder leftMiddleEncoder = new RelativeEncoder(LM);
-  RelativeEncoder leftBackEncoder = new RelativeEncoder(LB);
-  RelativeEncoder rightFrontEncoder = new RelativeEncoder(RF);
-  RelativeEncoder rightMiddleEncoder = new RelativeEncoder(RM);
-  RelativeEncoder rightBackEncoder = new RelativeEncoder(RB);
+  // m: like this
+  private RelativeEncoder LFEncoder, LMEncoder, LBEncoder, RFEncoder, RMEncoder, RBEncoder;
   
 
   public Drive() {
@@ -36,6 +32,13 @@ public class Drive extends SubsystemBase {
     RF = new CANSparkMax(Constants.RFWheel, MotorType.kBrushless);
     RM = new CANSparkMax(Constants.RMWheel, MotorType.kBrushless);
     RB = new CANSparkMax(Constants.RBWheel, MotorType.kBrushless);
+
+    LFEncoder = LF.getEncoder();
+    LMEncoder = LM.getEncoder();
+    LBEncoder = LB.getEncoder();
+    RFEncoder = RF.getEncoder();
+    RMEncoder = RM.getEncoder();
+    RBEncoder = RB.getEncoder();
   }
 
   // is drive a command!!!??

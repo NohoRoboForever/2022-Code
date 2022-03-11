@@ -21,4 +21,4 @@ MISC:
 - How the fuck does trapezoidal motion work
 - Make basic auton that works
 
-
+- PID for auton
