@@ -36,6 +36,8 @@ public class Robot extends TimedRobot {
   private SequentialCommandGroup m_autonSequence;
   private Command m_teleopCommand;
 
+
+  // this should probably be somewhere else
   private ProfiledPIDController controller;
 
   private final double kp = 0.03;

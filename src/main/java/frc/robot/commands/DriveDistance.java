@@ -6,7 +6,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+// Implement PID and motion profiling here
+// motor.set(controller.calculate(encoder.getDistance(), goal));
+import frc.robot.subsystems.Drive;
+
 public class DriveDistance extends CommandBase {
+  
   /** Creates a new DriveDistance. */
   public DriveDistance() {
     // Use addRequirements() here to declare subsystem dependencies.

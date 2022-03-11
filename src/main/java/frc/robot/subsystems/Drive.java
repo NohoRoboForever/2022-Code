@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 
 import com.revrobotics.RelativeEncoder;
+
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.*;
@@ -18,11 +20,13 @@ public class Drive extends SubsystemBase {
 
   //Consider changing this so variables are created but only assigned in constructor
   // Mitchell: done this
-  private CANSparkMax LF, LM, LB, RF, RM, RB;
+  // public cause might acess somewhere else
+  public CANSparkMax LF, LM, LB, RF, RM, RB;
 
   // HOW DO YOU MAKE ENCODERS WITH 2022 REV/WPILIB?
   // m: like this
-  private RelativeEncoder LFEncoder, LMEncoder, LBEncoder, RFEncoder, RMEncoder, RBEncoder;
+  // public cause might access somewhere else
+  public RelativeEncoder LFEncoder, LMEncoder, LBEncoder, RFEncoder, RMEncoder, RBEncoder;
   
 
   public Drive() {
@@ -90,4 +94,6 @@ public class Drive extends SubsystemBase {
     RM.stopMotor();
     RB.stopMotor();
   }
+
+  
 }
