@@ -12,10 +12,11 @@ import frc.robot.subsystems.Drive;
 
 public class DriveTeleop extends CommandBase {
   /** Creates a new DriveTeleop. */
-  private Drive drive;
-  public DriveTeleop() {
+
+  private Drive drive = Drive.getInstance();
+
+   public DriveTeleop() {
     //addRequirements(Robot.drive);  // -- THIS IS WHAT WAS CAUSING THE NULL POINTER EXCEPTION EARLIER, NOT MY SHIT CODE --
-    this.drive = Robot.drive;
     // Use addRequirements() here to declare subsystem dependencies.
   }
   //THE FOLLOWING METHODS HAVE NO MULTIPLIER FOR DRIVE SPEED

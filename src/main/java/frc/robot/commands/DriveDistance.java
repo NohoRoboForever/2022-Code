@@ -4,6 +4,10 @@
 
 package frc.robot.commands;
 
+import com.revrobotics.RelativeEncoder;
+
+import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 // Implement PID and motion profiling here
@@ -12,9 +16,19 @@ import frc.robot.subsystems.Drive;
 
 public class DriveDistance extends CommandBase {
   
+  private ProfiledPIDController controller;
+  private double distance;
+  private Drive drive = Drive.getInstance();
+  private MotorController mController;
+  private RelativeEncoder encoder;
+
   /** Creates a new DriveDistance. */
-  public DriveDistance() {
+  public DriveDistance(ProfiledPIDController pidController, double dist, MotorController motor, RelativeEncoder enc) {
     // Use addRequirements() here to declare subsystem dependencies.
+    controller = pidController;
+    distance = dist;
+    mController = motor;
+    encoder = enc;
   }
 
   // Called when the command is initially scheduled.
@@ -24,7 +38,7 @@ public class DriveDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    mController.set(controller.calculate(.getDistance(), goal));
   }
 
   // Called once the command ends or is interrupted.

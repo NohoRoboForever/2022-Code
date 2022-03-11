@@ -12,9 +12,11 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.commands.DriveTeleop;
 import frc.robot.subsystems.ClimbArm;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Limelight;
 import frc.robot.commands.BasicAutonSequence;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
+
 
 import com.revrobotics.CANSparkMax;
 
@@ -27,7 +29,7 @@ import com.revrobotics.CANSparkMax;
  */
 public class Robot extends TimedRobot {
   
-  public static Drive drive;
+  public static Drive drive = Drive.getInstance();
 
   public static ClimbArm climb;
 
@@ -39,6 +41,7 @@ public class Robot extends TimedRobot {
 
   // this should probably be somewhere else
   private ProfiledPIDController controller;
+  private Limelight limelight;
 
   private final double kp = 0.03;
   private final double ki = 0.03;
@@ -57,9 +60,9 @@ public class Robot extends TimedRobot {
     robotContainer = new RobotContainer();
     m_teleopCommand = new DriveTeleop();
     m_teleopCommand.initialize();
-    drive = new Drive();
     controller = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
     m_autonSequence = new BasicAutonSequence();
+    limelight = new Limelight();
   }
 
   /**

@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 
@@ -25,9 +26,10 @@ public class Drive extends SubsystemBase {
 
   // HOW DO YOU MAKE ENCODERS WITH 2022 REV/WPILIB?
   // m: like this
-  // public cause might access somewhere else
+  // public cause might access somewhere else & only instantiated once
   public RelativeEncoder LFEncoder, LMEncoder, LBEncoder, RFEncoder, RMEncoder, RBEncoder;
   
+  private static Drive s_defaultInstance;
 
   public Drive() {
     LF = new CANSparkMax(Constants.LFWheel, MotorType.kBrushless);
@@ -43,12 +45,20 @@ public class Drive extends SubsystemBase {
     RFEncoder = RF.getEncoder();
     RMEncoder = RM.getEncoder();
     RBEncoder = RB.getEncoder();
+
+ 
   }
 
+  public static Drive getInstance() {
+    if (s_defaultInstance == null) {
+      s_defaultInstance = new Drive();
+    }
+    return s_defaultInstance;
+  }
+  
   // is drive a command!!!??
   // @Override
   // public void periodic() {
-  //   // This method will be called once per scheduler run
   // }
 
   public void setDriveL(double speed) {
@@ -95,5 +105,4 @@ public class Drive extends SubsystemBase {
     RB.stopMotor();
   }
 
-  
 }
