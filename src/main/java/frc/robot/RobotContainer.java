@@ -51,10 +51,10 @@ public class RobotContainer {
   XboxController leftStick = new XboxController(0);
   XboxController rightStick = new XboxController(0);*/
   // create buttons as buttons of that joystick, w new ports
-  public double getJoystickAxis(int analogNumber){
+  public double getJoystickAxis(int analogNumber) {
       return sticky.getRawAxis(analogNumber);
   }
-  public boolean getButtonValue(int buttonNumber){
+  public boolean getButtonValue(int buttonNumber) {
       return sticky.getRawButton(buttonNumber);
   }  
   /**

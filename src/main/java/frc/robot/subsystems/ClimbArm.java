@@ -20,16 +20,16 @@ public class ClimbArm extends SubsystemBase {
     climb2 = new CANSparkMax(Constants.Climb2, MotorType.kBrushless);
   }
 
-  public void extend(){
+  public void extend() {
     climb1.set(Constants.climbSpeed);
     climb2.set(Constants.climbSpeed);
   }
 
-  public void retract(){
+  public void retract() {
     climb1.set(Constants.climbSpeed*-1);
     climb2.set(Constants.climbSpeed*-1);
   }
-  public void halt(){
+  public void halt() {
     climb1.stopMotor();
     climb2.stopMotor();
   }

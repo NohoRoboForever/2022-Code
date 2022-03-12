@@ -6,7 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
+// NOTE:  Consider using this command inline, rather than writing a subclass.  For more              -- so doesn't this mean we shouldn't subclass this? why are we then
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class BasicAutonSequence extends SequentialCommandGroup {
