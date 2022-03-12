@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
 
 
   // this should probably be somewhere else
-  private ProfiledPIDController controller;
+  public ProfiledPIDController controller;
   private Limelight limelight;
 
   private final double kp = 0.03;
@@ -59,7 +59,7 @@ public class Robot extends TimedRobot {
     m_teleopCommand = new DriveTeleop();
     m_teleopCommand.initialize();
     controller = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
-    m_autonSequence = new BasicAutonSequence();
+    m_autonSequence = new BasicAutonSequence(controller);
     limelight = new Limelight();
   }
 
@@ -67,7 +67,7 @@ public class Robot extends TimedRobot {
    * This function is called every robot packet, no matter the mode. Use this for items like
    * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
    *
-   * <p>This runs after the mode specific periodic functions, but before LiveWindow and
+   * This runs after the mode specific periodic functions, but before LiveWindow and
    * SmartDashboard integrated updating.
    */
   @Override
@@ -91,7 +91,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
-    //m_autonSequence.initialize(); // not sure if this is right, correct the control flow if not
+    m_autonSequence.initialize(); // not sure if this is right, correct the control flow if not
 
     m_teleopCommand.cancel();
   }

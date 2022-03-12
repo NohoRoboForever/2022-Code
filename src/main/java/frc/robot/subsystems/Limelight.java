@@ -50,6 +50,6 @@ public class Limelight extends SubsystemBase {
     }
 
     public double getDistanceFromGoalInches() {
-        return (goalHeight - lensHeight)/Math.tan((mountAngle + getTY()) * (3.14159 / 180.0));
+        return (goalHeight - lensHeight) / Math.tan((mountAngle + getTY()) * (3.14159 / 180.0));
     }
 }

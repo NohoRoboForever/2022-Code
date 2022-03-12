@@ -18,7 +18,7 @@ public class DriveTeleop extends CommandBase {
     //addRequirements(Robot.drive);  // -- THIS IS WHAT WAS CAUSING THE NULL POINTER EXCEPTION EARLIER, NOT MY SHIT CODE --
     // Use addRequirements() here to declare subsystem dependencies.
   }
-  //THE FOLLOWING METHODS HAVE NO MULTIPLIER FOR DRIVE SPEED
+  // THE FOLLOWING METHODS HAVE NO MULTIPLIER FOR DRIVE SPEED
   public void leftDrive() {
     drive.setDriveL(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y));
   }
@@ -28,11 +28,10 @@ public class DriveTeleop extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // if(Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .15 || Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)) > .15) {
+    // if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .15 || Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)) > .15) {
     //   Robot.drive.setDriveL(Math.pow((Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)*-1), 3));
     //   Robot.drive.setDriveR(Math.pow((Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)*-1), 3));
-    // }
-    // else{
+    // } else {
     //     Robot.drive.driveStop();
     //     Robot.drive.driveStop();
     // }
