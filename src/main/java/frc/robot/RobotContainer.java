@@ -46,7 +46,7 @@ public class RobotContainer {
     //controller deadzones
 
   //joystick instantiations
-  XboxController sticky = new XboxController(Constants.XBOX_CONTROLLER); // is joystick number
+  XboxController sticky = new XboxController(0); // is joystick number
 /*
   XboxController leftStick = new XboxController(0);
   XboxController rightStick = new XboxController(0);*/
