@@ -25,10 +25,10 @@ public class TurretManual extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    while (Robot.robotContainer.getButtonValue(5)==true){
+    if (Robot.robotContainer.sticky.getPOV() > 45 && Robot.robotContainer.sticky.getPOV() > 135){
       turret.turnClockwise(defaultTurretSpeed);
     }
-    while (Robot.robotContainer.getButtonValue(6)==true){
+    if (Robot.robotContainer.sticky.getPOV() > 225 && Robot.robotContainer.sticky.getPOV() > 315){
       turret.turnCounterclockwise(defaultTurretSpeed);
     }
     // if (Robot.robotContainer.getButtonValue(7)==true) turret.halt();

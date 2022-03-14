@@ -34,25 +34,21 @@ public final class Constants {
     public static final int LFWheel = 1;
     public static final int LMWheel = 2;
     public static final int LBWheel = 3;
-
     //more can ids
-
     public static final int Intake = 7;
-
     public static final int Indexer = 8;
-
     public static final int Turret = 9;
-
     public static final int Climb1 = 10;
     public static final int Climb2 = 11;
-
     public static final int ShootLeft = 12;
     public static final int ShootRight = 13;
+
 
     public static final int PDH = 15;
 
     public static final int PneumaticHub = 16;
 
+    public static final int XButton = 1;
     // controller
     //public static final int XBOX_CONTROLLER = 0;
 
