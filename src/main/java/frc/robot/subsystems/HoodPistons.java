@@ -5,13 +5,35 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class HoodPistons extends SubsystemBase {
   private DoubleSolenoid leftPiston;
   private DoubleSolenoid rightPiston;
   /** Creates a new HoodPistons. */
-  public HoodPistons() {}
+  public HoodPistons() {
+    leftPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodLeftForward, Constants.HoodLeftReverse);
+    rightPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodRightForward, Constants.HoodRightReverse);
+  }
+
+  public DoubleSolenoid.Value getValue(){
+    return leftPiston.get();
+  }
+
+  public void toggle(){
+    leftPiston.toggle();
+    rightPiston.toggle();
+  }
+
+  public void extend(){
+
+  }
+
+  public void retract(){
+
+  }
 
   @Override
   public void periodic() {

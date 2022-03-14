@@ -21,10 +21,13 @@ public final class Constants {
     //CAN IDs
     //Voltage distribution hub numbers
 
-    public final static double climbSpeed = 0.5;
-    public final double defaultFlywheelSpeed = 0.5;
 
-    // drive
+    //CONSTANT SPEEDS
+    public final static double climbSpeed = 0.5;
+    public final static double defaultFlywheelSpeed = 0.5;
+    public final static double intakeSpeed = 0.5;
+
+    // drive can ids
     public static final int RFWheel = 4;
     public static final int RMWheel = 5;
     public static final int RBWheel = 6;
@@ -32,27 +35,32 @@ public final class Constants {
     public static final int LMWheel = 2;
     public static final int LBWheel = 3;
 
+    //more can ids
+    public static final int PDH = 15;
+
+    public static final int PneumaticHub = 7;
+
+    public static final int Intake = 8;
+
+    public static final int Indexer = 9;
+
+    public static final int Turret = 10;
+
+    public static final int Climb1 = 11;
+    public static final int Climb2 = 12;
+
     // controller
-    public static final int XBOX_CONTROLLER = 0;
+    //public static final int XBOX_CONTROLLER = 0;
 
     //flywheel
     //public static final int ShootWheel1;
     //public static final int ShootWheel2;
 
-    //intake
-    //public static final int Intake;
+    //intake can ids
 
     // constants below are temp
 
     //indexer
-    public static final int Indexer = 9;
-
-    //turret 
-    public static final int Turret = 10;
-
-    //climb
-    public static final int Climb1 = 11;
-    public static final int Climb2 = 12;
 
     //SENSORS
 
@@ -60,4 +68,13 @@ public final class Constants {
     //vision
     public static final int Limelight = 0;
 
+    //PNEUMATIC CHANNELS
+    public static final int IntakeLeftForward = 1;
+    public static final int IntakeLeftReverse = 2;
+    public static final int IntakeRightForward = 3;
+    public static final int IntakeRightReverse = 4;
+    public static final int HoodLeftForward = 5;
+    public static final int HoodLeftReverse = 6;
+    public static final int HoodRightForward = 7;
+    public static final int HoodRightReverse = 8;
 }

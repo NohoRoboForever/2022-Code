@@ -5,14 +5,40 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class IntakePistons extends SubsystemBase {
   private DoubleSolenoid leftPiston;
   private DoubleSolenoid rightPiston;
 
-  /** Creates a new IntakePistons. */
-  public IntakePistons() {}
+  /** Creates a new IntakePisforwardChanneltons. */
+  public IntakePistons() {
+    leftPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.IntakeLeftForward, Constants.IntakeLeftReverse);
+    rightPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.IntakeRightForward, Constants.IntakeRightReverse);
+  }
+
+  public void toggle(){
+    leftPiston.toggle();
+    rightPiston.toggle();
+  }
+
+  public void extend(){
+    leftPiston.set(Value.kForward);
+    leftPiston.set(Value.kForward);
+  }
+
+  public void retract(){
+    leftPiston.set(Value.kReverse);
+    leftPiston.set(Value.kReverse);
+  }
+  public void turnOff(){
+    
+    leftPiston.set(Value.kOff);
+    leftPiston.set(Value.kOff);
+  }
 
   @Override
   public void periodic() {
