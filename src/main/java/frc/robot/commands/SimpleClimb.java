@@ -22,13 +22,13 @@ public class SimpleClimb extends CommandBase {
 
   @Override
   public void execute() {
-    while (Robot.robotContainer.sticky.getStartButton()){
+    if (Robot.robotContainer.sticky.getStartButton()){
       climbArm.extend();
     }
-    while (Robot.robotContainer.sticky.getBackButton()) {
+    if (Robot.robotContainer.sticky.getBackButton()) {
       climbArm.retract();
     }
-    while (Robot.robotContainer.sticky.get()){
+    if (Robot.robotContainer.sticky.getRightBumper()){
       climbArm.halt();
     }
   }

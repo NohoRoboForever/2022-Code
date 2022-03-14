@@ -5,10 +5,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
+import frc.robot.subsystems.HoodPistons;
 
 public class HoodAdjust extends CommandBase {
+   HoodPistons pistons;
   /** Creates a new HoodAdjust. */
   public HoodAdjust() {
+    pistons = new HoodPistons();
+    addRequirements(pistons);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -18,7 +23,13 @@ public class HoodAdjust extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    if (Robot.robotContainer.sticky.getPOV() < 45 || Robot.robotContainer.sticky.getPOV() > 315){
+      pistons.extend();
+    } else if (Robot.robotContainer.sticky.getPOV() < 225 && Robot.robotContainer.sticky.getPOV() > 135){
+      pistons.retract();
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override

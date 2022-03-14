@@ -42,11 +42,11 @@ public class DriveTeleop extends CommandBase {
   @Override
   public void execute() {
     // NEED TO ADJUST MULTIPLIERS FOR REAL DRIVE
-    if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .15 || Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)) > .15) {
-      Robot.drive.setDriveL(Math.pow((Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)), 3));
-      Robot.drive.setDriveR(Math.pow((Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)), 3));
-    } else {
-      Robot.drive.driveStop();
+    if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .15) {
+      Robot.drive.setDriveL(Math.pow((Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)*0.2), 3));
+    }
+    if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)) > .15) {
+      Robot.drive.setDriveR(Math.pow((Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)*0.2), 3));
     }
   }
 

@@ -5,10 +5,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
+import frc.robot.subsystems.IntakeMotor;
 
 public class IntakeRun extends CommandBase {
+  IntakeMotor motor;
   /** Creates a new IntakeRun. */
   public IntakeRun() {
+    motor = new IntakeMotor();
+    addRequirements(motor);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -18,7 +23,11 @@ public class IntakeRun extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    if (Robot.robotContainer.sticky.getRightTriggerAxis()>0.1){
+      motor.run();
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override

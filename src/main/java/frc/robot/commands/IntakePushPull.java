@@ -5,10 +5,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
+import frc.robot.subsystems.IntakePistons;
 
 public class IntakePushPull extends CommandBase {
+  IntakePistons pistons;
   /** Creates a new IntakePushPull. */
   public IntakePushPull() {
+    pistons = new IntakePistons();
+    addRequirements(pistons);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -18,7 +23,11 @@ public class IntakePushPull extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    if (Robot.robotContainer.sticky.getAButton()){
+      pistons.toggle();
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
