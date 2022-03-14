@@ -7,27 +7,31 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Robot;
+import frc.robot.subsystems.ClimbArm;
 
 public class SimpleClimb extends CommandBase {
-  private Subsystem climbArm;
+  private ClimbArm climbArm;
 
   /** Creates a new SimpleClimb. */
   public SimpleClimb() {
     this.climbArm = Robot.climb;
     addRequirements(climbArm);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
-  // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void initialize() {}
 
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    while (Robot.robotContainer.getButtonValue(1)==true){
+      climbArm.extend();
+    }
+    while (Robot.robotContainer.getButtonValue(2)==true) {
+      climbArm.retract();
+    }
+    while (Robot.robotContainer.getButtonValue(3)==true){
+      climbArm.halt();
+    }
   }
 
   // Called once the command ends or is interrupted.
