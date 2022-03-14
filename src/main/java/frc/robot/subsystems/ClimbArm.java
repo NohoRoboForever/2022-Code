@@ -14,16 +14,15 @@ import frc.robot.Constants;
 
 public class ClimbArm extends SubsystemBase {
 
-  private CANSparkMax climb1;
-  private CANSparkMax climb2;
-  //HOW DO I USE ENCODERS TO TELL THE POSITION OF THE CLIMB ARM SO I DON'T OVEREXTEND???
-  private RelativeEncoder climb1encoder;
-  private RelativeEncoder climb2encoder;
+  private CANSparkMax climb1, climb2;
+  private RelativeEncoder climb1encoder, climb2encoder;
 
   /** Creates a new ClimbArm. */
   public ClimbArm() {
     climb1 = new CANSparkMax(Constants.Climb1, MotorType.kBrushless);
     climb2 = new CANSparkMax(Constants.Climb2, MotorType.kBrushless);
+    climb1encoder = climb1.getEncoder();
+    climb2encoder = climb2.getEncoder();
   }
 
   public void extend() {
@@ -32,13 +31,15 @@ public class ClimbArm extends SubsystemBase {
   }
 
   public void retract() {
-    climb1.set(Constants.climbSpeed*-1);
-    climb2.set(Constants.climbSpeed*-1);
+    climb1.set(Constants.climbSpeed * -1);
+    climb2.set(Constants.climbSpeed * -1);
   }
+
   public void halt() {
     climb1.stopMotor();
     climb2.stopMotor();
   }
+
 
   @Override
   public void periodic() {

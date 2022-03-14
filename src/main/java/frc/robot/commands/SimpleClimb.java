@@ -28,9 +28,9 @@ public class SimpleClimb extends CommandBase {
     while (Robot.robotContainer.sticky.getBackButton()) {
       climbArm.retract();
     }
-    /*while (Robot.robotContainer.sticky.get()){
+    while (Robot.robotContainer.sticky.get()){
       climbArm.halt();
-    }*/
+    }
   }
 
   // Called once the command ends or is interrupted.
