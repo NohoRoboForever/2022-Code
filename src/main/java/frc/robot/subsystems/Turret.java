@@ -20,7 +20,7 @@ public class Turret extends SubsystemBase {
   private double kp = 0.03, ki = 0.03, kd = 0.0;
 
   private PIDController controller = new PIDController(kp, ki, kd);
-  private DigitalInput limitSwitch = new DigitalInput(Constants.LimitSwitchChannel);
+  private DigitalInput limitSwitch = new DigitalInput(Constants.TurretLimitSwitchChannel);
   
   /** Creates a new Turret. */
   public Turret() {
@@ -37,8 +37,8 @@ public class Turret extends SubsystemBase {
     motor.stopMotor();
   }
   public void adjustToLimelight(Limelight limelight) {
-    if (!limelight.getTV()) return;
-    motor.set(controller.calculate(limelight.getTY() / 360.0d - encoder.getPosition()));
+    if (!limelight.getTV()) return; // not in field of vision
+    motor.set(controller.calculate((limelight.getTY() / 360.0d) - encoder.getPosition()));
   }
 
   @Override
