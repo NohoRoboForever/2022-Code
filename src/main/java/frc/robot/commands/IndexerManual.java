@@ -11,8 +11,8 @@ import frc.robot.subsystems.Indexer;
 public class IndexerManual extends CommandBase {
   private Indexer indexer;
   /** Creates a new IndexerManual. */
-  public IndexerManual() {
-    indexer = new Indexer();
+  public IndexerManual(Indexer p_indexer) {
+    indexer = p_indexer;
     addRequirements(indexer);
     // Use addRequirements() here to declare subsystem dependencies.
   }

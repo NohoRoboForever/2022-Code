@@ -12,8 +12,8 @@ public class SimpleClimb extends CommandBase {
   private ClimbArm climbArm;
 
   /** Creates a new SimpleClimb. */
-  public SimpleClimb() {
-    this.climbArm = Robot.climb;
+  public SimpleClimb(ClimbArm p_climbArm) {
+    this.climbArm = p_climbArm;
     addRequirements(climbArm);
   }
 

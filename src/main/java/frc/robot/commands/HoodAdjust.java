@@ -11,8 +11,8 @@ import frc.robot.subsystems.HoodPistons;
 public class HoodAdjust extends CommandBase {
    HoodPistons pistons;
   /** Creates a new HoodAdjust. */
-  public HoodAdjust() {
-    pistons = new HoodPistons();
+  public HoodAdjust(HoodPistons p_pistons) {
+    pistons = p_pistons;
     addRequirements(pistons);
     // Use addRequirements() here to declare subsystem dependencies.
   }

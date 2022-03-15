@@ -4,8 +4,14 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -14,6 +20,18 @@ import edu.wpi.first.wpilibj.XboxController;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  private Command m_teleopCommand;
+  public ProfiledPIDController controller;
+
+  private Command basicAutonSequence = new BasicAutonSequence(controller);
+
+  private Limelight limelight;
+
+  private final double kp = 0.03;
+  private final double ki = 0.03;
+  private final double kd = 0; // supposed to be 0 for velocity controllers
+
+
   //**potentially add encoder numbers for some motors */
   //NEO MOTORS (BOTH CANSPARK IDs and PDP ports)
   
@@ -21,11 +39,40 @@ public class RobotContainer {
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final Turret turret = new Turret();
+  private final TurretManual turretManual = new TurretManual(turret);
 
+  private final ShooterWheel shooterWheel = new ShooterWheel();
+  //private final ShooterWheelCommand shooterWheelCommand = new ShooterWheelCommand(shooterWheel);
+
+  private final IntakePistons intakePistons = new IntakePistons();
+  private final IntakePushPull intakePushPull = new IntakePushPull(intakePistons);
+
+  private final IntakeMotor intakeMotor = new IntakeMotor();
+  private final IntakeRun intakeRun = new IntakeRun(intakeMotor);
+
+  private final Indexer indexer = new Indexer();
+  private final IndexerManual indexerManual = new IndexerManual(indexer);
+
+  private final HoodPistons hoodPistons = new HoodPistons();
+  private final HoodAdjust hoodAdjust = new HoodAdjust(hoodPistons);
+
+  private final Drive drive = new Drive();
+  private final DriveTeleop driveTeleop = new DriveTeleop(drive);
+
+  private final ClimbArm climbArm = new ClimbArm();
+  private final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    //m_teleopCommand = new DriveTeleop();
+    //m_teleopCommand.initialize();
+    
+    controller = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
+    limelight = new Limelight();
+    basicAutonSequence = new BasicAutonSequence(controller);
+
   }
 
   /**
@@ -34,7 +81,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+
+  }
 
   // public static final int RIGHT_AXIS_X = 4;
   public static final int LEFT_AXIS_Y = 5;
@@ -47,10 +96,7 @@ public class RobotContainer {
 
   //joystick instantiations
   public XboxController sticky = new XboxController(0); // is joystick number
-/*
-  XboxController leftStick = new XboxController(0);
-  XboxController rightStick = new XboxController(0);*/
-  // create buttons as buttons of that joystick, w new ports
+
   public double getJoystickAxis(int analogNumber) {
       return sticky.getRawAxis(analogNumber);
   }
@@ -66,4 +112,8 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
   //  return m_autoCommand;
   //}
+
+  public Command getAutonomousCommand() {
+    return null;
+  }
 }

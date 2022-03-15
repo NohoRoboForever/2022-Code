@@ -11,8 +11,8 @@ import frc.robot.subsystems.IntakePistons;
 public class IntakePushPull extends CommandBase {
   IntakePistons pistons;
   /** Creates a new IntakePushPull. */
-  public IntakePushPull() {
-    pistons = new IntakePistons();
+  public IntakePushPull(IntakePistons p_pistons) {
+    pistons = p_pistons;
     addRequirements(pistons);
     // Use addRequirements() here to declare subsystem dependencies.
   }

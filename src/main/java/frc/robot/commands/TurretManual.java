@@ -12,8 +12,8 @@ public class TurretManual extends CommandBase {
   private static double defaultTurretSpeed = 0.3;
   Turret turret;
   /** Creates a new TurretManual. */
-  public TurretManual() {
-    turret = new Turret();
+  public TurretManual(Turret p_turret) {
+    this.turret = p_turret;
     addRequirements(turret);
     // Use addRequirements() here to declare subsystem dependencies.
   }

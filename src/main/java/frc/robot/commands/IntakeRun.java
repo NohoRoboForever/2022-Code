@@ -11,8 +11,8 @@ import frc.robot.subsystems.IntakeMotor;
 public class IntakeRun extends CommandBase {
   IntakeMotor motor;
   /** Creates a new IntakeRun. */
-  public IntakeRun() {
-    motor = new IntakeMotor();
+  public IntakeRun(IntakeMotor p_motor) {
+    motor = p_motor;
     addRequirements(motor);
     // Use addRequirements() here to declare subsystem dependencies.
   }

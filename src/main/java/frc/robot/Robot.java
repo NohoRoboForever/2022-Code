@@ -27,25 +27,9 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
  */
 public class Robot extends TimedRobot {
   
-  public static Drive drive = Drive.getInstance();
-
-  public static ClimbArm climb;
-
   public static RobotContainer robotContainer;
 
-  private SequentialCommandGroup m_autonSequence;
-  private Command m_teleopCommand;
-
-
-  // this should probably be somewhere else
-  public ProfiledPIDController controller;
-  private Limelight limelight;
-
-  private final double kp = 0.03;
-  private final double ki = 0.03;
-  private final double kd = 0; // supposed to be 0 for velocity controllers
-
-
+  private Command m_autonomousCommand;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -56,11 +40,6 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
-    m_teleopCommand = new DriveTeleop();
-    m_teleopCommand.initialize();
-    controller = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
-    m_autonSequence = new BasicAutonSequence(controller);
-    limelight = new Limelight();
   }
 
   /**
@@ -90,17 +69,15 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
-    m_autonSequence.initialize(); // not sure if this is right, correct the control flow if not
-
-    m_teleopCommand.cancel();
+    m_autonomousCommand = robotContainer.getAutonomousCommand();
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.schedule();
+    }
   }
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {
-
-  }
+  public void autonomousPeriodic() {}
 
   @Override
   public void teleopInit() {
@@ -109,15 +86,14 @@ public class Robot extends TimedRobot {
     // continue until interrupted by another command, remove
     // this line or comment it out.
     //m_autonSequence.cancel();
-    
-    m_teleopCommand.schedule();
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.cancel();
+    }
   }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {
-    // nothing here cause teleop command
-  }
+  public void teleopPeriodic() {}
 
   @Override
   public void testInit() {
