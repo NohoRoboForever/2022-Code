@@ -8,8 +8,12 @@ import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.XboxController.Axis;
+import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -43,7 +47,7 @@ public class RobotContainer {
   private final TurretManual turretManual = new TurretManual(turret);
 
   private final ShooterWheel shooterWheel = new ShooterWheel();
-  //private final ShooterWheelCommand shooterWheelCommand = new ShooterWheelCommand(shooterWheel);
+  private final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel);
 
   private final IntakePistons intakePistons = new IntakePistons();
   private final IntakePushPull intakePushPull = new IntakePushPull(intakePistons);
@@ -82,6 +86,15 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    new JoystickButton(sticky, Button.kA.value).whenPressed(intakePushPull);
+    while (sticky.getRightTriggerAxis() > 0.1){
+      intakeRun.execute();
+    }
+    new JoystickButton(sticky, Button.kX.value).whenPressed(indexerManual);
+    while (sticky.getRightTriggerAxis() > 0.1){
+      shooterWheelManual.execute();
+    }
+
     //new JoystickButton(sticky, ).whenPressed();
   }
 

@@ -9,7 +9,7 @@ import frc.robot.Robot;
 import frc.robot.subsystems.IntakePistons;
 
 public class IntakePushPull extends CommandBase {
-  IntakePistons pistons;
+  public IntakePistons pistons;
   /** Creates a new IntakePushPull. */
   public IntakePushPull(IntakePistons p_pistons) {
     pistons = p_pistons;
@@ -24,9 +24,7 @@ public class IntakePushPull extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.robotContainer.sticky.getAButton()){
-      pistons.toggle();
-    }
+    pistons.toggle();
   }
 
   // Called once the command ends or is interrupted.

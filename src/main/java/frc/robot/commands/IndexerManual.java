@@ -24,12 +24,13 @@ public class IndexerManual extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.robotContainer.sticky.getXButtonPressed()){
-      indexer.run();
-    }
-    if (Robot.robotContainer.sticky.getYButtonPressed() && !Robot.robotContainer.sticky.getXButtonPressed()){
-      indexer.stop();
-    }
+    indexer.run();
+    // if (Robot.robotContainer.sticky.getXButtonPressed()){
+    //   indexer.run();
+    // }
+    // if (Robot.robotContainer.sticky.getYButtonPressed() && !Robot.robotContainer.sticky.getXButtonPressed()){
+    //   indexer.stop();
+    // }
   }
 
   // Called once the command ends or is interrupted.
