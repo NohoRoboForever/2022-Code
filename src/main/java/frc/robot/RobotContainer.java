@@ -87,6 +87,9 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(sticky, Button.kA.value).whenPressed(intakePushPull);
+
+    // for testing purposes....
+    // improve in the future
     while (sticky.getRightTriggerAxis() > 0.1){
       intakeRun.execute();
     }
