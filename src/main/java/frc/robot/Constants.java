@@ -82,4 +82,8 @@ public final class Constants {
 
     // for flywheel speed
     public static final double GoalInchesMultiplier = 0.01;
+
+    // turrent calibration
+    public static final double TurrentLimelightDegreeMultiplierTurn = 0.03;
+    public static final double DefaultTurrentCalibrationAccuracy = 0.5;
 }
