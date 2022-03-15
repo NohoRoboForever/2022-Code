@@ -94,8 +94,15 @@ public class RobotContainer {
     while (sticky.getRightTriggerAxis() > 0.1){
       shooterWheelManual.execute();
     }
-
-    //new JoystickButton(sticky, ).whenPressed();
+    if (Robot.robotContainer.sticky.getPOV() > 45 && Robot.robotContainer.sticky.getPOV() > 135){
+      turret.turnClockwise(Constants.defaultTurretSpeed);
+    }
+    if (Robot.robotContainer.sticky.getPOV() > 225 && Robot.robotContainer.sticky.getPOV() > 315){
+      turret.turnCounterclockwise(Constants.defaultTurretSpeed);
+    }
+    simpleClimb.execute();
+    hoodAdjust.execute();
+    driveTeleop.execute();
   }
 
   // public static final int RIGHT_AXIS_X = 4;
