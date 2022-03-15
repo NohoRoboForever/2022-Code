@@ -17,6 +17,7 @@ public class Turret extends SubsystemBase {
   /** Creates a new Turret. */
   public Turret() {
     motor = new CANSparkMax(Constants.Turret, MotorType.kBrushless);
+    encoder = motor.getEncoder();
   }
   public void turnClockwise(double speed){
     motor.set(speed);
