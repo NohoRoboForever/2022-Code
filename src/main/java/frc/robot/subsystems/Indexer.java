@@ -7,14 +7,17 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Indexer extends SubsystemBase {
   private CANSparkMax motor;
+  private DigitalInput limitSwitch = new DigitalInput(Constants.IndexerLimitSwitchChannel);
+
   /** Creates a new Indexer. */
   public Indexer(){
-    motor = new CANSparkMax(8, MotorType.kBrushless);
+    motor = new CANSparkMax(Constants.Indexer, MotorType.kBrushless);
   }
   public void run(){
     motor.set(Constants.IndexerSpeed);
@@ -27,6 +30,9 @@ public class Indexer extends SubsystemBase {
   }
   public void takeSecondBall(){
 
+  }
+  public boolean getLimitSwitchValue() {
+    return limitSwitch.get();
   }
 
   @Override
