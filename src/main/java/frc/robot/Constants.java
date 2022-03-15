@@ -25,6 +25,7 @@ public final class Constants {
     //CONSTANT SPEEDS
     public static final double IndexerSpeed = 0.2;
     public final static double climbSpeed = 0.2;
+    public static double defaultTurretSpeed = 0.2;
     public final static double defaultFlywheelSpeed = 0.5;
     public final static double intakeSpeed = 0.5;
 
