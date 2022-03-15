@@ -8,6 +8,7 @@ import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.Drive;
 import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more              -- so doesn't this mean we shouldn't subclass this? why are we then
 // information, see:
@@ -15,7 +16,7 @@ import frc.robot.Robot;
 public class BasicAutonSequence extends SequentialCommandGroup {
   /** Creates a new BasicAutonSequence. */
   private ProfiledPIDController pidController;
-  private Drive drive = Drive.getInstance();
+  private Drive drive = RobotContainer.drive;
 
   public BasicAutonSequence(ProfiledPIDController pController) {
     // Add your commands in the addCommands() call, e.g.
