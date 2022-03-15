@@ -4,6 +4,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 // https://docs.limelightvision.io/en/latest/getting_started.html#basic-programming
 public class Limelight extends SubsystemBase {
@@ -51,5 +52,9 @@ public class Limelight extends SubsystemBase {
 
     public double getDistanceFromGoalInches() {
         return (goalHeight - lensHeight) / Math.tan((mountAngle + getTY()) * (3.14159265359 / 180.0));
+    }
+
+    public double getFlywheelSpeed() {
+        return getDistanceFromGoalInches() * Constants.GoalInchesMultiplier;
     }
 }
