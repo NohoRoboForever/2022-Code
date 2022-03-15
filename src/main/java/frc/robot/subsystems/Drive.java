@@ -54,10 +54,9 @@ public class Drive extends SubsystemBase {
     return s_defaultInstance;
   }
   
-  // is drive a command!!!??
-  // @Override
-  // public void periodic() {
-  // }
+  @Override
+  public void periodic() {
+  }
 
   public void setDriveL(double speed) {
     LF.set(speed);

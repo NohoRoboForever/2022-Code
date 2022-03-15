@@ -78,4 +78,7 @@ public final class Constants {
     public static final int HoodLeftReverse = 6;
     public static final int HoodRightForward = 7;
     public static final int HoodRightReverse = 8;
+
+    // for flywheel speed
+    public static final double GoalInchesMultiplier = 0.01;
 }
