@@ -100,6 +100,7 @@ public class RobotContainer {
     if (Robot.robotContainer.sticky.getPOV() > 225 && Robot.robotContainer.sticky.getPOV() > 315){
       turret.turnCounterclockwise(Constants.defaultTurretSpeed);
     }
+    // Can I do this? Or does it only call once
     simpleClimb.execute();
     hoodAdjust.execute();
     driveTeleop.execute();
