@@ -22,6 +22,7 @@ public class Robot extends TimedRobot {
   public static RobotContainer robotContainer;
 
   private Command m_autonomousCommand;
+  private Command m_teleopCommand;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -62,9 +63,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     m_autonomousCommand = robotContainer.getAutonomousCommand();
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
+    m_autonomousCommand.schedule();
   }
 
   /** This function is called periodically during autonomous. */
@@ -81,6 +80,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    m_teleopCommand = robotContainer.getTeleoperatedCommand();
+    m_teleopCommand.schedule();
   }
 
   /** This function is called periodically during operator control. */

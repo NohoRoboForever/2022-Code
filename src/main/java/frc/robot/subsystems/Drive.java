@@ -47,7 +47,7 @@ public class Drive extends SubsystemBase {
  
   }
 
-  public Drive getInstance() {
+  public static Drive getInstance() {
     if (s_defaultInstance == null) {
       s_defaultInstance = new Drive();
     }

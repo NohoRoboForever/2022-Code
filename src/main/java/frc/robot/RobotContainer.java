@@ -87,13 +87,13 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(sticky, Button.kA.value).whenPressed(intakePushPull);
+    new JoystickButton(sticky, Button.kX.value).whenPressed(indexerManual);
 
     // for testing purposes....
     // improve in the future
     while (sticky.getRightTriggerAxis() > 0.1){
       intakeRun.execute();
     }
-    new JoystickButton(sticky, Button.kX.value).whenPressed(indexerManual);
     while (sticky.getRightTriggerAxis() > 0.1){
       shooterWheelManual.execute();
     }
@@ -138,6 +138,10 @@ public class RobotContainer {
   //}
 
   public Command getAutonomousCommand() {
-    return null;
+    return basicAutonSequence;
+  }
+
+  public Command getTeleoperatedCommand() {
+    return driveTeleop;
   }
 }
