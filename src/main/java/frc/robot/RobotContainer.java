@@ -94,6 +94,10 @@ public class RobotContainer {
     // new JoystickButton(sticky, Button.kA.value).whenHeld(intakePushPull); pneumatics temporarily fucked
     new JoystickButton(sticky, Button.kX.value).whenHeld(indexerManual);
     new JoystickButton(sticky, Button.kX.value).whenReleased(new InstantCommand(indexer::stop, indexer));
+    new JoystickButton(sticky, Button.kRightBumper.value).whenHeld(indexerManual);
+    new JoystickButton(sticky, Button.kRightBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
+    new JoystickButton(sticky, Button.kLeftBumper.value).whenHeld(indexerManual);
+    new JoystickButton(sticky, Button.kLeftBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
     new JoystickButton(sticky, Button.kY.value).whenHeld(new InstantCommand(intakeMotor::run, indexer));
     new JoystickButton(sticky, Button.kY.value).whenReleased(new InstantCommand(intakeMotor::stop, indexer));
     new JoystickButton(sticky, Button.kA.value).whenHeld(shooterWheelManual);
