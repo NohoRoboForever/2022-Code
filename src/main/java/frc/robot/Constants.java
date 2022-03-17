@@ -52,7 +52,7 @@ public final class Constants {
 
     public static final int XButton = 1;
     // controller
-    //public static final int XBOX_CONTROLLER = 0;
+    public static final int XBOX_CONTROLLER = 0;
 
     //flywheel
     //public static final int ShootWheel1;

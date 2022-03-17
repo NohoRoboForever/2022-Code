@@ -35,6 +35,8 @@ public class RobotContainer {
   private final double ki = 0.03;
   private final double kd = 0; // supposed to be 0 for velocity controllers
 
+  public XboxController sticky = new XboxController(Constants.XBOX_CONTROLLER);
+
 
   //**potentially add encoder numbers for some motors */
   //NEO MOTORS (BOTH CANSPARK IDs and PDP ports)
@@ -97,16 +99,16 @@ public class RobotContainer {
     while (sticky.getRightTriggerAxis() > 0.1){
       shooterWheelManual.execute();
     }
-    if (Robot.robotContainer.sticky.getPOV() > 45 && Robot.robotContainer.sticky.getPOV() > 135){
+    if (sticky.getPOV() > 45 && sticky.getPOV() > 135){
       turret.turnClockwise(Constants.defaultTurretSpeed);
     }
-    if (Robot.robotContainer.sticky.getPOV() > 225 && Robot.robotContainer.sticky.getPOV() > 315){
+    if (sticky.getPOV() > 225 && sticky.getPOV() > 315){
       turret.turnCounterclockwise(Constants.defaultTurretSpeed);
     }
     // Can I do this? Or does it only call once
-    simpleClimb.execute();
-    hoodAdjust.execute();
-    driveTeleop.execute();
+    simpleClimb.schedule();
+    hoodAdjust.schedule();
+    driveTeleop.schedule();
   }
 
   // public static final int RIGHT_AXIS_X = 4;
@@ -119,7 +121,6 @@ public class RobotContainer {
     //controller deadzones
 
   //joystick instantiations
-  public XboxController sticky = new XboxController(0); // is joystick number
 
   public double getJoystickAxis(int analogNumber) {
       return sticky.getRawAxis(analogNumber);

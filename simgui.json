@@ -30,15 +30,35 @@
         "header": {
           "open": true
         }
+      },
+      "SPARK MAX [7]": {
+        "header": {
+          "open": true
+        }
+      },
+      "SPARK MAX [9]": {
+        "header": {
+          "open": true
+        }
       }
     }
   },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/LiveWindow/ClimbArm": "Subsystem",
       "/LiveWindow/Drive": "Subsystem",
+      "/LiveWindow/HoodPistons": "Subsystem",
+      "/LiveWindow/Indexer": "Subsystem",
+      "/LiveWindow/IntakeMotor": "Subsystem",
+      "/LiveWindow/IntakePistons": "Subsystem",
       "/LiveWindow/Limelight": "Subsystem",
+      "/LiveWindow/ShooterWheel": "Subsystem",
+      "/LiveWindow/Turret": "Subsystem",
+      "/LiveWindow/Ungrouped/DigitalInput[0]": "Digital Input",
+      "/LiveWindow/Ungrouped/DigitalInput[1]": "Digital Input",
       "/LiveWindow/Ungrouped/PIDController[1]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[2]": "PIDController",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler"
     }
   },
