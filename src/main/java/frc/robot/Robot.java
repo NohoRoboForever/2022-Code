@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.DriveTeleop;
 
 
 
@@ -21,6 +22,7 @@ public class Robot extends TimedRobot {
   
   public static RobotContainer robotContainer;
 
+  public static DriveTeleop fucked_driveTeleop;
   private Command m_autonomousCommand;
   private Command m_teleopCommand;
   /**
@@ -49,6 +51,17 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    if (robotContainer.sticky.getPOV() > 45 && robotContainer.sticky.getPOV() < 135){
+      robotContainer.turret.turnClockwise(Constants.defaultTurretSpeed);
+    } else if (robotContainer.sticky.getPOV() > 225 && robotContainer.sticky.getPOV() < 315) {
+      robotContainer.turret.turnCounterclockwise(Constants.defaultTurretSpeed);
+    } else {
+      robotContainer.turret.halt();
+    }
+    fucked_driveTeleop.execute();
+    // while (robotContainer.sticky.getPOV() > 225 && robotContainer.sticky.getPOV() > 315){
+    //   robotContainer.turret.turnCounterclockwise(Constants.defaultTurretSpeed);
+    // }
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

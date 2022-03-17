@@ -46,9 +46,13 @@ public class DriveTeleop extends CommandBase {
     // NEED TO ADJUST MULTIPLIERS FOR REAL DRIVE
     if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .15) {
       drive.setDriveL(Math.pow((Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)*0.2), 3));
+    } else {
+      drive.setDriveL(0);
     }
     if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)) > .15) {
       drive.setDriveR(Math.pow((Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)*0.2), 3));
+    } else {
+      drive.setDriveR(0);
     }
   }
 

@@ -47,8 +47,8 @@ public class RobotContainer {
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  private final Turret turret = new Turret();
-  private final TurretManual turretManual = new TurretManual(turret);
+  public final Turret turret = new Turret();
+  public final TurretManual turretManual = new TurretManual(turret);
 
   private final ShooterWheel shooterWheel = new ShooterWheel();
   private final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel);
@@ -90,12 +90,12 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(sticky, Button.kA.value).whenHeld(intakePushPull);
+    // new JoystickButton(sticky, Button.kA.value).whenHeld(intakePushPull); pneumatics temporarily fucked
     new JoystickButton(sticky, Button.kX.value).whenHeld(indexerManual);
     new JoystickButton(sticky, Button.kX.value).whenReleased(new InstantCommand(indexer::stop, indexer));
     new JoystickButton(sticky, Button.kY.value).whenHeld(new InstantCommand(intakeMotor::run, indexer));
     new JoystickButton(sticky, Button.kY.value).whenReleased(new InstantCommand(intakeMotor::halt, indexer));
-
+    new JoystickButton(sticky, Button.kA.value).whenHeld(shooterWheelManual);
 
 
 

@@ -20,7 +20,7 @@ public class ShooterWheel extends SubsystemBase {
   }
 
   public void set(double speed){
-    leftMotor.set(speed);
+    leftMotor.set(-speed);
     rightMotor.set(speed);
   }
   public void stop(){
