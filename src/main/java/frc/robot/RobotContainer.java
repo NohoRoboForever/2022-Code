@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.*;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+
 import frc.robot.subsystems.*;
 
 /**
@@ -88,8 +90,14 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(sticky, Button.kA.value).whenPressed(intakePushPull);
-    new JoystickButton(sticky, Button.kX.value).whenPressed(indexerManual);
+    new JoystickButton(sticky, Button.kA.value).whenHeld(intakePushPull);
+    new JoystickButton(sticky, Button.kX.value).whenHeld(indexerManual);
+    new JoystickButton(sticky, Button.kX.value).whenReleased(new InstantCommand(indexer::stop, indexer));
+    new JoystickButton(sticky, Button.kY.value).whenHeld(new InstantCommand(intakeMotor::run, indexer));
+    new JoystickButton(sticky, Button.kY.value).whenReleased(new InstantCommand(intakeMotor::halt, indexer));
+
+
+
 
     // for testing purposes....
     // improve in the future
