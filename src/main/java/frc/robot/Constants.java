@@ -23,11 +23,11 @@ public final class Constants {
 
 
     //CONSTANT SPEEDS
-    public static final double IndexerSpeed = 0.5;
-    public final static double climbSpeed = 0.2;
-    public static final double defaultTurretSpeed = 0.05;
-    public final static double defaultFlywheelSpeed = 0.5;
-    public final static double intakeSpeed = 0.3;
+    public static final double IndexerSpeed = 0.95d;
+    public final static double climbSpeed = 0.2d;
+    public static final double defaultTurretSpeed = 0.05d;
+    public final static double defaultFlywheelSpeed = 0.85d;
+    public final static double intakeSpeed = 0.5d;
 
     // drive can ids
     public static final int RFWheel = 4;

@@ -16,17 +16,14 @@ import frc.robot.subsystems.Drive;
 
 public class DriveDistance extends CommandBase {
   
-<<<<<<< HEAD
   private ProfiledPIDController controller1, controller2;
   private double distance1, distance2;
   private MotorController motorcntrl1, motorcntrl2, motorcntrl3, motorcntrl4, motorcntrl5, motorcntrl6;
   private RelativeEncoder encoder1, encoder2;
-=======
   private ProfiledPIDController controller;
   private double distance; // distance in inches
   private MotorController mController;
   private RelativeEncoder encoder;
->>>>>>> 08a5dc53e6b0f3c895d89d4654d8d11b5d1fc948
 
   /** Creates a new DriveDistance. */
   public DriveDistance(ProfiledPIDController pidController1, ProfiledPIDController pidController2, double rotations1, double rotations2, RelativeEncoder enc1, RelativeEncoder enc2, MotorController motor1, MotorController motor2, MotorController motor3, MotorController motor4,
@@ -75,10 +72,6 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-<<<<<<< HEAD
     return encoder1.getPosition() - distance1 < 0.1 && encoder2.getPosition() - distance2 < 0.1;
-=======
-    return encoder.getPosition() - distance < 0.5;
->>>>>>> 08a5dc53e6b0f3c895d89d4654d8d11b5d1fc948
   }
 }

@@ -50,13 +50,13 @@ public class RobotContainer {
   public final Turret turret = new Turret();
   public final TurretManual turretManual = new TurretManual(turret);
 
-  private final ShooterWheel shooterWheel = new ShooterWheel();
+  public final ShooterWheel shooterWheel = new ShooterWheel();
   private final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel);
 
   private final IntakePistons intakePistons = new IntakePistons();
   private final IntakePushPull intakePushPull = new IntakePushPull(intakePistons);
 
-  private final IntakeMotor intakeMotor = new IntakeMotor();
+  final IntakeMotor intakeMotor = new IntakeMotor();
   private final IntakeRun intakeRun = new IntakeRun(intakeMotor);
 
   private final Indexer indexer = new Indexer();

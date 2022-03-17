@@ -69,17 +69,25 @@ public class Robot extends TimedRobot {
     // }
 
     if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .1) {
-      drive.setDriveL(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)*0.2);
+      drive.setDriveL(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)*0.5);
     } 
     else {
        drive.setDriveL(0);
     }
     if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)) > .1) {
-      drive.setDriveR(-1*Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)*0.2);
+      drive.setDriveR(-1*Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)*0.5);
     }
     else {
       drive.setDriveR(0);
     }
+
+    if (Math.abs(Robot.robotContainer.getJoystickAxis(11)) > .1) {
+      robotContainer.intakeMotor.run();
+    }
+
+    if (Math.abs(Robot.robotContainer.getJoystickAxis(12)) > .1) {
+      robotContainer.shooterWheel.set(Robot.robotContainer.getJoystickAxis(12)*0.5);
+    } 
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
