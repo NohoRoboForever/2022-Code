@@ -17,7 +17,7 @@ import frc.robot.subsystems.Drive;
 public class DriveDistance extends CommandBase {
   
   private ProfiledPIDController controller;
-  private double distance;
+  private double distance; // distance in inches
   private MotorController mController;
   private RelativeEncoder encoder;
 
@@ -47,6 +47,6 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return encoder.getPosition() - distance < 0.1;
+    return encoder.getPosition() - distance < 0.5;
   }
 }
