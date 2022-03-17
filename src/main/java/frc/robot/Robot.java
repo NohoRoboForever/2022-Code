@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.DriveTeleop;
+import frc.robot.subsystems.Drive;
 
 
 
@@ -22,7 +23,8 @@ public class Robot extends TimedRobot {
   
   public static RobotContainer robotContainer;
 
-  public static DriveTeleop fucked_driveTeleop;
+  public final static Drive drive = new Drive();
+  public static DriveTeleop fucked_driveTeleop = new DriveTeleop(drive);
   private Command m_autonomousCommand;
   private Command m_teleopCommand;
   /**
@@ -56,12 +58,25 @@ public class Robot extends TimedRobot {
     } else if (robotContainer.sticky.getPOV() > 225 && robotContainer.sticky.getPOV() < 315) {
       robotContainer.turret.turnCounterclockwise(Constants.defaultTurretSpeed);
     } else {
-      robotContainer.turret.halt();
+      robotContainer.turret.stop();
     }
-    fucked_driveTeleop.execute();
+    //fucked_driveTeleop.execute();
     // while (robotContainer.sticky.getPOV() > 225 && robotContainer.sticky.getPOV() > 315){
     //   robotContainer.turret.turnCounterclockwise(Constants.defaultTurretSpeed);
     // }
+
+    if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .1) {
+      drive.setDriveL(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)*0.2);
+    } 
+    else {
+       drive.setDriveL(0);
+    }
+    if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)) > .1) {
+      drive.setDriveR(-1*Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)*0.2);
+    }
+    else {
+      drive.setDriveR(0);
+    }
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -74,9 +89,8 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    m_autonomousCommand = robotContainer.getAutonomousCommand();
-    m_autonomousCommand.schedule();
+    // m_autonomousCommand = robotContainer.getAutonomousCommand();
+    // m_autonomousCommand.schedule();
   }
 
   /** This function is called periodically during autonomous. */
@@ -93,8 +107,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    m_teleopCommand = robotContainer.getTeleoperatedCommand();
-    m_teleopCommand.schedule();
+    // m_teleopCommand = robotContainer.getTeleoperatedCommand();
+    // m_teleopCommand.schedule();
   }
 
   /** This function is called periodically during operator control. */

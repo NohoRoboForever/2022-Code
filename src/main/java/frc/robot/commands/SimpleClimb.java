@@ -29,7 +29,7 @@ public class SimpleClimb extends CommandBase {
       climbArm.retract();
     }
     if (Robot.robotContainer.sticky.getRightBumper()){
-      climbArm.halt();
+      climbArm.stop();
     }
   }
 

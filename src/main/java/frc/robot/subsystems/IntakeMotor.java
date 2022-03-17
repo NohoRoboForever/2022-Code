@@ -21,7 +21,7 @@ public class IntakeMotor extends SubsystemBase {
     motor.set(Constants.intakeSpeed);
   }
 
-  public void halt(){
+  public void stop(){
     motor.stopMotor();
   }
   @Override
