@@ -63,11 +63,7 @@ public class Robot extends TimedRobot {
     } else {
       robotContainer.turret.stop();
     }
-    //fucked_driveTeleop.execute();
-    // while (robotContainer.sticky.getPOV() > 225 && robotContainer.sticky.getPOV() > 315){
-    //   robotContainer.turret.turnCounterclockwise(Constants.defaultTurretSpeed);
-    // }
-
+    
     if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .1) {
       drive.setDriveL(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)*0.5);
     } 

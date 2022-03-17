@@ -65,7 +65,7 @@ public class RobotContainer {
   private final HoodPistons hoodPistons = new HoodPistons();
   private final HoodAdjust hoodAdjust = new HoodAdjust(hoodPistons);
 
-  // public final static Drive drive = new Drive();
+  public final Drive drive = new Drive();
   // private final DriveTeleop driveTeleop = new DriveTeleop(drive);
 
   private final ClimbArm climbArm = new ClimbArm();
@@ -80,6 +80,8 @@ public class RobotContainer {
     controller1 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
     controller2 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
     limelight = new Limelight();
+
+    drive.setDefaultCommand(new DriveTeleop(drive)); //this should hopefully work rather than doing all the stuff in robotPeriodic
     // basicAutonSequence = new BasicAutonSequence(controller);
 
   }
