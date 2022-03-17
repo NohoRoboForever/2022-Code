@@ -63,19 +63,19 @@ public class Robot extends TimedRobot {
     } else {
       robotContainer.turret.stop();
     }
-    
-    if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .1) {
-      drive.setDriveL(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)*0.5);
-    } 
-    else {
-       drive.setDriveL(0);
-    }
-    if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)) > .1) {
-      drive.setDriveR(-1*Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)*0.5);
-    }
-    else {
-      drive.setDriveR(0);
-    }
+
+    // if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .1) {
+    //   drive.setDriveL(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)*0.5);
+    // } 
+    // else {
+    //    drive.setDriveL(0);
+    // }
+    // if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)) > .1) {
+    //   drive.setDriveR(-1*Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)*0.5);
+    // }
+    // else {
+    //   drive.setDriveR(0);
+    // }
 
     if (Math.abs(Robot.robotContainer.getJoystickAxis(11)) > .1) {
       robotContainer.intakeMotor.run();
