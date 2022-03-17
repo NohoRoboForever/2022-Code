@@ -29,7 +29,7 @@ public class RobotContainer {
   private Command m_teleopCommand;
   public ProfiledPIDController controller;
 
-  private Command basicAutonSequence = new BasicAutonSequence(controller);
+  // private Command basicAutonSequence = new BasicAutonSequence(controller);
 
   private Limelight limelight;
 
@@ -65,8 +65,8 @@ public class RobotContainer {
   private final HoodPistons hoodPistons = new HoodPistons();
   private final HoodAdjust hoodAdjust = new HoodAdjust(hoodPistons);
 
-  public final static Drive drive = new Drive();
-  private final DriveTeleop driveTeleop = new DriveTeleop(drive);
+  // public final static Drive drive = new Drive();
+  // private final DriveTeleop driveTeleop = new DriveTeleop(drive);
 
   private final ClimbArm climbArm = new ClimbArm();
   private final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
@@ -79,7 +79,7 @@ public class RobotContainer {
     
     controller = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
     limelight = new Limelight();
-    basicAutonSequence = new BasicAutonSequence(controller);
+    // basicAutonSequence = new BasicAutonSequence(controller);
 
   }
 
@@ -93,36 +93,21 @@ public class RobotContainer {
     // new JoystickButton(sticky, Button.kA.value).whenHeld(intakePushPull); pneumatics temporarily fucked
     new JoystickButton(sticky, Button.kX.value).whenHeld(indexerManual);
     new JoystickButton(sticky, Button.kX.value).whenReleased(new InstantCommand(indexer::stop, indexer));
-    new JoystickButton(sticky, Button.kY.value).whenHeld(new InstantCommand(intakeMotor::run, indexer));
-    new JoystickButton(sticky, Button.kY.value).whenReleased(new InstantCommand(intakeMotor::halt, indexer));
+    new JoystickButton(sticky, Button.kY.value).whenHeld(new InstantCommand(intakeMotor::run, indexer).alongWith(shooterWheelManual));
+    new JoystickButton(sticky, Button.kY.value).whenReleased(new InstantCommand(intakeMotor::stop, indexer));
     new JoystickButton(sticky, Button.kA.value).whenHeld(shooterWheelManual);
+    new JoystickButton(sticky, Button.kA.value).whenReleased(new InstantCommand(shooterWheel::stop, shooterWheel));
+    new JoystickButton(sticky, Button.kStart.value).whenHeld(new InstantCommand(climbArm::extend, climbArm));
+    new JoystickButton(sticky, Button.kStart.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
+    new JoystickButton(sticky, Button.kBack.value).whenHeld(new InstantCommand(climbArm::retract, climbArm));
+    new JoystickButton(sticky, Button.kBack.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
 
-
-
-    // for testing purposes....
-    // improve in the future
-    while (sticky.getRightTriggerAxis() > 0.1){
-      intakeRun.execute();
-    }
-    while (sticky.getRightTriggerAxis() > 0.1){
-      shooterWheelManual.execute();
-    }
-    if (sticky.getPOV() > 45 && sticky.getPOV() > 135){
-      turret.turnClockwise(Constants.defaultTurretSpeed);
-    }
-    if (sticky.getPOV() > 225 && sticky.getPOV() > 315){
-      turret.turnCounterclockwise(Constants.defaultTurretSpeed);
-    }
-    // Can I do this? Or does it only call once
-    simpleClimb.schedule();
-    hoodAdjust.schedule();
-    driveTeleop.schedule();
   }
 
   // public static final int RIGHT_AXIS_X = 4;
-  public static final int LEFT_AXIS_Y = 5;
+  public static final int LEFT_AXIS_Y = 1;
   // public static final int LEFT_AXIS_X = 0;
-  public static final int RIGHT_AXIS_Y = 1;
+  public static final int RIGHT_AXIS_Y = 5;
 
     //button numbers, not sure if necessary
 
@@ -146,11 +131,11 @@ public class RobotContainer {
   //  return m_autoCommand;
   //}
 
-  public Command getAutonomousCommand() {
-    return basicAutonSequence;
-  }
+  // public Command getAutonomousCommand() {
+  //   return basicAutonSequence;
+  // }
 
-  public Command getTeleoperatedCommand() {
-    return driveTeleop;
-  }
+  // public Command getTeleoperatedCommand() {
+  //   return driveTeleop;
+  // }
 }

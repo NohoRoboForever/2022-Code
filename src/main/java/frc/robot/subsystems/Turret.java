@@ -33,7 +33,7 @@ public class Turret extends SubsystemBase {
   public void turnCounterclockwise(double speed){
     motor.set(-1*speed);
   }
-  public void halt(){
+  public void stop(){
     motor.stopMotor();
   }
   public void adjustToLimelight(Limelight limelight) {

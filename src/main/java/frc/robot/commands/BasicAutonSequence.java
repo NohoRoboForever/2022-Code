@@ -15,19 +15,19 @@ import frc.robot.RobotContainer;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class BasicAutonSequence extends SequentialCommandGroup {
   /** Creates a new BasicAutonSequence. */
-  private ProfiledPIDController pidController;
-  private Drive drive = RobotContainer.drive;
+  // private ProfiledPIDController pidController;
+  // private Drive drive = RobotContainer.drive;
 
-  public BasicAutonSequence(ProfiledPIDController pController) {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
-    addCommands(
-      new DriveDistance(pidController, 5, drive.LB, drive.LBEncoder).alongWith(new DriveDistance(pidController, 5, drive.LM, drive.LMEncoder),
-        new DriveDistance(pidController, 5, drive.LF, drive.LFEncoder) // this looks really bad lol
-      ),
-      new DriveDistance(pidController, 5, drive.RB, drive.RBEncoder).alongWith(new DriveDistance(pidController, 5, drive.RM, drive.RMEncoder),
-        new DriveDistance(pidController, 5, drive.RF, drive.RFEncoder) // this looks really bad lol
-      )
-    );
-  }
+  // public BasicAutonSequence(ProfiledPIDController pController) {
+  //   // Add your commands in the addCommands() call, e.g.
+  //   // addCommands(new FooCommand(), new BarCommand());
+  //   addCommands(
+  //     new DriveDistance(pidController, 5, drive.LB, drive.LBEncoder).alongWith(new DriveDistance(pidController, 5, drive.LM, drive.LMEncoder),
+  //       new DriveDistance(pidController, 5, drive.LF, drive.LFEncoder) // this looks really bad lol
+  //     ),
+  //     new DriveDistance(pidController, 5, drive.RB, drive.RBEncoder).alongWith(new DriveDistance(pidController, 5, drive.RM, drive.RMEncoder),
+  //       new DriveDistance(pidController, 5, drive.RF, drive.RFEncoder) // this looks really bad lol
+  //     )
+  //   );
+  // }
 }

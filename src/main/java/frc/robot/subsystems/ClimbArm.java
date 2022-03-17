@@ -35,7 +35,7 @@ public class ClimbArm extends SubsystemBase {
     climb2.set(Constants.climbSpeed * -1);
   }
 
-  public void halt() {
+  public void stop() {
     climb1.stopMotor();
     climb2.stopMotor();
   }
