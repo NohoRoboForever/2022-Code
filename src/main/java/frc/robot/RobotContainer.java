@@ -27,7 +27,7 @@ import frc.robot.subsystems.*;
  */
 public class RobotContainer {
   private Command m_teleopCommand;
-  public ProfiledPIDController controller;
+  public ProfiledPIDController controller1, controller2;
 
   // private Command basicAutonSequence = new BasicAutonSequence(controller);
 
@@ -77,7 +77,8 @@ public class RobotContainer {
     //m_teleopCommand = new DriveTeleop();
     //m_teleopCommand.initialize();
     
-    controller = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
+    controller1 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
+    controller2 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
     limelight = new Limelight();
     // basicAutonSequence = new BasicAutonSequence(controller);
 
@@ -93,7 +94,7 @@ public class RobotContainer {
     // new JoystickButton(sticky, Button.kA.value).whenHeld(intakePushPull); pneumatics temporarily fucked
     new JoystickButton(sticky, Button.kX.value).whenHeld(indexerManual);
     new JoystickButton(sticky, Button.kX.value).whenReleased(new InstantCommand(indexer::stop, indexer));
-    new JoystickButton(sticky, Button.kY.value).whenHeld(new InstantCommand(intakeMotor::run, indexer).alongWith(shooterWheelManual));
+    new JoystickButton(sticky, Button.kY.value).whenHeld(new InstantCommand(intakeMotor::run, indexer));
     new JoystickButton(sticky, Button.kY.value).whenReleased(new InstantCommand(intakeMotor::stop, indexer));
     new JoystickButton(sticky, Button.kA.value).whenHeld(shooterWheelManual);
     new JoystickButton(sticky, Button.kA.value).whenReleased(new InstantCommand(shooterWheel::stop, shooterWheel));

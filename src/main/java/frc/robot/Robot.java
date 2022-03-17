@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.DriveTeleop;
 import frc.robot.subsystems.Drive;
+import frc.robot.commands.DriveDistance;
 
 
 
@@ -21,11 +22,12 @@ import frc.robot.subsystems.Drive;
  */
 public class Robot extends TimedRobot {
   
-  public static RobotContainer robotContainer;
+  public static RobotContainer robotContainer;// = RobotContainer.getInstance();
 
-  public final static Drive drive = new Drive();
+  public final static Drive drive = Drive.getInstance();
   public static DriveTeleop fucked_driveTeleop = new DriveTeleop(drive);
-  private Command m_autonomousCommand;
+  private Command m_autonomousCommand;// = new DriveDistance(robotContainer.controller1, robotContainer.controller2, 5, 5,
+    //drive.LMEncoder, drive.RMEncoder, drive.LB, drive.LM, drive.LF, drive.RB, drive.RM, drive.RF);
   private Command m_teleopCommand;
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -89,8 +91,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    // m_autonomousCommand = robotContainer.getAutonomousCommand();
-    // m_autonomousCommand.schedule();
+   // m_autonomousCommand.schedule();
   }
 
   /** This function is called periodically during autonomous. */
