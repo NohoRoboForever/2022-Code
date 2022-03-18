@@ -60,7 +60,7 @@ public class DriveDistance extends CommandBase {
     System.out.println(distance1);
 
     motorcntrl1.set(calc1);
-    //motorcntrl2.set(calc1);
+    motorcntrl2.set(calc1);
     motorcntrl3.set(calc1);
 
     motorcntrl4.set(calc2);

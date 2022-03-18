@@ -24,6 +24,7 @@ public class HoodAdjust extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (Robot.auton) return;
     if (Robot.robotContainer.sticky.getPOV() < 45 || Robot.robotContainer.sticky.getPOV() > 315){
       pistons.extend();
     } else if (Robot.robotContainer.sticky.getPOV() < 225 && Robot.robotContainer.sticky.getPOV() > 135){

@@ -23,7 +23,7 @@ public class Indexer extends SubsystemBase {
     motor.set(Constants.IndexerSpeed);
   }
   public void reverse(){
-    motor.set(Constants.IndexerSpeed*-1);
+    motor.set(-Constants.IndexerSpeed);
   }
   public void stop(){
     motor.stopMotor();

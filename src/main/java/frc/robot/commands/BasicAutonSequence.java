@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.IntakeMotor;
@@ -33,14 +34,14 @@ public class BasicAutonSequence extends SequentialCommandGroup {
 
   /** Creates a new BasicAutonSequence. */
   private ProfiledPIDController pidController;
-  private Drive drive = Drive.getInstance();
+  private final Drive drive = Drive.getInstance();
 
   public BasicAutonSequence(ProfiledPIDController pidController) {
     this.pidController = pidController;
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new InstantCommand(Robot.robotContainer.intakeMotor::run, Robot.robotContainer.intakeMotor)
+      //new InstantCommand(Robot.robotContainer.intakeMotor::run, Robot.robotContainer.intakeMotor).withTimeout(1.4)
       //new DriveDistance(Robot.robotContainer.controller1, Robot.robotContainer.controller2, 5, 5, drive.LMEncoder, drive.RMEncoder, drive.LB, drive.LM, drive.LF, drive.RB, drive.RM, drive.RF)
     );
   }

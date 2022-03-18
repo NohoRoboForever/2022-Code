@@ -9,6 +9,7 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.commands.DriveTeleop;
 import frc.robot.subsystems.Drive;
 import frc.robot.commands.BasicAutonSequence;
@@ -32,6 +33,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;// = new DriveDistance(robotContainer.controller1, robotContainer.controller2, 5, 5,
     //drive.LMEncoder, drive.RMEncoder, drive.LB, drive.LM, drive.LF, drive.RB, drive.RM, drive.RF);
   private Command m_teleopCommand;
+  public static boolean auton = false;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -104,6 +106,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
+    auton = true;
     m_autonomousCommand.schedule();
   }
 
@@ -118,9 +121,11 @@ public class Robot extends TimedRobot {
     // continue until interrupted by another command, remove
     // this line or comment it out.
     //m_autonSequence.cancel();
+    auton = false;
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    
     // m_teleopCommand = robotContainer.getTeleoperatedCommand();
     // m_teleopCommand.schedule();
   }

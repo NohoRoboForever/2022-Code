@@ -9,7 +9,7 @@ import frc.robot.Robot;
 import frc.robot.subsystems.IntakeMotor;
 
 public class IntakeRun extends CommandBase {
-  IntakeMotor motor;
+  private IntakeMotor motor;
   /** Creates a new IntakeRun. */
   public IntakeRun(IntakeMotor p_motor) {
     motor = p_motor;

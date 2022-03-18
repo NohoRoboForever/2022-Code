@@ -25,6 +25,7 @@ public class ShooterWheelManual extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (Robot.auton) return;
     if (Math.abs(Robot.robotContainer.getJoystickAxis(3)) > .1) {
       shooterWheel.set(Robot.robotContainer.getJoystickAxis(3)*0.5);
     } else {

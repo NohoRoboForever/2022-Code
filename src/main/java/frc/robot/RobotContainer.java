@@ -39,6 +39,7 @@ public class RobotContainer {
   private final double kd = 0; // supposed to be 0 for velocity controllers
 
   public XboxController sticky = new XboxController(Constants.XBOX_CONTROLLER);
+  //public XboxController sticky2 = new XboxController(Constants.XBOX_CONTROLLER2);
 
 
   //**potentially add encoder numbers for some motors */
@@ -70,6 +71,12 @@ public class RobotContainer {
 
   private final Command adjustCommand = new AdjustCommand(limelight, turret);
 
+  private final DriveTeleop driveTeleopCommand = new DriveTeleop(drive);
+  private final IntakeRun intakeRunCommand = new IntakeRun(intakeMotor);
+  private final ShooterWheelManual shooterWheelComamand = new ShooterWheelManual(shooterWheel);
+  private final TurretManual turretCommand = new TurretManual(turret);
+
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -80,11 +87,12 @@ public class RobotContainer {
     controller1 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
     controller2 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
     limelight = new Limelight();
+    
 
-    drive.setDefaultCommand(new DriveTeleop(drive));
-    intakeMotor.setDefaultCommand(new IntakeRun(intakeMotor));
-    shooterWheel.setDefaultCommand(new ShooterWheelManual(shooterWheel));
-    turret.setDefaultCommand(new TurretManual(turret)); //this should hopefully work rather than doing all the stuff in robotPeriodic
+    drive.setDefaultCommand(driveTeleopCommand);
+    intakeMotor.setDefaultCommand(intakeRunCommand);
+    shooterWheel.setDefaultCommand(shooterWheelComamand);
+    turret.setDefaultCommand(turretCommand); //this should hopefully work rather than doing all the stuff in robotPeriodic
     // basicAutonSequence = new BasicAutonSequence(controller);
 
   }
@@ -96,20 +104,23 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // new JoystickButton(sticky, Button.kA.value).whenHeld(intakePushPull); pneumatics temporarily fucked
+    // new JoystickButton(sticky, Button.kA.value).whenHeld(intakePushPull); //pneumatics temporarily fucked
     new JoystickButton(sticky, Button.kRightBumper.value).whenHeld(adjustCommand);
-    new JoystickButton(sticky, Button.kLeftBumper.value).whenHeld(indexerManual);
-    new JoystickButton(sticky, Button.kLeftBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
+    new JoystickButton(sticky, Button.kLeftBumper.value).whenHeld(shooterWheelComamand);
+    new JoystickButton(sticky, Button.kLeftBumper.value).whenReleased(new InstantCommand(shooterWheel::stop, shooterWheel));
     new JoystickButton(sticky, Button.kY.value).whenHeld(new InstantCommand(intakeMotor::run, indexer));
     new JoystickButton(sticky, Button.kY.value).whenReleased(new InstantCommand(intakeMotor::stop, indexer));
     new JoystickButton(sticky, Button.kA.value).whenHeld(shooterWheelManual);
     new JoystickButton(sticky, Button.kA.value).whenReleased(new InstantCommand(indexer::stop, shooterWheel));
-    new JoystickButton(sticky, Button.kB.value).whenHeld(new InstantCommand(indexer::reverse, indexer));
-    new JoystickButton(sticky, Button.kB.value).whenReleased(new InstantCommand(indexer::stop, indexer));
-    new JoystickButton(sticky, Button.kStart.value).whenHeld(new InstantCommand(climbArm::extend, climbArm));
-    new JoystickButton(sticky, Button.kStart.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
-    new JoystickButton(sticky, Button.kBack.value).whenHeld(new InstantCommand(climbArm::retract, climbArm));
-    new JoystickButton(sticky, Button.kBack.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
+    new JoystickButton(sticky, Button.kB.value).whenHeld(new InstantCommand(indexer::reverse, indexer).alongWith(new InstantCommand(intakeMotor::reverse, intakeMotor)));
+    new JoystickButton(sticky, Button.kB.value).whenReleased(new InstantCommand(indexer::stop, indexer).alongWith(new InstantCommand(intakeMotor::stop, intakeMotor)));
+    new JoystickButton(sticky, Button.kY.value).whenHeld(new InstantCommand(climbArm::extend, climbArm));
+    new JoystickButton(sticky, Button.kY.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
+    new JoystickButton(sticky, Button.kX.value).whenHeld(new InstantCommand(climbArm::retract, climbArm));
+    new JoystickButton(sticky, Button.kX.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
+
+    //new JoystickButton(sticky2, Button.kLeftBumper.value).whenHeld(indexerManual);
+    //new JoystickButton(sticky2, Button.kLeftBumper.value).whenReleased(new InstantCommand(indexer));
 
   }
 
