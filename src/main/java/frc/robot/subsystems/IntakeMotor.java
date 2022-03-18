@@ -21,6 +21,10 @@ public class IntakeMotor extends SubsystemBase {
     motor.set(Constants.intakeSpeed);
   }
 
+  public void reverse(){
+    motor.set(-Constants.intakeSpeed);
+  }
+  
   public void stop(){
     motor.stopMotor();
   }

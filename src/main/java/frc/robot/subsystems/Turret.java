@@ -16,6 +16,7 @@ import frc.robot.Constants;
 public class Turret extends SubsystemBase {
   private CANSparkMax motor;
   private RelativeEncoder encoder;
+  private Limelight limelight;
 
   private double kp = 0.03, ki = 0.03, kd = 0.0;
 
@@ -36,11 +37,14 @@ public class Turret extends SubsystemBase {
   public void stop(){
     motor.stopMotor();
   }
-  public void adjustToLimelight(Limelight limelight) {
+  public void adjustToLimelight() {
     if (!limelight.getTV()) return; // not in field of vision
     motor.set(controller.calculate((limelight.getTY() / 360.0d) - encoder.getPosition()));
   }
 
+  public double getEncoderPosition(){
+    return encoder.getPosition();
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

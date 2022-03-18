@@ -16,7 +16,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.subsystems.*;
 
 /**
@@ -53,22 +54,22 @@ public class RobotContainer {
   public final ShooterWheel shooterWheel = new ShooterWheel();
   private final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel);
 
-  private final IntakePistons intakePistons = new IntakePistons();
-  private final IntakePushPull intakePushPull = new IntakePushPull(intakePistons);
+  // private final IntakePistons intakePistons = new IntakePistons();
 
   final IntakeMotor intakeMotor = new IntakeMotor();
 
   private final Indexer indexer = new Indexer();
   private final IndexerManual indexerManual = new IndexerManual(indexer);
 
-  private final HoodPistons hoodPistons = new HoodPistons();
-  private final HoodAdjust hoodAdjust = new HoodAdjust(hoodPistons);
+  // private final HoodPistons hoodPistons = new HoodPistons();
 
   public final Drive drive = new Drive();
   // private final DriveTeleop driveTeleop = new DriveTeleop(drive);
 
   private final ClimbArm climbArm = new ClimbArm();
-  private final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
+
+  private final Command adjustCommand = new AdjustCommand(limelight, turret);
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -96,16 +97,16 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // new JoystickButton(sticky, Button.kA.value).whenHeld(intakePushPull); pneumatics temporarily fucked
-    new JoystickButton(sticky, Button.kX.value).whenHeld(indexerManual);
-    new JoystickButton(sticky, Button.kX.value).whenReleased(new InstantCommand(indexer::stop, indexer));
-    new JoystickButton(sticky, Button.kRightBumper.value).whenHeld(indexerManual);
-    new JoystickButton(sticky, Button.kRightBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
+    new JoystickButton(sticky, Button.kRightBumper.value).whenHeld(new InstantCommand(turret::adjustToLimelight, turret));
+    new JoystickButton(sticky, Button.kRightBumper.value).whenReleased(adjustCommand);
     new JoystickButton(sticky, Button.kLeftBumper.value).whenHeld(indexerManual);
     new JoystickButton(sticky, Button.kLeftBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
     new JoystickButton(sticky, Button.kY.value).whenHeld(new InstantCommand(intakeMotor::run, indexer));
     new JoystickButton(sticky, Button.kY.value).whenReleased(new InstantCommand(intakeMotor::stop, indexer));
     new JoystickButton(sticky, Button.kA.value).whenHeld(shooterWheelManual);
-    new JoystickButton(sticky, Button.kA.value).whenReleased(new InstantCommand(shooterWheel::stop, shooterWheel));
+    new JoystickButton(sticky, Button.kA.value).whenReleased(new InstantCommand(indexer::stop, shooterWheel));
+    new JoystickButton(sticky, Button.kB.value).whenHeld(new InstantCommand(indexer::reverse, indexer));
+    new JoystickButton(sticky, Button.kB.value).whenReleased(new InstantCommand(indexer::stop, indexer));
     new JoystickButton(sticky, Button.kStart.value).whenHeld(new InstantCommand(climbArm::extend, climbArm));
     new JoystickButton(sticky, Button.kStart.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
     new JoystickButton(sticky, Button.kBack.value).whenHeld(new InstantCommand(climbArm::retract, climbArm));
