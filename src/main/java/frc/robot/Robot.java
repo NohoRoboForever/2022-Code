@@ -56,13 +56,14 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    if (robotContainer.sticky.getPOV() > 45 && robotContainer.sticky.getPOV() < 135){
-      robotContainer.turret.turnClockwise(Constants.defaultTurretSpeed);
-    } else if (robotContainer.sticky.getPOV() > 225 && robotContainer.sticky.getPOV() < 315) {
-      robotContainer.turret.turnCounterclockwise(Constants.defaultTurretSpeed);
-    } else {
-      robotContainer.turret.stop();
-    }
+
+    // if (robotContainer.sticky.getPOV() > 45 && robotContainer.sticky.getPOV() < 135){
+    //   robotContainer.turret.turnClockwise(Constants.defaultTurretSpeed);
+    // } else if (robotContainer.sticky.getPOV() > 225 && robotContainer.sticky.getPOV() < 315) {
+    //   robotContainer.turret.turnCounterclockwise(Constants.defaultTurretSpeed);
+    // } else {
+    //   robotContainer.turret.stop();
+    // }
 
     // if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .1) {
     //   drive.setDriveL(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)*0.5);
@@ -77,13 +78,17 @@ public class Robot extends TimedRobot {
     //   drive.setDriveR(0);
     // }
 
-    if (Math.abs(Robot.robotContainer.getJoystickAxis(11)) > .1) {
-      robotContainer.intakeMotor.run();
-    }
+    // if (Math.abs(Robot.robotContainer.getJoystickAxis(2)) > .1) {
+    //   robotContainer.intakeMotor.run();
+    // } else {
+    //   robotContainer.intakeMotor.stop();
+    // }
 
-    if (Math.abs(Robot.robotContainer.getJoystickAxis(12)) > .1) {
-      robotContainer.shooterWheel.set(Robot.robotContainer.getJoystickAxis(12)*0.5);
-    } 
+    // if (Math.abs(Robot.robotContainer.getJoystickAxis(3)) > .1) {
+    //   robotContainer.shooterWheel.set(Robot.robotContainer.getJoystickAxis(12)*0.5);
+    // } else {
+    //   robotContainer.shooterWheel.stop();
+    // }
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

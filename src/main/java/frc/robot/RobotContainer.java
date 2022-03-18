@@ -57,7 +57,6 @@ public class RobotContainer {
   private final IntakePushPull intakePushPull = new IntakePushPull(intakePistons);
 
   final IntakeMotor intakeMotor = new IntakeMotor();
-  private final IntakeRun intakeRun = new IntakeRun(intakeMotor);
 
   private final Indexer indexer = new Indexer();
   private final IndexerManual indexerManual = new IndexerManual(indexer);
@@ -81,7 +80,10 @@ public class RobotContainer {
     controller2 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
     limelight = new Limelight();
 
-    drive.setDefaultCommand(new DriveTeleop(drive)); //this should hopefully work rather than doing all the stuff in robotPeriodic
+    drive.setDefaultCommand(new DriveTeleop(drive));
+    intakeMotor.setDefaultCommand(new IntakeRun(intakeMotor));
+    shooterWheel.setDefaultCommand(new ShooterWheelManual(shooterWheel));
+    turret.setDefaultCommand(new TurretManual(turret)); //this should hopefully work rather than doing all the stuff in robotPeriodic
     // basicAutonSequence = new BasicAutonSequence(controller);
 
   }
@@ -122,8 +124,8 @@ public class RobotContainer {
 
   //joystick instantiations
 
-  public double getJoystickAxis(int analogNumber) {
-      return sticky.getRawAxis(analogNumber);
+  public double getJoystickAxis(int axisNumber) {
+      return sticky.getRawAxis(axisNumber);
   }
   public boolean getButtonValue(int buttonNumber) {
       return sticky.getRawButton(buttonNumber);

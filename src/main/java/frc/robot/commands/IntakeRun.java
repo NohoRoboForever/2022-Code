@@ -24,10 +24,11 @@ public class IntakeRun extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // if (Robot.robotContainer.sticky.getRightTriggerAxis()>0.1){
-    //   motor.run();
-    // }
-    motor.run();
+    if (Math.abs(Robot.robotContainer.getJoystickAxis(2)) > .1) {
+      motor.run();
+    } else {
+      motor.stop();
+    }
   }
 
   // Called once the command ends or is interrupted.
