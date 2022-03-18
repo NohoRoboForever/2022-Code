@@ -26,7 +26,7 @@ public class ShooterWheelManual extends CommandBase {
   @Override
   public void execute() {
     if (Math.abs(Robot.robotContainer.getJoystickAxis(3)) > .1) {
-      shooterWheel.set(Robot.robotContainer.getJoystickAxis(12)*0.5);
+      shooterWheel.set(Robot.robotContainer.getJoystickAxis(3)*0.5);
     } else {
       shooterWheel.stop();
     }

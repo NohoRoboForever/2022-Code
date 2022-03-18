@@ -4,11 +4,14 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.DriveTeleop;
 import frc.robot.subsystems.Drive;
+import frc.robot.commands.BasicAutonSequence;
 import frc.robot.commands.DriveDistance;
 
 
@@ -39,7 +42,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
-    //m_autonomousCommand = new DriveDistance(robotContainer.controller1, robotContainer.controller2, 5, 5, drive.LMEncoder, drive.RMEncoder, drive.LB, drive.LM, drive.LF, drive.RB, drive.RM, drive.RF);
+    m_autonomousCommand = new BasicAutonSequence(new ProfiledPIDController(0.03, 0.03, 0, new TrapezoidProfile.Constraints(0.3, 1)));
   }
 
   /**
@@ -101,7 +104,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-   // m_autonomousCommand.schedule();
+    m_autonomousCommand.schedule();
   }
 
   /** This function is called periodically during autonomous. */

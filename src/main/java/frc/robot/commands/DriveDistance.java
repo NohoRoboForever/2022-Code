@@ -20,10 +20,7 @@ public class DriveDistance extends CommandBase {
   private double distance1, distance2;
   private MotorController motorcntrl1, motorcntrl2, motorcntrl3, motorcntrl4, motorcntrl5, motorcntrl6;
   private RelativeEncoder encoder1, encoder2;
-  private ProfiledPIDController controller;
-  private double distance; // distance in inches
-  private MotorController mController;
-  private RelativeEncoder encoder;
+
 
   /** Creates a new DriveDistance. */
   public DriveDistance(ProfiledPIDController pidController1, ProfiledPIDController pidController2, double rotations1, double rotations2, RelativeEncoder enc1, RelativeEncoder enc2, MotorController motor1, MotorController motor2, MotorController motor3, MotorController motor4,
@@ -31,8 +28,8 @@ public class DriveDistance extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     controller1 = pidController1;
     controller2 = pidController2;
-    distance1 = rotations1;
-    distance2 = rotations2;
+    distance1 = enc1.getPosition() + rotations1;
+    distance2 = enc2.getPosition() + rotations2;
     motorcntrl1 = motor1;
     motorcntrl2 = motor2;
     motorcntrl3 = motor3;
@@ -54,10 +51,16 @@ public class DriveDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    // this is fucked so bad
     double calc1 = controller1.calculate(encoder1.getPosition(), distance1);
     double calc2 = controller2.calculate(encoder2.getPosition(), distance2);
+    System.out.println(calc1);
+    System.out.println(calc2);
+    System.out.println(encoder1.getPosition());
+    System.out.println(distance1);
+
     motorcntrl1.set(calc1);
-    motorcntrl2.set(calc1);
+    //motorcntrl2.set(calc1);
     motorcntrl3.set(calc1);
 
     motorcntrl4.set(calc2);
@@ -72,6 +75,6 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return encoder1.getPosition() - distance1 < 0.1 && encoder2.getPosition() - distance2 < 0.1;
+    return encoder1.getPosition() - distance1 < 0.3 && encoder2.getPosition() - distance2 < 0.3;
   }
 }

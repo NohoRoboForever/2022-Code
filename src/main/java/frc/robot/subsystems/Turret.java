@@ -38,8 +38,8 @@ public class Turret extends SubsystemBase {
     motor.stopMotor();
   }
   public void adjustToLimelight() {
-    if (!limelight.getTV()) return; // not in field of vision
-    motor.set(controller.calculate((limelight.getTY() / 360.0d) - encoder.getPosition()));
+    if (limelight.getTV() == 0.0) return; // not in field of vision
+    motor.set(controller.calculate(encoder.getPosition() - (limelight.getTY() / 360.0d)));
   }
 
   public double getEncoderPosition(){

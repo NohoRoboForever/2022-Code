@@ -27,9 +27,12 @@ public class AdjustCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (!limelight.getTV()) return;
-    turret.turnClockwise(controller.calculate((limelight.getTY() / 360.0d) - turret.getEncoderPosition()));
+    System.out.println(limelight.getTX());
+    double shit = controller.calculate(-limelight.getTX());
+    System.out.println(shit);
+    turret.turnClockwise(shit);
   }
+
 
   // Called once the command ends or is interrupted.
   @Override
@@ -38,6 +41,6 @@ public class AdjustCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (limelight.getTY() / 360.0d) - turret.getEncoderPosition() < 0.1;
+    return limelight.getTX() < 3.0;
   }
 }

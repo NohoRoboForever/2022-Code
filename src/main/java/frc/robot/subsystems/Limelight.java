@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -10,13 +11,15 @@ import frc.robot.Constants;
 public class Limelight extends SubsystemBase {
 
     private NetworkTableEntry tx, ty, ta, tv;
+    private NetworkTableInstance table = NetworkTableInstance.getDefault();
     private double mountAngle, lensHeight, goalHeight;
 
     public Limelight() {
-        tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx");
-        ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty");
-        ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta");
-        tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv");
+        tx = table.getTable("limelight").getEntry("tx");
+        ty = table.getTable("limelight").getEntry("ty");
+        ta = table.getTable("limelight").getEntry("ta");
+        tv = table.getTable("limelight").getEntry("tv");
+        table.setUpdateRate(100);
     }
 
     public Limelight(
@@ -24,10 +27,11 @@ public class Limelight extends SubsystemBase {
         double lensHeightInches,   // height from the floor of the center of the lens
         double goalHeightInches    // height of the goal / target
     ) {
-        tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx");
-        ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty");
-        ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta");
-        tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv");
+        tx = table.getTable("limelight").getEntry("tx");
+        ty = table.getTable("limelight").getEntry("ty");
+        ta = table.getTable("limelight").getEntry("ta");
+        tv = table.getTable("limelight").getEntry("tv");
+        table.setUpdateRate(100);
 
         mountAngle = mountAngleDegrees;
         lensHeight = lensHeightInches;
@@ -35,19 +39,19 @@ public class Limelight extends SubsystemBase {
     }
 
     public double getTX() {
-        return tx.getDouble(0.0);
+        return tx.getDouble(321.0);
     }
 
     public double getTY() {
-        return ty.getDouble(0.0);
+        return ty.getDouble(321.0);
     }
 
     public double getTA() {
-        return ta.getDouble(0.0);
+        return ta.getDouble(321.0);
     }
 
-    public boolean getTV() {
-        return tv.getBoolean(false);
+    public double getTV() {
+        return tv.getDouble(321.0);
     }
 
     public double getDistanceFromGoalInches() {

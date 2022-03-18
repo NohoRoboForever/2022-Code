@@ -32,7 +32,7 @@ public class RobotContainer {
 
   // private Command basicAutonSequence = new BasicAutonSequence(controller);
 
-  private Limelight limelight;
+  private Limelight limelight = new Limelight();
 
   private final double kp = 0.03;
   private final double ki = 0.03;
@@ -56,14 +56,14 @@ public class RobotContainer {
 
   // private final IntakePistons intakePistons = new IntakePistons();
 
-  final IntakeMotor intakeMotor = new IntakeMotor();
+  public final IntakeMotor intakeMotor = new IntakeMotor();
 
   private final Indexer indexer = new Indexer();
   private final IndexerManual indexerManual = new IndexerManual(indexer);
 
   // private final HoodPistons hoodPistons = new HoodPistons();
 
-  public final Drive drive = new Drive();
+  public final Drive drive = Drive.getInstance();
   // private final DriveTeleop driveTeleop = new DriveTeleop(drive);
 
   private final ClimbArm climbArm = new ClimbArm();
@@ -97,8 +97,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // new JoystickButton(sticky, Button.kA.value).whenHeld(intakePushPull); pneumatics temporarily fucked
-    new JoystickButton(sticky, Button.kRightBumper.value).whenHeld(new InstantCommand(turret::adjustToLimelight, turret));
-    new JoystickButton(sticky, Button.kRightBumper.value).whenReleased(adjustCommand);
+    new JoystickButton(sticky, Button.kRightBumper.value).whenHeld(adjustCommand);
     new JoystickButton(sticky, Button.kLeftBumper.value).whenHeld(indexerManual);
     new JoystickButton(sticky, Button.kLeftBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
     new JoystickButton(sticky, Button.kY.value).whenHeld(new InstantCommand(intakeMotor::run, indexer));

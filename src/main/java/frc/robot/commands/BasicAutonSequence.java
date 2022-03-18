@@ -5,29 +5,43 @@
 package frc.robot.commands;
 
 import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.IntakeMotor;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more              -- so doesn't this mean we shouldn't subclass this? why are we then
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class BasicAutonSequence extends SequentialCommandGroup {
-  /** Creates a new BasicAutonSequence. */
-  // private ProfiledPIDController pidController;
-  // private Drive drive = RobotContainer.drive;
+  // drop intake
+  // turn towards 2nd ball
+  // drive
+  // intake
+  // move indexer
+  // turn towards goal
+  // drive
+  // aim
+  // rev flywheel
+  // shoot
+  // rev flywheel 
+  // shoot
+  // drive off tarmac
 
-  // public BasicAutonSequence(ProfiledPIDController pController) {
-  //   // Add your commands in the addCommands() call, e.g.
-  //   // addCommands(new FooCommand(), new BarCommand());
-  //   addCommands(
-  //     new DriveDistance(pidController, 5, drive.LB, drive.LBEncoder).alongWith(new DriveDistance(pidController, 5, drive.LM, drive.LMEncoder),
-  //       new DriveDistance(pidController, 5, drive.LF, drive.LFEncoder) // this looks really bad lol
-  //     ),
-  //     new DriveDistance(pidController, 5, drive.RB, drive.RBEncoder).alongWith(new DriveDistance(pidController, 5, drive.RM, drive.RMEncoder),
-  //       new DriveDistance(pidController, 5, drive.RF, drive.RFEncoder) // this looks really bad lol
-  //     )
-  //   );
-  // }
+  /** Creates a new BasicAutonSequence. */
+  private ProfiledPIDController pidController;
+  private Drive drive = Drive.getInstance();
+
+  public BasicAutonSequence(ProfiledPIDController pidController) {
+    this.pidController = pidController;
+    // Add your commands in the addCommands() call, e.g.
+    // addCommands(new FooCommand(), new BarCommand());
+    addCommands(
+      new InstantCommand(Robot.robotContainer.intakeMotor::run, Robot.robotContainer.intakeMotor)
+      //new DriveDistance(Robot.robotContainer.controller1, Robot.robotContainer.controller2, 5, 5, drive.LMEncoder, drive.RMEncoder, drive.LB, drive.LM, drive.LF, drive.RB, drive.RM, drive.RF)
+    );
+  }
 }
