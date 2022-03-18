@@ -10,7 +10,6 @@ import frc.robot.Robot;
 import frc.robot.subsystems.Turret;
 
 public class TurretManual extends CommandBase {
-  private static double defaultTurretSpeed = 0.3;
   Turret turret;
   /** Creates a new TurretManual. */
   public TurretManual(Turret p_turret) {
