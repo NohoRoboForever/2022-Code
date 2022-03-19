@@ -26,15 +26,11 @@ public class DriveNormal extends CommandBase {
   @Override
   public void execute() {
     while (Math.abs(drive.LMEncoder.getPosition() - rotations1) > 0.3) {
-      drive.LB.set(Constants.LeftDrive);
-      drive.LF.set(Constants.LeftDrive);
-      drive.LM.set(Constants.LeftDrive);
+      drive.setDriveL(Constants.LeftDrive);
     }
 
     while (Math.abs(drive.RMEncoder.getPosition() - rotations2) > 0.3) {
-      drive.RB.set(Constants.RightDrive);
-      drive.RF.set(Constants.RightDrive);
-      drive.RM.set(Constants.RightDrive);
+      drive.setDriveR(Constants.RightDrive);
     }
   }
 
