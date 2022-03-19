@@ -86,8 +86,8 @@ public class RobotContainer {
     //m_teleopCommand = new DriveTeleop();
     //m_teleopCommand.initialize();
     
-    controller1 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
-    controller2 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 10));
+    controller1 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 5));
+    controller2 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 5));
     limelight = new Limelight();
     
 

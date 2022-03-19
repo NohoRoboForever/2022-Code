@@ -21,7 +21,7 @@ public class ManualAutonSequence extends SequentialCommandGroup {
   // move indexer
   // turn towards goal
   // drive
-  // aim
+  // aim 
   // rev flywheel
   // shoot
   // rev flywheel 
@@ -36,17 +36,18 @@ public class ManualAutonSequence extends SequentialCommandGroup {
 
     // this is a generic idea
     addCommands(
-      new InstantCommand(Robot.robotContainer.intakeMotor::run, Robot.robotContainer.intakeMotor),
-      new DriveNormal(14, 14),
-      new WaitCommand(2),
-      new DriveNormal(-4, 4), // all the way around hopefully
-      new DriveNormal(10, 10),
-      new AdjustCommand(Robot.robotContainer.limelight, Robot.robotContainer.turret),
-      new InstantCommand(Robot.robotContainer.shooterWheel::run, Robot.robotContainer.shooterWheel).alongWith(
-        new InstantCommand(Robot.robotContainer.indexer::run, Robot.robotContainer.indexer).withTimeout(3),
-        new InstantCommand(Robot.robotContainer.indexer::run, Robot.robotContainer.indexer).withTimeout(3)
-      ),
-      new DriveNormal(-10, -10)
+      new InstantCommand(Robot.robotContainer.intakeMotor::run, Robot.robotContainer.intakeMotor).alongWith(
+        new DriveNormal(14, 14),
+        new WaitCommand(2),
+        new DriveNormal(-4, 4), // all the way around hopefully
+        new DriveNormal(10, 10),
+        new AdjustCommand(Robot.robotContainer.limelight, Robot.robotContainer.turret),
+        new InstantCommand(Robot.robotContainer.shooterWheel::run, Robot.robotContainer.shooterWheel).alongWith(
+          new InstantCommand(Robot.robotContainer.indexer::run, Robot.robotContainer.indexer).withTimeout(3),
+          new InstantCommand(Robot.robotContainer.indexer::run, Robot.robotContainer.indexer).withTimeout(3)
+        ),
+        new DriveNormal(-10, -10)
+      )
     );
   }
 }
