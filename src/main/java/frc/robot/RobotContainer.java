@@ -85,6 +85,7 @@ public class RobotContainer {
   private final TurretManual turretCommand = new TurretManual(turret);
 
 
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
@@ -130,8 +131,8 @@ public class RobotContainer {
     new JoystickButton(sticky, Button.kRightBumper.value).whenHeld(adjustCommand);
     // new JoystickButton(sticky, Button.kLeftBumper.value).whenHeld(shooterWheelCommand);
     // new JoystickButton(sticky, Button.kLeftBumper.value).whenReleased(new InstantCommand(shooterWheel::stop, shooterWheel));
-    new JoystickButton(sticky, Button.kLeftBumper.value).whenHeld(new InstantCommand(indexer::run, indexer));
-    new JoystickButton(sticky, Button.kLeftBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
+    //// new JoystickButton(sticky, Button.kLeftBumper.value).whenHeld(new InstantCommand(indexer::run, indexer));
+    //// new JoystickButton(sticky, Button.kLeftBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
     // new JoystickButton(sticky2, Button.kLeftBumper.value).whenHeld(new InstantCommand(indexer::run, indexer));
     // new JoystickButton(sticky2, Button.kLeftBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
     // new JoystickButton(sticky2, Button.kA.value).whenHeld(shooterWheelManual);
@@ -177,6 +178,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return chooser.getSelected();
+    return m_normalAutonCommand;
   }
 }
