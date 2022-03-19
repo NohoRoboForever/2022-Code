@@ -5,16 +5,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Drive;
 
 public class DriveNormal extends CommandBase {
   private Drive drive = Drive.getInstance();
-  private double speed1, speed2;
+  private double rotations1, rotations2;
 
   /** Creates a new DriveNormal. */
-  public DriveNormal(double speedL, double speedR) {
-    this.speed1 = speedL;
-    this.speed2 = speedR;
+  public DriveNormal(double rotationsL, double rotationsR) {
+    this.rotations1 = rotationsL + drive.LMEncoder.getPosition();
+    this.rotations2 = rotationsR + drive.RMEncoder.getPosition();
   }
 
   // Called when the command is initially scheduled.
@@ -24,13 +25,17 @@ public class DriveNormal extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drive.LB.set(speed1);
-    drive.LF.set(speed1);
-    drive.LM.set(speed1);
+    while (Math.abs(drive.LMEncoder.getPosition() - rotations1) > 0.3) {
+      drive.LB.set(Constants.LeftDrive);
+      drive.LF.set(Constants.LeftDrive);
+      drive.LM.set(Constants.LeftDrive);
+    }
 
-    drive.RB.set(speed2);
-    drive.RF.set(speed2);
-    drive.RM.set(speed2);
+    while (Math.abs(drive.RMEncoder.getPosition() - rotations2) > 0.3) {
+      drive.RB.set(Constants.RightDrive);
+      drive.RF.set(Constants.RightDrive);
+      drive.RM.set(Constants.RightDrive);
+    }
   }
 
   // Called once the command ends or is interrupted.
