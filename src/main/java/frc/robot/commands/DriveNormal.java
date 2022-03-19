@@ -31,7 +31,7 @@ public class DriveNormal extends CommandBase {
     drive.RB.set(speed2);
     drive.RF.set(speed2);
     drive.RM.set(speed2);
-    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
