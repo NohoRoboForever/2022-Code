@@ -25,11 +25,11 @@ public class DriveNormal extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    while (Math.abs(drive.LMEncoder.getPosition() - rotations1) > 0.3) {
+    while (Math.abs(drive.LMEncoder.getPosition() - rotations1) > 0.7) {
       drive.setDriveL(Constants.LeftDrive);
     }
 
-    while (Math.abs(drive.RMEncoder.getPosition() - rotations2) > 0.3) {
+    while (Math.abs(drive.RMEncoder.getPosition() - rotations2) > 0.7) {
       drive.setDriveR(Constants.RightDrive);
     }
   }

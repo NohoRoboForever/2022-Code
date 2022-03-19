@@ -94,8 +94,7 @@ public class RobotContainer {
 
     // Configure the button bindings
     configureButtonBindings();
-    //m_teleopCommand = new DriveTeleop();
-    //m_teleopCommand.initialize();
+    m_teleopCommand = new DriveTeleop(Drive.getInstance());
     
     controller1 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 5));
     controller2 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 5));
@@ -108,14 +107,14 @@ public class RobotContainer {
     indexer.setDefaultCommand(indexerManual);
     turret.setDefaultCommand(turretCommand); //this should hopefully work rather than doing all the stuff in robotPeriodic
     // basicAutonSequence = new BasicAutonSequence(controller);
-    climbArm.hold();
+    // climbArm.hold();
 
     m_autonomousCommand = new BasicAutonSequence();
     m_normalAutonCommand = new ManualAutonSequence(intakeMotor, indexer, shooterWheel, limelight, turret);
-    chooser = new SendableChooser<>();
-    chooser.setDefaultOption("PID Auton", m_autonomousCommand);
-    chooser.addOption("Normal Auton", m_normalAutonCommand);
-    Shuffleboard.getTab("Autonomous").add(chooser);
+    // chooser = new SendableChooser<>();
+    // chooser.setDefaultOption("PID Auton", m_autonomousCommand);
+    // chooser.addOption("Normal Auton", m_normalAutonCommand);
+    // Shuffleboard.getTab("Autonomous").add(chooser);
 
   }
 
@@ -145,10 +144,10 @@ public class RobotContainer {
     // new JoystickButton(sticky2, Button.kRightBumper.value).whenHeld(new InstantCommand(intakeMotor::reverse, intakeMotor));
     // new JoystickButton(sticky2, Button.kRightBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
     // new JoystickButton(sticky2, Button.kRightBumper.value).whenReleased(new InstantCommand(intakeMotor::stop, intakeMotor));
-    new JoystickButton(sticky, Button.kY.value).whenHeld(new InstantCommand(climbArm::extend, climbArm));
-    new JoystickButton(sticky, Button.kY.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
-    new JoystickButton(sticky, Button.kX.value).whenHeld(new InstantCommand(climbArm::retract, climbArm));
-    new JoystickButton(sticky, Button.kX.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
+    new JoystickButton(sticky2, Button.kStart.value).whenHeld(new InstantCommand(climbArm::extend, climbArm));
+    new JoystickButton(sticky2, Button.kStart.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
+    new JoystickButton(sticky2, Button.kBack.value).whenHeld(new InstantCommand(climbArm::retract, climbArm));
+    new JoystickButton(sticky2, Button.kBack.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
 
     // new JoystickButton(sticky2, 4).whenHeld(indexerManual);
     // new JoystickButton(sticky2, Button.kLeftBumper.value).whenReleased(new InstantCommand(indexer));
@@ -179,5 +178,9 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     return m_normalAutonCommand;
+  }
+
+  public Command getTeleoperatedCommand() {
+    return m_teleopCommand;
   }
 }
