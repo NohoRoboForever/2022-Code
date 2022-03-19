@@ -39,7 +39,7 @@ public class RobotContainer {
 
   // private Command basicAutonSequence = new BasicAutonSequence(controller);
 
-  public Limelight limelight = new Limelight();
+  public final Limelight limelight = new Limelight();
 
   private final double kp = 0.03;
   private final double ki = 0.03;
@@ -97,9 +97,7 @@ public class RobotContainer {
     m_teleopCommand = new DriveTeleop(Drive.getInstance());
     
     controller1 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 5));
-    controller2 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 5));
-    limelight = new Limelight();
-    
+    controller2 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 5));    
 
     drive.setDefaultCommand(driveTeleopCommand);
     intakeMotor.setDefaultCommand(intakeRunCommand);

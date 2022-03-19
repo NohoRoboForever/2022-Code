@@ -65,9 +65,9 @@ public class Drive extends SubsystemBase {
   }
 
   public void setDriveR(double speed) {
-    RF.set(speed*0.9863); // cause the gear is fucked
-    RM.set(speed*0.9863);
-    RB.set(speed*0.9863);
+    RF.set(speed);
+    RM.set(speed);
+    RB.set(speed);
   }
 
   public void setDrive(double leftSpeed, double rightSpeed) {

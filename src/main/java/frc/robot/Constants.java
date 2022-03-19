@@ -93,8 +93,8 @@ public final class Constants {
     public static final double TurrentLimelightDegreeMultiplierTurn = 0.03;
 
     // turret limit switch
-    public static final int TurretLimitSwitchChannel = 1;
-
+    public static final int TurretLimitSwitchChannel = 2;
+    
     // indexer limit switch
     public static final int IndexerLimitSwitchChannel = 0;
 

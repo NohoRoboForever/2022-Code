@@ -10,12 +10,18 @@ import frc.robot.subsystems.Drive;
 
 public class DriveNormal extends CommandBase {
   private Drive drive = Drive.getInstance();
-  private double rotations1, rotations2;
+  private double speed1, speed2;
+  private boolean brake;
 
   /** Creates a new DriveNormal. */
-  public DriveNormal(double rotationsL, double rotationsR) {
-    this.rotations1 = rotationsL + drive.LMEncoder.getPosition();
-    this.rotations2 = rotationsR + drive.RMEncoder.getPosition();
+  public DriveNormal(double speedL, double speedR) {
+    this.speed1 = speedL;
+    this.speed2 = speedR;
+    this.brake = false;
+  }
+
+  public DriveNormal() {
+    this.brake = true;
   }
 
   // Called when the command is initially scheduled.
@@ -25,13 +31,9 @@ public class DriveNormal extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    while (Math.abs(drive.LMEncoder.getPosition() - rotations1) > 0.7) {
-      drive.setDriveL(Constants.LeftDrive);
-    }
-
-    while (Math.abs(drive.RMEncoder.getPosition() - rotations2) > 0.7) {
-      drive.setDriveR(Constants.RightDrive);
-    }
+    if (this.brake) drive.driveBrake();
+    drive.setDriveL(speed1);
+    drive.setDriveR(speed2);
   }
 
   // Called once the command ends or is interrupted.

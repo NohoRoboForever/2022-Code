@@ -41,13 +41,17 @@ public class ManualAutonSequence extends SequentialCommandGroup {
 
     // this is a generic idea
     addCommands(
-      new InstantCommand(shooterWheel::run, shooterWheel).withTimeout(3),
-      new InstantCommand(shooterWheel::run, shooterWheel).alongWith(
-        new InstantCommand(indexer::run, indexer)
-      ).withTimeout(3),
+      new InstantCommand(shooterWheel::run, shooterWheel),
+      new WaitCommand(3),
+      new InstantCommand(shooterWheel::run, shooterWheel),
+      new InstantCommand(indexer::run, indexer),
+      new WaitCommand(3),
       // it has shot
-      new DriveNormal(-10, -10),
-      new DriveNormal(0, 0).alongWith(new InstantCommand(shooterWheel::stop, shooterWheel)).alongWith(new InstantCommand(indexer::run, indexer))
+      new InstantCommand(shooterWheel::stop, shooterWheel),
+      new InstantCommand(indexer::stop, indexer),
+      new DriveNormal(-0.2, 0.2),
+      new WaitCommand(3),
+      new DriveNormal()
     );
   }
 }
