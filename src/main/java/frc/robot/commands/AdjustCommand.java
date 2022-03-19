@@ -13,7 +13,7 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 public class AdjustCommand extends CommandBase {
   private Limelight limelight;
   private Turret turret;
-  private ProfiledPIDController controller = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.2, 2)); //need to put this on a periodic timer eventually
+  private ProfiledPIDController controller = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.3, 2)); //need to put this on a periodic timer eventually
   /** Creates a new AdjustCommand. */
   public AdjustCommand(Limelight limelight, Turret turret) {
     this.limelight = limelight;
@@ -24,7 +24,7 @@ public class AdjustCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
-
+ 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {

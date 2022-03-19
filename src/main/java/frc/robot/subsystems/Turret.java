@@ -32,11 +32,18 @@ public class Turret extends SubsystemBase {
     motor.set(speed);
   }
   public void turnCounterclockwise(double speed){
-    motor.set(-1*speed);
+    motor.set(-speed);
   }
   public void stop(){
     motor.stopMotor();
   }
+
+  // public void clamp() {
+  //   if (encoder.getPosition() > )
+  // }
+
+  // not used
+  @Deprecated
   public void adjustToLimelight() {
     if (limelight.getTV() == 0.0) return; // not in field of vision
     motor.set(controller.calculate(encoder.getPosition() - (limelight.getTY() / 360.0d)));
