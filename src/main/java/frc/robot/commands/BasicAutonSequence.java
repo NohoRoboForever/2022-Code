@@ -34,11 +34,9 @@ public class BasicAutonSequence extends SequentialCommandGroup {
   // drive off tarmac
 
   /** Creates a new BasicAutonSequence. */
-  private ProfiledPIDController pidController;
   private final Drive drive = Drive.getInstance();
 
-  public BasicAutonSequence(ProfiledPIDController pidController) {
-    this.pidController = pidController;
+  public BasicAutonSequence() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(

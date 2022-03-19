@@ -29,6 +29,12 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class RobotContainer {
   private Command m_teleopCommand;
+
+  private Command m_autonomousCommand;
+  private Command m_normalAutonCommand;
+
+  private SendableChooser<Command> chooser;
+
   public ProfiledPIDController controller1, controller2;
 
   // private Command basicAutonSequence = new BasicAutonSequence(controller);
@@ -81,6 +87,10 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+
+
+
+
     // Configure the button bindings
     configureButtonBindings();
     //m_teleopCommand = new DriveTeleop();
@@ -98,6 +108,13 @@ public class RobotContainer {
     turret.setDefaultCommand(turretCommand); //this should hopefully work rather than doing all the stuff in robotPeriodic
     // basicAutonSequence = new BasicAutonSequence(controller);
     climbArm.hold();
+
+    m_autonomousCommand = new BasicAutonSequence();
+    m_normalAutonCommand = new ManualAutonSequence(intakeMotor, indexer, shooterWheel, limelight, turret);
+    chooser = new SendableChooser<>();
+    chooser.setDefaultOption("PID Auton", m_autonomousCommand);
+    chooser.addOption("Normal Auton", m_normalAutonCommand);
+    Shuffleboard.getTab("Autonomous").add(chooser);
 
   }
 
@@ -159,16 +176,7 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  //public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-  //  return m_autoCommand;
-  //}
-
-  // public Command getAutonomousCommand() {
-  //   return basicAutonSequence;
-  // }
-
-  // public Command getTeleoperatedCommand() {
-  //   return driveTeleop;
-  // }
+  public Command getAutonomousCommand() {
+    return chooser.getSelected();
+  }
 }

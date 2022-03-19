@@ -32,7 +32,6 @@ public class Robot extends TimedRobot {
   public static DriveTeleop fucked_driveTeleop = new DriveTeleop(drive);
   private Command m_autonomousCommand;// = new DriveDistance(robotContainer.controller1, robotContainer.controller2, 5, 5,
     //drive.LMEncoder, drive.RMEncoder, drive.LB, drive.LM, drive.LF, drive.RB, drive.RM, drive.RF);
-  private Command m_teleopCommand;
   public static boolean auton = false;
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -44,8 +43,6 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
-    m_autonomousCommand = new BasicAutonSequence(new ProfiledPIDController(0.03, 0.03, 0, new TrapezoidProfile.Constraints(0.3, 1)));
-    
   }
 
   /**
@@ -108,7 +105,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     auton = true;
-    m_autonomousCommand.schedule();
+    robotContainer.getAutonomousCommand().schedule();
   }
 
   /** This function is called periodically during autonomous. */
@@ -123,8 +120,8 @@ public class Robot extends TimedRobot {
     // this line or comment it out.
     //m_autonSequence.cancel();
     auton = false;
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    if (robotContainer.getAutonomousCommand() != null) {
+      robotContainer.getAutonomousCommand().cancel();
     }
     
     // m_teleopCommand = robotContainer.getTeleoperatedCommand();

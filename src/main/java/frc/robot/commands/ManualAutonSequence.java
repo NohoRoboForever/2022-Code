@@ -8,7 +8,12 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Robot;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.IntakeMotor;
+import frc.robot.subsystems.ShooterWheel;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.Turret;
+import frc.robot.subsystems.Indexer;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -30,21 +35,20 @@ public class ManualAutonSequence extends SequentialCommandGroup {
 
   private Drive drive = Drive.getInstance();
   /** Creates a new ManualAutonSequence. */
-  public ManualAutonSequence() {
+  public ManualAutonSequence(IntakeMotor intakeMotor, Indexer indexer, ShooterWheel shooterWheel, Limelight limelight, Turret turret) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
 
     // this is a generic idea
     addCommands(
-      new InstantCommand(Robot.robotContainer.intakeMotor::run, Robot.robotContainer.intakeMotor).alongWith(
+      new InstantCommand(intakeMotor::run, intakeMotor).alongWith(
         new DriveNormal(14, 14),
         new WaitCommand(2),
         new DriveNormal(-4, 4), // all the way around hopefully
         new DriveNormal(10, 10),
-        new AdjustCommand(Robot.robotContainer.limelight, Robot.robotContainer.turret),
-        new InstantCommand(Robot.robotContainer.shooterWheel::run, Robot.robotContainer.shooterWheel).alongWith(
-          new InstantCommand(Robot.robotContainer.indexer::run, Robot.robotContainer.indexer).withTimeout(3),
-          new InstantCommand(Robot.robotContainer.indexer::run, Robot.robotContainer.indexer).withTimeout(3)
+        new AdjustCommand(limelight, turret),
+        new InstantCommand(shooterWheel::run, shooterWheel).alongWith(
+          new InstantCommand(indexer::run, indexer).withTimeout(6)
         ),
         new DriveNormal(-10, -10)
       )
