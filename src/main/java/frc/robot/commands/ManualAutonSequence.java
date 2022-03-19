@@ -41,8 +41,8 @@ public class ManualAutonSequence extends SequentialCommandGroup {
 
     // this is a generic idea
     addCommands(
-      new InstantCommand(Robot.robotContainer.indexer::run, Robot.robotContainer.indexer).alongWith(
-        new InstantCommand(Robot.robotContainer.shooterWheel::run, Robot.robotContainer.shooterWheel)
+      new InstantCommand(Robot.robotContainer.shooterWheel::run, Robot.robotContainer.shooterWheel).alongWith(
+        new InstantCommand(Robot.robotContainer.indexer::run, Robot.robotContainer.indexer).withTimeout(3)
       ),
       new DriveNormal(-10, -10)
     );
