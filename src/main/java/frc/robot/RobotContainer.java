@@ -97,6 +97,7 @@ public class RobotContainer {
     indexer.setDefaultCommand(indexerManual);
     turret.setDefaultCommand(turretCommand); //this should hopefully work rather than doing all the stuff in robotPeriodic
     // basicAutonSequence = new BasicAutonSequence(controller);
+    climbArm.hold();
 
   }
 
@@ -122,10 +123,10 @@ public class RobotContainer {
     new JoystickButton(sticky, Button.kB.value).whenHeld(new InstantCommand(intakeMotor::reverse, intakeMotor));
     new JoystickButton(sticky, Button.kB.value).whenReleased(new InstantCommand(indexer::stop, indexer));
     new JoystickButton(sticky, Button.kB.value).whenReleased(new InstantCommand(intakeMotor::stop, intakeMotor));
-    new JoystickButton(sticky2, Button.kB.value).whenHeld(new InstantCommand(indexer::reverse, indexer));
-    new JoystickButton(sticky2, Button.kB.value).whenHeld(new InstantCommand(intakeMotor::reverse, intakeMotor));
-    new JoystickButton(sticky2, Button.kB.value).whenReleased(new InstantCommand(indexer::stop, indexer));
-    new JoystickButton(sticky2, Button.kB.value).whenReleased(new InstantCommand(intakeMotor::stop, intakeMotor));
+    // new JoystickButton(sticky2, Button.kRightBumper.value).whenHeld(new InstantCommand(indexer::reverse, indexer));
+    // new JoystickButton(sticky2, Button.kRightBumper.value).whenHeld(new InstantCommand(intakeMotor::reverse, intakeMotor));
+    // new JoystickButton(sticky2, Button.kRightBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
+    // new JoystickButton(sticky2, Button.kRightBumper.value).whenReleased(new InstantCommand(intakeMotor::stop, intakeMotor));
     new JoystickButton(sticky, Button.kY.value).whenHeld(new InstantCommand(climbArm::extend, climbArm));
     new JoystickButton(sticky, Button.kY.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
     new JoystickButton(sticky, Button.kX.value).whenHeld(new InstantCommand(climbArm::retract, climbArm));

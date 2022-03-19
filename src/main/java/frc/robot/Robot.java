@@ -45,6 +45,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
     m_autonomousCommand = new BasicAutonSequence(new ProfiledPIDController(0.03, 0.03, 0, new TrapezoidProfile.Constraints(0.3, 1)));
+    
   }
 
   /**

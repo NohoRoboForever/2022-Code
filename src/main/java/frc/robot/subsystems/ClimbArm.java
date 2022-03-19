@@ -35,6 +35,16 @@ public class ClimbArm extends SubsystemBase {
     climb2.set(Constants.climbSpeed * -1);
   }
 
+  public void hold() {
+    climb1.setVoltage(Constants.ClimbArmHoldingVoltage);
+    climb2.setVoltage(Constants.ClimbArmHoldingVoltage);
+  }
+
+  public void unhold() {
+    climb1.setVoltage(0);
+    climb2.setVoltage(0);
+  }
+
   public void stop() {
     climb1.stopMotor();
     climb2.stopMotor();

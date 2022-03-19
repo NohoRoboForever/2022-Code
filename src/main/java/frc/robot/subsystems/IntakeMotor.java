@@ -22,7 +22,7 @@ public class IntakeMotor extends SubsystemBase {
   }
 
   public void reverse(){
-    motor.set(-Constants.intakeSpeed);
+    motor.set(-Constants.OuttakeSpeed);
   }
   
   public void stop(){

@@ -24,12 +24,15 @@ public final class Constants {
 
     //CONSTANT SPEEDS
     public static final double IndexerSpeed = 0.5d;
+    public static final double OuttakeSpeed = 0.3d;
     public final static double climbSpeed = 0.2d;
     public static final double defaultTurretSpeed = 0.15d;
     public final static double defaultFlywheelSpeed = 0.7d;
     public final static double intakeSpeed = 0.5d;
     public final static double RightDrive = 0.4d;
     public final static double LeftDrive = 0.4d;
+    public static final double ClimbArmHoldingVoltage = 3;
+
 
     // drive can ids
     public static final int RFWheel = 4;
@@ -96,4 +99,5 @@ public final class Constants {
     public static final int IndexerLimitSwitchChannel = 0;
 
     public static final int LEFT_TRIGGER_AXIS = 2;
+
 }

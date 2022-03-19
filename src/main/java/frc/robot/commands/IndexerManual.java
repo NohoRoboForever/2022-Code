@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.Indexer;
@@ -28,6 +29,8 @@ public class IndexerManual extends CommandBase {
 
     if (Math.abs(Robot.robotContainer.sticky2.getRightTriggerAxis()) > .1) {
       indexer.run();
+    } else if (Robot.robotContainer.sticky2.getBButton()) {
+      indexer.reverse();
     } else {
       indexer.stop();
     }

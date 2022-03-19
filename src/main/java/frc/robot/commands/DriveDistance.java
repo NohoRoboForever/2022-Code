@@ -52,12 +52,15 @@ public class DriveDistance extends CommandBase {
   @Override
   public void execute() {
     // this is fucked so bad
-    double calc1 = controller1.calculate(encoder1.getPosition(), distance1);
-    double calc2 = controller2.calculate(encoder2.getPosition(), distance2);
+    double calc1 = controller1.calculate(encoder1.getPosition());
+    double calc2 = controller2.calculate(encoder2.getPosition());
     System.out.println(calc1);
     System.out.println(calc2);
     System.out.println(encoder1.getPosition());
+    System.out.println(encoder2.getPosition());
     System.out.println(distance1);
+    System.out.println(distance2);
+    System.out.println("----");
 
     motorcntrl1.set(calc1);
     motorcntrl2.set(calc1);
@@ -75,6 +78,6 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return controller1.atGoal() && controller2.atGoal();
+    return Math.abs(encoder1.getPosition()) < 0.5 && Math.abs(encoder2.getPosition()) < 0.5;
   }
 }

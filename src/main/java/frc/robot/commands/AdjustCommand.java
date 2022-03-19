@@ -29,7 +29,7 @@ public class AdjustCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Math.abs(limelight.getTX()) < 10) return;
+    if (Math.abs(limelight.getTX()) < 5) return;
     System.out.println(limelight.getTX());
     double shit = controller.calculate(-limelight.getTX());
     System.out.println(shit);
