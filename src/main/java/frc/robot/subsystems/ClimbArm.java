@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -36,15 +37,14 @@ public class ClimbArm extends SubsystemBase {
   }
 
   public void hold() {
-    climb1.setVoltage(Constants.ClimbArmHoldingVoltage);
-    climb2.setVoltage(Constants.ClimbArmHoldingVoltage);
+    climb1.setIdleMode(IdleMode.kBrake);
+    climb2.setIdleMode(IdleMode.kBrake);
   }
 
   public void unhold() {
-    climb1.setVoltage(0);
-    climb2.setVoltage(0);
+    climb1.setIdleMode(IdleMode.kCoast);
+    climb2.setIdleMode(IdleMode.kCoast);
   }
-
   public void stop() {
     climb1.stopMotor();
     climb2.stopMotor();
