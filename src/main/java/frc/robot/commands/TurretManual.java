@@ -26,6 +26,7 @@ public class TurretManual extends CommandBase {
   @Override
   public void execute() {
     if (Robot.auton) return;
+    System.out.println(turret.limitSwitch.get());
     // if (Robot.robotContainer.sticky.getPOV() > 45 && Robot.robotContainer.sticky.getPOV() > 135){
     //   turret.turnClockwise(defaultTurretSpeed);
     // }
@@ -33,13 +34,22 @@ public class TurretManual extends CommandBase {
     //   turret.turnCounterclockwise(defaultTurretSpeed);
     // }
     // if (Robot.robotContainer.getButtonValue(7)==true) turret.halt();
+    int either = 0;
+    if (Robot.robotContainer.sticky2.getPOV() > 45 && Robot.robotContainer.sticky2.getPOV() < 135){
+      turret.turnClockwise(Constants.defaultTurretSpeed);
+    } else if (Robot.robotContainer.sticky2.getPOV() > 225 && Robot.robotContainer.sticky2.getPOV() < 315) {
+      turret.turnCounterclockwise(Constants.defaultTurretSpeed);
+    } else {
+      either++;
+    }
     if (Robot.robotContainer.sticky.getPOV() > 45 && Robot.robotContainer.sticky.getPOV() < 135){
       turret.turnClockwise(Constants.defaultTurretSpeed);
     } else if (Robot.robotContainer.sticky.getPOV() > 225 && Robot.robotContainer.sticky.getPOV() < 315) {
       turret.turnCounterclockwise(Constants.defaultTurretSpeed);
     } else {
-      turret.stop();
+      either++;
     }
+    if (either > 1) { turret.stop(); }
   }
 
   // Called once the command ends or is interrupted.

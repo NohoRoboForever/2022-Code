@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drive;
@@ -37,12 +38,12 @@ public class DriveTeleop extends CommandBase {
     if (Robot.auton) return;
     // NEED TO ADJUST MULTIPLIERS FOR REAL DRIVE
     if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .3) {
-      drive.setDriveL(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)*0.5);
+      drive.setDriveL(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)*Constants.LeftDrive);
     } else {
        drive.setDriveL(0);
     }
     if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)) > .3) {
-      drive.setDriveR(-1*Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)*0.5);
+      drive.setDriveR(-1*Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)*Constants.RightDrive);
     } else {
       drive.setDriveR(0);
     }

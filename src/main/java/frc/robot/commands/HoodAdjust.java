@@ -25,9 +25,9 @@ public class HoodAdjust extends CommandBase {
   @Override
   public void execute() {
     if (Robot.auton) return;
-    if (Robot.robotContainer.sticky.getPOV() < 45 || Robot.robotContainer.sticky.getPOV() > 315){
+    if (Robot.robotContainer.sticky2.getPOV() < 45 || Robot.robotContainer.sticky2.getPOV() > 315){
       pistons.extend();
-    } else if (Robot.robotContainer.sticky.getPOV() < 225 && Robot.robotContainer.sticky.getPOV() > 135){
+    } else if (Robot.robotContainer.sticky2.getPOV() < 225 && Robot.robotContainer.sticky2.getPOV() > 135){
       pistons.retract();
     }
   }

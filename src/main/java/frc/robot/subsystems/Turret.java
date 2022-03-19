@@ -21,7 +21,7 @@ public class Turret extends SubsystemBase {
   private double kp = 0.03, ki = 0.03, kd = 0.0;
 
   private PIDController controller = new PIDController(kp, ki, kd);
-  private DigitalInput limitSwitch = new DigitalInput(Constants.TurretLimitSwitchChannel);
+  public DigitalInput limitSwitch = new DigitalInput(Constants.TurretLimitSwitchChannel);
   
   /** Creates a new Turret. */
   public Turret() {

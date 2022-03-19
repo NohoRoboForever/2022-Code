@@ -8,11 +8,13 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Turret;
+import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 
 public class AdjustCommand extends CommandBase {
   private Limelight limelight;
   private Turret turret;
-  private PIDController controller = new PIDController(0.03, 0.03, 0);
+  private ProfiledPIDController controller = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.2, 2)); //need to put this on a periodic timer eventually
   /** Creates a new AdjustCommand. */
   public AdjustCommand(Limelight limelight, Turret turret) {
     this.limelight = limelight;
@@ -27,6 +29,7 @@ public class AdjustCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (Math.abs(limelight.getTX()) < 10) return;
     System.out.println(limelight.getTX());
     double shit = controller.calculate(-limelight.getTX());
     System.out.println(shit);
@@ -41,6 +44,6 @@ public class AdjustCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return limelight.getTX() < 3.0;
+    return false;
   }
 }

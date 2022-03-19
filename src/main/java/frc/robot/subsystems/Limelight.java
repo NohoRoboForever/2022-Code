@@ -39,19 +39,19 @@ public class Limelight extends SubsystemBase {
     }
 
     public double getTX() {
-        return tx.getDouble(321.0);
+        return tx.getDouble(0.0);
     }
 
     public double getTY() {
-        return ty.getDouble(321.0);
+        return ty.getDouble(0.0);
     }
 
     public double getTA() {
-        return ta.getDouble(321.0);
+        return ta.getDouble(0.0);
     }
 
     public double getTV() {
-        return tv.getDouble(321.0);
+        return tv.getDouble(0.0);
     }
 
     public double getDistanceFromGoalInches() {

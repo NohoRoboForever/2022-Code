@@ -25,7 +25,12 @@ public class IndexerManual extends CommandBase {
   @Override
   public void execute() {
     if (Robot.auton) return;
-    indexer.run();
+
+    if (Math.abs(Robot.robotContainer.sticky2.getRightTriggerAxis()) > .1) {
+      indexer.run();
+    } else {
+      indexer.stop();
+    }
     // if (Robot.robotContainer.sticky.getXButtonPressed()){
     //   indexer.run();
     // }

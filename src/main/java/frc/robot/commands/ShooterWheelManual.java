@@ -26,11 +26,19 @@ public class ShooterWheelManual extends CommandBase {
   @Override
   public void execute() {
     if (Robot.auton) return;
+    int either = 0;
     if (Math.abs(Robot.robotContainer.getJoystickAxis(3)) > .1) {
-      shooterWheel.set(Robot.robotContainer.getJoystickAxis(3)*0.5);
+      shooterWheel.set(Robot.robotContainer.getJoystickAxis(3)*Constants.defaultFlywheelSpeed);
     } else {
-      shooterWheel.stop();
+      either++;
     }
+
+    if (Math.abs(Robot.robotContainer.sticky2.getLeftTriggerAxis()) > .1) {
+      shooterWheel.set(Robot.robotContainer.sticky2.getLeftTriggerAxis()*Constants.defaultFlywheelSpeed);
+    } else {
+      either++;
+    }
+    if (either > 1) shooterWheel.stop();
   }
 
   // Called once the command ends or is interrupted.

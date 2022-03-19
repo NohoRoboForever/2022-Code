@@ -75,6 +75,6 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return encoder1.getPosition() - distance1 < 0.3 && encoder2.getPosition() - distance2 < 0.3;
+    return controller1.atGoal() && controller2.atGoal();
   }
 }

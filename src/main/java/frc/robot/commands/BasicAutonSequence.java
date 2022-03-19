@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -41,8 +42,18 @@ public class BasicAutonSequence extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      //new InstantCommand(Robot.robotContainer.intakeMotor::run, Robot.robotContainer.intakeMotor).withTimeout(1.4)
-      //new DriveDistance(Robot.robotContainer.controller1, Robot.robotContainer.controller2, 5, 5, drive.LMEncoder, drive.RMEncoder, drive.LB, drive.LM, drive.LF, drive.RB, drive.RM, drive.RF)
+      new InstantCommand(Robot.robotContainer.intakeMotor::run, Robot.robotContainer.intakeMotor),
+      new DriveDistance(makeDefaultController(), makeDefaultController(), 2, -2, drive.LMEncoder, drive.RMEncoder, drive.LB, drive.LM, drive.LF, drive.RB, drive.RM, drive.RF),
+      new DriveDistance(makeDefaultController(), makeDefaultController(), 7,  7, drive.LMEncoder, drive.RMEncoder, drive.LB, drive.LM, drive.LF, drive.RB, drive.RM, drive.RF),
+      new DriveDistance(makeDefaultController(), makeDefaultController(), -2,  2, drive.LMEncoder, drive.RMEncoder, drive.LB, drive.LM, drive.LF, drive.RB, drive.RM, drive.RF),
+      new DriveDistance(makeDefaultController(), makeDefaultController(), 7,  7, drive.LMEncoder, drive.RMEncoder, drive.LB, drive.LM, drive.LF, drive.RB, drive.RM, drive.RF),
+      new AdjustCommand(Robot.robotContainer.limelight, Robot.robotContainer.turret),
+      new InstantCommand(Robot.robotContainer.shooterWheel::run, Robot.robotContainer.shooterWheel),
+      new InstantCommand(Robot.robotContainer.indexer::run, Robot.robotContainer.indexer).withTimeout(3)
     );
+  }
+
+  public static ProfiledPIDController makeDefaultController() {
+    return new ProfiledPIDController(0.03, 0.03, 0, new TrapezoidProfile.Constraints(7, 7));
   }
 }

@@ -19,6 +19,11 @@ public class ShooterWheel extends SubsystemBase {
     rightMotor = new CANSparkMax(Constants.ShootRight, MotorType.kBrushless);
   }
 
+  public void run() {
+    leftMotor.set(-Constants.defaultFlywheelSpeed);
+    rightMotor.set(Constants.defaultFlywheelSpeed);
+  }
+
   public void set(double speed){
     leftMotor.set(-speed);
     rightMotor.set(speed);
