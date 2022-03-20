@@ -49,10 +49,12 @@ public class ManualAutonSequence extends SequentialCommandGroup {
       // it has shot
       new InstantCommand(shooterWheel::stop, shooterWheel),
       new InstantCommand(indexer::stop, indexer),
-      new DriveNormal(-0.2, 0.2),
-      new WaitCommand(2.5),
-      new DriveNormal(0, 0),
-      new DriveNormal()
+      new DriveNormal(-0.2, 0.2, 2)
+      // new WaitCommand(2),
+      // new DriveNormal(0, 0),
+      // new DriveNormal(),
+      // new InstantCommand(drive::driveBrake, drive),
+      // new InstantCommand(drive::driveStop, drive)
     );
   }
 }

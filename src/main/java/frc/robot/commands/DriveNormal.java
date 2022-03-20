@@ -5,36 +5,30 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.Drive;
 
 public class DriveNormal extends CommandBase {
   private Drive drive = Drive.getInstance();
-  private double speed1, speed2;
-  private boolean brake;
+  private double speed1, speed2, time;
 
   /** Creates a new DriveNormal. */
-  public DriveNormal(double speedL, double speedR) {
+  public DriveNormal(double speedL, double speedR, double time) {
     this.speed1 = speedL;
     this.speed2 = speedR;
-    this.brake = false;
-  }
-
-  public DriveNormal() {
-    this.brake = true;
+    this.time = System.currentTimeMillis() + time;
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (this.brake)  {
-      drive.driveBrake();
-      return;
-    }
     drive.setDriveL(speed1);
     drive.setDriveR(speed2);
   }
@@ -46,6 +40,6 @@ public class DriveNormal extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return System.currentTimeMillis() >= time;
   }
 }
