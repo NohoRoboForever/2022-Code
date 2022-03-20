@@ -22,12 +22,12 @@ public class DriveTeleop extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
   }
   // THE FOLLOWING METHODS HAVE NO MULTIPLIER FOR DRIVE SPEED
-  public void leftDrive() {
-    drive.setDriveL(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y));
-  }
-  public void rightDrive() {
-    drive.setDriveR(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y));
-  }
+  // public void leftDrive() {
+  //   drive.setDriveL(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y));
+  // }
+  // public void rightDrive() {
+  //   drive.setDriveR(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y));
+  // }
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
@@ -37,13 +37,13 @@ public class DriveTeleop extends CommandBase {
   public void execute() {
     if (Robot.auton) return;
     // NEED TO ADJUST MULTIPLIERS FOR REAL DRIVE
-    if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)) > .3) {
-      drive.setDriveL(Robot.robotContainer.getJoystickAxis(RobotContainer.LEFT_AXIS_Y)*Constants.LeftDrive);
+    if (Math.abs(Robot.robotContainer.sticky.getRawAxis(RobotContainer.LEFT_AXIS_Y)) > .3) {
+      drive.setDriveL(Robot.robotContainer.sticky.getRawAxis(RobotContainer.LEFT_AXIS_Y)*Constants.LeftDrive);
     } else {
        drive.setDriveL(0);
     }
-    if (Math.abs(Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)) > .3) {
-      drive.setDriveR(-1*Robot.robotContainer.getJoystickAxis(RobotContainer.RIGHT_AXIS_Y)*Constants.RightDrive);
+    if (Math.abs(Robot.robotContainer.sticky.getRawAxis(RobotContainer.RIGHT_AXIS_Y)) > .3) {
+      drive.setDriveR(-1*Robot.robotContainer.sticky.getRawAxis(RobotContainer.RIGHT_AXIS_Y)*Constants.RightDrive);
     } else {
       drive.setDriveR(0);
     }

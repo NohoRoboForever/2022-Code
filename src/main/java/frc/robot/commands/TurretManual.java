@@ -34,7 +34,7 @@ public class TurretManual extends CommandBase {
     // }
     // if (Robot.robotContainer.getButtonValue(7)==true) turret.halt();
     if ((Robot.robotContainer.sticky2.getPOV() > 45 && Robot.robotContainer.sticky2.getPOV() < 135) ||
-      (Robot.robotContainer.sticky.getPOV() > 45 && Robot.robotContainer.sticky.getPOV() < 135)){
+      (Robot.robotContainer.sticky.getPOV() > 45 && Robot.robotContainer.sticky.getPOV() < 135)) {
       turret.turnClockwise(Constants.defaultTurretSpeed);
     } else if ((Robot.robotContainer.sticky2.getPOV() > 225 && Robot.robotContainer.sticky2.getPOV() < 315) ||
       (Robot.robotContainer.sticky.getPOV() > 225 && Robot.robotContainer.sticky.getPOV() < 315)) {

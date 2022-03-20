@@ -26,7 +26,7 @@ public class IntakeRun extends CommandBase {
   @Override
   public void execute() {
     if (Robot.auton) return;
-    if (Math.abs(Robot.robotContainer.sticky2.getRawAxis(2)) > .1 || Robot.robotContainer.sticky.getAButton()) {
+    if (Math.abs(Robot.robotContainer.sticky.getRawAxis(2)) > .1 || Robot.robotContainer.sticky2.getAButton()) {
       motor.run();
     } else if (Robot.robotContainer.sticky.getBButton() || Robot.robotContainer.sticky2.getBButton()){ 
       motor.reverse();
