@@ -27,7 +27,7 @@ public class IndexerManual extends CommandBase {
   public void execute() {
     if (Robot.auton) return;
 
-    if (Math.abs(Robot.robotContainer.sticky2.getRightTriggerAxis()) > .1 || Robot.robotContainer.sticky.getLeftBumper()) {
+    if (Math.abs(Robot.robotContainer.sticky.getRightTriggerAxis()) > .1 || Robot.robotContainer.sticky2.getLeftBumper()) {
       indexer.run();
     } else if (Robot.robotContainer.sticky2.getBButton()) {
       indexer.reverse();
