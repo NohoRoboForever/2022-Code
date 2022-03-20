@@ -22,20 +22,21 @@ public class SimpleClimb extends CommandBase {
 
   @Override
   public void execute() {
-    if (Robot.robotContainer.sticky.getStartButton()){
+    if (Robot.robotContainer.sticky2.getXButton()) {
       climbArm.extend();
-    }
-    if (Robot.robotContainer.sticky.getBackButton()) {
+    } else if (Robot.robotContainer.sticky2.getYButton()) {
       climbArm.retract();
-    }
-    if (Robot.robotContainer.sticky.getRightBumper()){
+    } else if (Robot.robotContainer.sticky2.getRightBumper()) {
       climbArm.stop();
+      climbArm.hold();
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+
+  }
 
   // Returns true when the command should end.
   @Override

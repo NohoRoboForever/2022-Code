@@ -17,7 +17,7 @@ public class DriveNormal extends CommandBase {
   public DriveNormal(double speedL, double speedR, double time) {
     this.speed1 = speedL;
     this.speed2 = speedR;
-    this.time = System.currentTimeMillis() + time;
+    this.time = System.currentTimeMillis() + time*1000;
   }
 
   // Called when the command is initially scheduled.

@@ -83,6 +83,7 @@ public class RobotContainer {
   private final IntakeRun intakeRunCommand = new IntakeRun(intakeMotor);
   private final ShooterWheelManual shooterWheelComamand = new ShooterWheelManual(shooterWheel);
   private final TurretManual turretCommand = new TurretManual(turret);
+  private final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
 
 
 
@@ -103,6 +104,7 @@ public class RobotContainer {
     intakeMotor.setDefaultCommand(intakeRunCommand);
     shooterWheel.setDefaultCommand(shooterWheelComamand);
     indexer.setDefaultCommand(indexerManual);
+    climbArm.setDefaultCommand(simpleClimb);
     turret.setDefaultCommand(turretCommand); //this should hopefully work rather than doing all the stuff in robotPeriodic
     // basicAutonSequence = new BasicAutonSequence(controller);
     // climbArm.hold();
@@ -142,10 +144,10 @@ public class RobotContainer {
     // new JoystickButton(sticky2, Button.kRightBumper.value).whenHeld(new InstantCommand(intakeMotor::reverse, intakeMotor));
     // new JoystickButton(sticky2, Button.kRightBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
     // new JoystickButton(sticky2, Button.kRightBumper.value).whenReleased(new InstantCommand(intakeMotor::stop, intakeMotor));
-    new JoystickButton(sticky2, Button.kY.value).whenHeld(new InstantCommand(climbArm::extend, climbArm));
-    new JoystickButton(sticky2, Button.kY.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
-    new JoystickButton(sticky2, Button.kX.value).whenHeld(new InstantCommand(climbArm::retract, climbArm));
-    new JoystickButton(sticky2, Button.kX.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
+    // new JoystickButton(sticky2, Button.kY.value).whenHeld(new InstantCommand(climbArm::extend, climbArm));
+    // new JoystickButton(sticky2, Button.kY.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
+    // new JoystickButton(sticky2, Button.kX.value).whenHeld(new InstantCommand(climbArm::retract, climbArm));
+    // new JoystickButton(sticky2, Button.kX.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
 
     // new JoystickButton(sticky2, 4).whenHeld(indexerManual);
     // new JoystickButton(sticky2, Button.kLeftBumper.value).whenReleased(new InstantCommand(indexer));

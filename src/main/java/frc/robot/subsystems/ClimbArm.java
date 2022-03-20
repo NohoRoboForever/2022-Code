@@ -37,8 +37,8 @@ public class ClimbArm extends SubsystemBase {
   }
 
   public void hold() {
-    climb1.setSmartCurrentLimit(30, 35);
-    climb2.setSmartCurrentLimit(30, 35);
+    // climb1.setSmartCurrentLimit(30, 35);
+    // climb2.setSmartCurrentLimit(30, 35);
     climb1.setIdleMode(IdleMode.kBrake);
     climb1.setIdleMode(IdleMode.kBrake);
   }
