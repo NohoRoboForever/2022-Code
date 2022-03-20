@@ -29,6 +29,8 @@ public class DriveNormal extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    System.out.println(speed1);
+    System.out.println(speed2);
     drive.setDriveL(speed1);
     drive.setDriveR(speed2);
   }
@@ -40,6 +42,7 @@ public class DriveNormal extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    System.out.println("f");
     return System.currentTimeMillis() >= time;
   }
 }

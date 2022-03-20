@@ -14,7 +14,7 @@ import frc.robot.Robot;
 public class AdjustCommand extends CommandBase {
   private Limelight limelight;
   private Turret turret;
-  private ProfiledPIDController controller = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.2, 1)); //need to put this on a periodic timer eventually
+  private ProfiledPIDController controller = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.05, .05)); //need to put this on a periodic timer eventually
   /** Creates a new AdjustCommand. */
   public AdjustCommand(Limelight limelight, Turret turret) {
     this.limelight = limelight;
@@ -29,7 +29,8 @@ public class AdjustCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Math.abs(limelight.getTX()) < 5) return;
+    if (Math.abs(limelight.getTX()) < 10) return;
+    //if (limelight.getTV() > 0.5) return;
     System.out.println(limelight.getTX());
     double shit = controller.calculate(-limelight.getTX());
     System.out.println(shit);
