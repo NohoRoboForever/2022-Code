@@ -41,23 +41,7 @@ public class ManualAutonSequence extends SequentialCommandGroup {
 
     // this is a generic idea
     addCommands(
-      // 6pt
-      // new InstantCommand(shooterWheel::run, shooterWheel),
-      // new WaitCommand(3),
-      // new InstantCommand(shooterWheel::run, shooterWheel),
-      // new InstantCommand(indexer::run, indexer),
-      // new WaitCommand(3),
-      // // it has shot
-      // new InstantCommand(shooterWheel::stop, shooterWheel),
-      // new InstantCommand(indexer::stop, indexer),
-      // new DriveNormal(-0.4, 0.4),
-      // new WaitCommand(5),
-      // new DriveNormal()
-
       new InstantCommand(shooterWheel::run, shooterWheel),
-<<<<<<< HEAD
-      
-=======
       new WaitCommand(1.5),
       new InstantCommand(shooterWheel::run, shooterWheel),
       new InstantCommand(indexer::run, indexer),
@@ -68,19 +52,6 @@ public class ManualAutonSequence extends SequentialCommandGroup {
       new DriveNormal(-0.2, 0.2),
       new WaitCommand(2),
       new DriveNormal(0, 0)
-      // new InstantCommand(shooterWheel::run, shooterWheel),
-      // new WaitCommand(1.5),
-      // new InstantCommand(shooterWheel::run, shooterWheel),
-      // new InstantCommand(indexer::run, indexer),
-      // new WaitCommand(1.5),
-      // // it has shot
-      // new InstantCommand(shooterWheel::stop, shooterWheel),
-      // new InstantCommand(indexer::stop, indexer),
-      // new DriveNormal(-0.2, 0.2),
-      // new WaitCommand(1.5),
-      // new DriveNormal(0, 0)
-      // new 
->>>>>>> 9b03df55d1cfeb7265a3fb2a714c546f6664f2f5
     );
   }
 }
