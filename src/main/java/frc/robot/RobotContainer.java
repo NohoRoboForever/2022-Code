@@ -124,8 +124,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // new JoystickButton(sticky, Button.kA.value).whenHeld(intakePushPull); //pneumatics temporarily fucked
-    new JoystickButton(sticky2, Button.kLeftBumper.value).whenHeld(adjustCommand);
-    new JoystickButton(sticky, Button.kRightBumper.value).whenHeld(adjustCommand);
+    new JoystickButton(sticky, Button.kLeftBumper.value).whenHeld(adjustCommand);
+    new JoystickButton(sticky2, Button.kRightBumper.value).whenHeld(adjustCommand);
     // new JoystickButton(sticky, Button.kLeftBumper.value).whenHeld(shooterWheelCommand);
     // new JoystickButton(sticky, Button.kLeftBumper.value).whenReleased(new InstantCommand(shooterWheel::stop, shooterWheel));
     //// new JoystickButton(sticky, Button.kLeftBumper.value).whenHeld(new InstantCommand(indexer::run, indexer));
@@ -134,10 +134,10 @@ public class RobotContainer {
     // new JoystickButton(sticky2, Button.kLeftBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
     // new JoystickButton(sticky2, Button.kA.value).whenHeld(shooterWheelManual);
     // new JoystickButton(sticky, Button.kA.value).whenReleased(new InstantCommand(indexer::stop, shooterWheel));
-    new JoystickButton(sticky, Button.kB.value).whenHeld(new InstantCommand(indexer::reverse, indexer));
-    new JoystickButton(sticky, Button.kB.value).whenHeld(new InstantCommand(intakeMotor::reverse, intakeMotor));
-    new JoystickButton(sticky, Button.kB.value).whenReleased(new InstantCommand(indexer::stop, indexer));
-    new JoystickButton(sticky, Button.kB.value).whenReleased(new InstantCommand(intakeMotor::stop, intakeMotor));
+    new JoystickButton(sticky2, Button.kB.value).whenHeld(new InstantCommand(indexer::reverse, indexer));
+    new JoystickButton(sticky2, Button.kB.value).whenHeld(new InstantCommand(intakeMotor::reverse, intakeMotor));
+    new JoystickButton(sticky2, Button.kB.value).whenReleased(new InstantCommand(indexer::stop, indexer));
+    new JoystickButton(sticky2, Button.kB.value).whenReleased(new InstantCommand(intakeMotor::stop, intakeMotor));
     // new JoystickButton(sticky2, Button.kRightBumper.value).whenHeld(new InstantCommand(indexer::reverse, indexer));
     // new JoystickButton(sticky2, Button.kRightBumper.value).whenHeld(new InstantCommand(intakeMotor::reverse, intakeMotor));
     // new JoystickButton(sticky2, Button.kRightBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
