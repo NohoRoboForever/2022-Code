@@ -23,14 +23,15 @@ public final class Constants {
 
 
     //CONSTANT SPEEDS
-    public static final double IndexerSpeed = 0.5d;
+    public static final double IndexerSpeed = 0.65d;
     public static final double OuttakeSpeed = 0.3d;
-    public final static double climbSpeed = 0.1d;
-    public static final double defaultTurretSpeed = 0.1d;
-    public final static double defaultFlywheelSpeed = 0.7;
+    public final static double climbSpeed = 0.4d;
+    public static final double defaultTurretSpeed = 0.2d;
+    public final static double defaultFlywheelSpeed = 0.6d;
+    public static double currentFlywheelSpeed = defaultFlywheelSpeed;
     public final static double intakeSpeed = 0.5d;
-    public final static double RightDrive = 0.5d;
-    public final static double LeftDrive = 0.5d;
+    public final static double RightDrive = 0.47d;
+    public final static double LeftDrive = 0.47d;
 
 
     // drive can ids
@@ -74,6 +75,9 @@ public final class Constants {
 
     //vision
     public static final int Limelight = 0;
+    public static final double mountAngle = 55;
+    public static final double goalHeight = 104;
+    public static final double lensHeight = 30;
 
     //PNEUMATIC CHANNELS
     public static final int IntakeLeftForward = 1;

@@ -12,7 +12,6 @@ public class Limelight extends SubsystemBase {
 
     private NetworkTableEntry tx, ty, ta, tv;
     private NetworkTableInstance table = NetworkTableInstance.getDefault();
-    private double mountAngle, lensHeight, goalHeight;
 
     public Limelight() {
         tx = table.getTable("limelight").getEntry("tx");
@@ -20,22 +19,6 @@ public class Limelight extends SubsystemBase {
         ta = table.getTable("limelight").getEntry("ta");
         tv = table.getTable("limelight").getEntry("tv");
         table.setUpdateRate(100);
-    }
-
-    public Limelight(
-        double mountAngleDegrees,  // from vertical
-        double lensHeightInches,   // height from the floor of the center of the lens
-        double goalHeightInches    // height of the goal / target
-    ) {
-        tx = table.getTable("limelight").getEntry("tx");
-        ty = table.getTable("limelight").getEntry("ty");
-        ta = table.getTable("limelight").getEntry("ta");
-        tv = table.getTable("limelight").getEntry("tv");
-        table.setUpdateRate(100);
-
-        mountAngle = mountAngleDegrees;
-        lensHeight = lensHeightInches;
-        goalHeight = goalHeightInches;
     }
 
     public double getTX() {
@@ -55,7 +38,7 @@ public class Limelight extends SubsystemBase {
     }
 
     public double getDistanceFromGoalInches() {
-        return (goalHeight - lensHeight) / Math.tan((mountAngle + getTY()) * (Math.PI / 180.0d));
+        return (Constants.goalHeight - Constants.lensHeight) / Math.tan((Constants.mountAngle + getTY()) * (Math.PI / 180.0d));
     }
 
     public double getFlywheelSpeed() {

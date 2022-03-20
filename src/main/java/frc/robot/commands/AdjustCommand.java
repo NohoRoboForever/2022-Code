@@ -9,11 +9,12 @@ import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Turret;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import frc.robot.Robot;
 
 public class AdjustCommand extends CommandBase {
   private Limelight limelight;
   private Turret turret;
-  private ProfiledPIDController controller = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.3, 2)); //need to put this on a periodic timer eventually
+  private ProfiledPIDController controller = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.2, 1)); //need to put this on a periodic timer eventually
   /** Creates a new AdjustCommand. */
   public AdjustCommand(Limelight limelight, Turret turret) {
     this.limelight = limelight;
@@ -33,6 +34,10 @@ public class AdjustCommand extends CommandBase {
     double shit = controller.calculate(-limelight.getTX());
     System.out.println(shit);
     turret.turnClockwise(shit);
+    // if (Robot.robotContainer.sticky2.getRightBumper()) {
+    //   Constants.currentFlywheelSpeed = Robot.robotContainer.limelight.getFlywheelSpeed();
+    //   shooterWheel.set(Constants.currentFlywheelSpeed);
+    // }
   }
 
 
