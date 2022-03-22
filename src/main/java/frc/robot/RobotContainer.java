@@ -47,8 +47,8 @@ public class RobotContainer {
 
   
   // main commmands
-  private Command m_teleopCommand = new DriveTeleop();
-  private Command m_normalAutonCommand = new ManualAutonSequence(intakeMotor, indexer, shooterWheel, limelight, turret);
+  private final Command m_teleopCommand = new DriveTeleop();
+  private final Command m_normalAutonCommand = new ManualAutonSequence(intakeMotor, indexer, shooterWheel, limelight, turret);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -87,5 +87,5 @@ public class RobotContainer {
   public Command getTeleoperatedCommand() {
     return m_teleopCommand;
   }
-  
+
 }
