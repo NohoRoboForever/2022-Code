@@ -31,9 +31,9 @@ public class TurretManual extends CommandBase {
     int sticky2POV = Robot.robotContainer.sticky2.getPOV();
 
     if ( (sticky1POV > 45 && sticky1POV < 135) || (sticky2POV > 45 && sticky2POV < 135) ) {
-      turret.turn(Constants.defaultTurretSpeed);
+      turret.turn(Constants.DefaultTurretSpeed);
     } else if ( (sticky1POV > 225 && sticky1POV < 315) || (sticky2POV > 225 && sticky2POV < 315) ) {
-      turret.turn(-Constants.defaultTurretSpeed);
+      turret.turn(-Constants.DefaultTurretSpeed);
     } else {
       turret.stop();
     }

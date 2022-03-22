@@ -24,14 +24,14 @@ public class ClimbArm extends SubsystemBase {
 
 
   public void extend() {
-    climb1.set(Constants.climbSpeed);
-    climb2.set(Constants.climbSpeed);
+    climb1.set(Constants.ClimbSpeed);
+    climb2.set(Constants.ClimbSpeed);
   }
 
 
   public void retract() {
-    climb1.set(Constants.climbSpeed * -1);
-    climb2.set(Constants.climbSpeed * -1);
+    climb1.set(Constants.ClimbSpeed * -1);
+    climb2.set(Constants.ClimbSpeed * -1);
   }
 
 

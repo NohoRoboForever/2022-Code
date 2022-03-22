@@ -21,7 +21,7 @@ public class IntakeMotor extends SubsystemBase {
 
 
   public void run() {
-    motor.set(Constants.intakeSpeed);
+    motor.set(Constants.IntakeSpeed);
   }
 
 

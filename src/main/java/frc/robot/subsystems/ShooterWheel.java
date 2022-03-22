@@ -20,8 +20,8 @@ public class ShooterWheel extends SubsystemBase {
 
 
   public void run() {
-    leftMotor.set(-Constants.defaultFlywheelSpeed);
-    rightMotor.set(Constants.defaultFlywheelSpeed);
+    leftMotor.set(-Constants.DefaultFlywheelSpeed);
+    rightMotor.set(Constants.DefaultFlywheelSpeed);
   }
 
 

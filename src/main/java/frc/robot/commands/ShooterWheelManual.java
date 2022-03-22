@@ -13,7 +13,7 @@ public class ShooterWheelManual extends CommandBase {
 
   private ShooterWheel shooterWheel;
 
-  
+
   /** Creates a new ShooterWheelManual. */
   public ShooterWheelManual(ShooterWheel p_shooterWheel) {
     shooterWheel = p_shooterWheel;
@@ -35,9 +35,9 @@ public class ShooterWheelManual extends CommandBase {
     double leftTriggerInput = Robot.robotContainer.sticky2.getLeftTriggerAxis();
 
     if (Math.abs(rightTriggerInput) > .1) {
-      shooterWheel.set(rightTriggerInput * Constants.defaultFlywheelSpeed);
+      shooterWheel.set(rightTriggerInput * Constants.DefaultFlywheelSpeed);
     } else if (Math.abs(leftTriggerInput) > .1) {
-      shooterWheel.set(leftTriggerInput * Constants.defaultFlywheelSpeed);
+      shooterWheel.set(leftTriggerInput * Constants.DefaultFlywheelSpeed);
     } else {
       shooterWheel.stop();
     }

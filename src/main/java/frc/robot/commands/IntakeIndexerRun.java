@@ -37,14 +37,10 @@ public class IntakeIndexerRun extends CommandBase {
 
     if (Robot.robotContainer.sticky1.getLeftBumperPressed() || Robot.robotContainer.sticky2.getAButtonPressed()) {
       on = !on;
-    }
-
-    if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()) { 
+    } else if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()) { 
       intakeMotor.reverse();
       indexer.reverse();
-    }
-
-    if (on) {
+    } else if (on) {
       intakeMotor.run();
       indexer.run();
     } else {
