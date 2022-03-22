@@ -7,19 +7,14 @@ package frc.robot.commands;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.Drive;
 
 
-public class BasicAutonSequence extends SequentialCommandGroup {
-
-  private final Drive drive = Drive.getInstance();
-  
+public class BasicAutonSequence extends SequentialCommandGroup {  
 
   /** Creates a new BasicAutonSequence. */
   public BasicAutonSequence() {
     addCommands(
-      new DriveDistance(makeDefaultController(), makeDefaultController(), 5, 5, drive.LMEncoder, drive.RMEncoder,
-        drive.LB, drive.LM, drive.LF, drive.RB, drive.RM, drive.RF)
+      new DriveDistance(makeDefaultController(), makeDefaultController(), 5, 5)
     );
   }
 

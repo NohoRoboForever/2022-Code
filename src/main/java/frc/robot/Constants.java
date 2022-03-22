@@ -31,8 +31,8 @@ public final class Constants {
     public static final double defaultFlywheelSpeed = 0.55d;
     public static       double currentFlywheelSpeed = defaultFlywheelSpeed;
     public static final double intakeSpeed = 0.5d;
-    public static final double RightDrive = 0.47d;
-    public static final double LeftDrive = 0.47d;
+    public static final double RightDrive = 3.0d;
+    public static final double LeftDrive = 3.0d;
     public static final double RightDeadzone = 0.15d;
     public static final double LeftDeadzone = 0.15d;
 
@@ -80,6 +80,7 @@ public final class Constants {
     public static final double goalHeight = 104;
     public static final double lensHeight = 30;
 
+
     // pneumatic channels
     public static final int IntakeLeftForward = 1;
     public static final int IntakeLeftReverse = 2;
@@ -90,15 +91,20 @@ public final class Constants {
     public static final int HoodRightForward = 7;
     public static final int HoodRightReverse = 8;
 
+
     // flywheel
     public static final double GoalInchesMultiplier = 0.01;
+
 
     // turrent calibration
     public static final double TurrentLimelightDegreeMultiplierTurn = 0.03;
 
+
     // turret limit switch
     public static final int TurretLimitSwitchChannel = 2;
     
+
     // indexer limit switch
     public static final int IndexerLimitSwitchChannel = 0;
+    
 }
