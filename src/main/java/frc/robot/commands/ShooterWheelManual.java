@@ -13,6 +13,7 @@ public class ShooterWheelManual extends CommandBase {
 
   private ShooterWheel shooterWheel;
 
+  
   /** Creates a new ShooterWheelManual. */
   public ShooterWheelManual(ShooterWheel p_shooterWheel) {
     shooterWheel = p_shooterWheel;

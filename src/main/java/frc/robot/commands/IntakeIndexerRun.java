@@ -7,17 +7,21 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.IntakeMotor;
+import frc.robot.subsystems.Indexer;
 
 
-public class IntakeRun extends CommandBase {
+public class IntakeIndexerRun extends CommandBase {
 
-  private IntakeMotor motor;
+  private IntakeMotor intakeMotor;
+  private Indexer indexer;
+  private boolean on = false;
 
 
   /** Creates a new IntakeRun. */
-  public IntakeRun(IntakeMotor p_motor) {
-    motor = p_motor;
-    addRequirements(motor);
+  public IntakeIndexerRun(IntakeMotor intake, Indexer indexer) {
+    intakeMotor = intake;
+    this.indexer = indexer;
+    addRequirements(intakeMotor, indexer);
   }
 
 
@@ -31,14 +35,23 @@ public class IntakeRun extends CommandBase {
   public void execute() {
     if (Robot.auton) return;
 
-    if (Math.abs(Robot.robotContainer.sticky1.getRawAxis(2)) > .1 || Robot.robotContainer.sticky2.getAButton()) {
-      motor.run();
-    } else if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()){ 
-      motor.reverse();
-    } else {
-      motor.stop();
+    if (Robot.robotContainer.sticky1.getLeftBumperPressed() || Robot.robotContainer.sticky2.getAButtonPressed()) {
+      on = !on;
     }
 
+    if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()) { 
+      intakeMotor.reverse();
+      indexer.reverse();
+    }
+
+    if (on) {
+      intakeMotor.run();
+      indexer.run();
+    } else {
+      intakeMotor.stop();
+      indexer.stop();
+    }
+    
   }
 
   // Called once the command ends or is interrupted.

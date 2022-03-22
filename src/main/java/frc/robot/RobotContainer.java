@@ -39,7 +39,7 @@ public class RobotContainer {
   public final TurretManual turretManual = new TurretManual(turret);
   public final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel);  
   public final IndexerManual indexerManual = new IndexerManual(indexer);
-  public final IntakeRun intakeRunCommand = new IntakeRun(intakeMotor);
+  public final IntakeIndexerRun intakeRunCommand = new IntakeIndexerRun(intakeMotor);
   public final ShooterWheelManual shooterWheelComamand = new ShooterWheelManual(shooterWheel);
   public final TurretManual turretCommand = new TurretManual(turret);
   public final SimpleClimb simpleClimb = new SimpleClimb(climbArm);

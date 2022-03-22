@@ -25,7 +25,8 @@ public final class Constants {
 
     // constant speeds
     public static final double IndexerSpeed = 0.7;
-    public static final double OuttakeSpeed = 0.3d;
+    public static final double OuttakeIndexerSpeed = 0.7d;
+    public static final double OuttakeSpeed = 0.5d;
     public static final double climbSpeed = 0.4d;
     public static final double defaultTurretSpeed = 0.25d;
     public static final double defaultFlywheelSpeed = 0.55d;
