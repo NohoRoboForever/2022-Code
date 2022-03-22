@@ -7,41 +7,49 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.IntakeMotor;
-import edu.wpi.first.wpilibj.XboxController.Button;
+
 
 public class IntakeRun extends CommandBase {
+
   private IntakeMotor motor;
+
+
   /** Creates a new IntakeRun. */
   public IntakeRun(IntakeMotor p_motor) {
     motor = p_motor;
     addRequirements(motor);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
+
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
 
+
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if (Robot.auton) return;
-    if (Math.abs(Robot.robotContainer.sticky.getRawAxis(2)) > .1 || Robot.robotContainer.sticky2.getAButton()) {
+
+    if (Math.abs(Robot.robotContainer.sticky1.getRawAxis(2)) > .1 || Robot.robotContainer.sticky2.getAButton()) {
       motor.run();
-    } else if (Robot.robotContainer.sticky.getBButton() || Robot.robotContainer.sticky2.getBButton()){ 
+    } else if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()){ 
       motor.reverse();
     } else {
       motor.stop();
     }
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}
 
+
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;
   }
+
 }

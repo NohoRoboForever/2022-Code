@@ -26,31 +26,30 @@ public class TurretManual extends CommandBase {
   @Override
   public void execute() {
     if (Robot.auton) return;
-    // if (Robot.robotContainer.sticky.getPOV() > 45 && Robot.robotContainer.sticky.getPOV() > 135){
-    //   turret.turnClockwise(defaultTurretSpeed);
-    // }
-    // if (Robot.robotContainer.sticky.getPOV() > 225 && Robot.robotContainer.sticky.getPOV() > 315){
-    //   turret.turnCounterclockwise(defaultTurretSpeed);
-    // }
-    // if (Robot.robotContainer.getButtonValue(7)==true) turret.halt();
-    if ((Robot.robotContainer.sticky2.getPOV() > 45 && Robot.robotContainer.sticky2.getPOV() < 135) ||
-      (Robot.robotContainer.sticky.getPOV() > 45 && Robot.robotContainer.sticky.getPOV() < 135)) {
-      turret.turnClockwise(Constants.defaultTurretSpeed);
-    } else if ((Robot.robotContainer.sticky2.getPOV() > 225 && Robot.robotContainer.sticky2.getPOV() < 315) ||
-      (Robot.robotContainer.sticky.getPOV() > 225 && Robot.robotContainer.sticky.getPOV() < 315)) {
-      turret.turnCounterclockwise(Constants.defaultTurretSpeed);
+    
+    int sticky1POV = Robot.robotContainer.sticky1.getPOV();
+    int sticky2POV = Robot.robotContainer.sticky2.getPOV();
+
+    if ( (sticky1POV > 45 && sticky1POV < 135) || (sticky2POV > 45 && sticky2POV < 135) ) {
+      turret.turn(Constants.defaultTurretSpeed);
+    } else if ( (sticky1POV > 225 && sticky1POV < 315) || (sticky2POV > 225 && sticky2POV < 315) ) {
+      turret.turn(-Constants.defaultTurretSpeed);
     } else {
       turret.stop();
     }
+
   }
+
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}
+
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;
   }
+
 }

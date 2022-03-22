@@ -9,7 +9,9 @@ import frc.robot.Robot;
 import frc.robot.subsystems.ClimbArm;
 
 public class SimpleClimb extends CommandBase {
+
   private ClimbArm climbArm;
+
 
   /** Creates a new SimpleClimb. */
   public SimpleClimb(ClimbArm p_climbArm) {
@@ -17,11 +19,15 @@ public class SimpleClimb extends CommandBase {
     addRequirements(climbArm);
   }
 
+
   @Override
   public void initialize() {}
 
+
   @Override
   public void execute() {
+    if (Robot.auton) return;
+
     if (Robot.robotContainer.sticky2.getXButton()) {
       climbArm.extend();
     } else if (Robot.robotContainer.sticky2.getYButton()) {
@@ -30,6 +36,7 @@ public class SimpleClimb extends CommandBase {
       climbArm.stop();
       climbArm.hold();
     }
+    
   }
 
   // Called once the command ends or is interrupted.

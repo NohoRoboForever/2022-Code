@@ -10,27 +10,33 @@ import frc.robot.Robot;
 import frc.robot.subsystems.ShooterWheel;
 
 public class ShooterWheelManual extends CommandBase {
-  ShooterWheel shooterWheel;
+
+  private ShooterWheel shooterWheel;
+
   /** Creates a new ShooterWheelManual. */
   public ShooterWheelManual(ShooterWheel p_shooterWheel) {
     shooterWheel = p_shooterWheel;
     addRequirements(shooterWheel);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
+
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
+
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if (Robot.auton) return;
     
-    if (Math.abs(Robot.robotContainer.sticky.getRawAxis(3)) > .1) {
-      shooterWheel.set(Robot.robotContainer.sticky.getRawAxis(3)*Constants.defaultFlywheelSpeed);
-    } else if (Math.abs(Robot.robotContainer.sticky2.getLeftTriggerAxis()) > .1) {
-      shooterWheel.set(Robot.robotContainer.sticky2.getLeftTriggerAxis()*Constants.defaultFlywheelSpeed);
+    double rightTriggerInput = Robot.robotContainer.sticky1.getRightTriggerAxis();
+    double leftTriggerInput = Robot.robotContainer.sticky2.getLeftTriggerAxis();
+
+    if (Math.abs(rightTriggerInput) > .1) {
+      shooterWheel.set(rightTriggerInput * Constants.defaultFlywheelSpeed);
+    } else if (Math.abs(leftTriggerInput) > .1) {
+      shooterWheel.set(leftTriggerInput * Constants.defaultFlywheelSpeed);
     } else {
       shooterWheel.stop();
     }
@@ -41,9 +47,11 @@ public class ShooterWheelManual extends CommandBase {
   @Override
   public void end(boolean interrupted) {}
 
+
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;
   }
+
 }

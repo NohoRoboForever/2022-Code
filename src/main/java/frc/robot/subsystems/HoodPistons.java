@@ -10,33 +10,35 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class HoodPistons extends SubsystemBase {
-  private DoubleSolenoid leftPiston;
-  private DoubleSolenoid rightPiston;
+
+  private DoubleSolenoid leftPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodLeftForward, Constants.HoodLeftReverse);
+  private DoubleSolenoid rightPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodRightForward, Constants.HoodRightReverse);
+
+
   /** Creates a new HoodPistons. */
-  public HoodPistons() {
-    leftPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodLeftForward, Constants.HoodLeftReverse);
-    rightPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodRightForward, Constants.HoodRightReverse);
-  }
+  public HoodPistons() {}
+
 
   public DoubleSolenoid.Value getValue(){
     return leftPiston.get();
   }
 
-  public void toggle(){
+
+  public void toggle() {
     leftPiston.toggle();
     rightPiston.toggle();
   }
 
-  public void extend(){
 
-  }
+  public void extend() {}
 
-  public void retract(){
 
-  }
+  public void retract() {}
+
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
+  
 }

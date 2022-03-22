@@ -4,22 +4,14 @@
 
 package frc.robot;
 
-import edu.wpi.first.math.controller.ProfiledPIDController;
-import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.*;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.subsystems.*;
-import edu.wpi.first.wpilibj.Joystick;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -28,95 +20,53 @@ import edu.wpi.first.wpilibj.Joystick;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  private Command m_teleopCommand;
-
-  private Command m_autonomousCommand;
-  private Command m_normalAutonCommand;
-
-  private SendableChooser<Command> chooser;
-
-  public ProfiledPIDController controller1, controller2;
-
-  // private Command basicAutonSequence = new BasicAutonSequence(controller);
-
-  public final Limelight limelight = new Limelight();
-
-  private final double kp = 0.03;
-  private final double ki = 0.03;
-  private final double kd = 0; // supposed to be 0 for velocity controllers
-
-  public XboxController sticky = new XboxController(Constants.XBOX_CONTROLLER);
-  //public XboxController sticky2 = new XboxController(Constants.XBOX_CONTROLLER2);
-  public XboxController sticky2 = new XboxController(1);
-
-
-  //**potentially add encoder numbers for some motors */
-  //NEO MOTORS (BOTH CANSPARK IDs and PDP ports)
   
-  // The robot's subsystems and commands are defined here...
-  //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  public XboxController sticky1 = new XboxController(Constants.XBOX_CONTROLLER1);
+  public XboxController sticky2 = new XboxController(Constants.XBOX_CONTROLLER2);
 
-  //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  public final Turret turret = new Turret();
-  public final TurretManual turretManual = new TurretManual(turret);
+  // -- Subsystems --
 
+  public final Limelight limelight       = new Limelight();
   public final ShooterWheel shooterWheel = new ShooterWheel();
-  private final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel);
+  public final IntakeMotor intakeMotor   = new IntakeMotor();
+  public final Indexer indexer           = new Indexer();
+  public final Turret turret             = new Turret();
+  public final ClimbArm climbArm         = new ClimbArm();
+  public final Drive drive               = Drive.getInstance();
 
-  // private final IntakePistons intakePistons = new IntakePistons();
+  // -- Commands --
+  
+  public final TurretManual turretManual = new TurretManual(turret);
+  public final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel);  
+  public final IndexerManual indexerManual = new IndexerManual(indexer);
+  public final IntakeRun intakeRunCommand = new IntakeRun(intakeMotor);
+  public final ShooterWheelManual shooterWheelComamand = new ShooterWheelManual(shooterWheel);
+  public final TurretManual turretCommand = new TurretManual(turret);
+  public final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
+  public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret);
 
-  public final IntakeMotor intakeMotor = new IntakeMotor();
-
-  public final Indexer indexer = new Indexer();
-  private final IndexerManual indexerManual = new IndexerManual(indexer);
-
-  // private final HoodPistons hoodPistons = new HoodPistons();
-
-  public final Drive drive = Drive.getInstance();
-  // private final DriveTeleop driveTeleop = new DriveTeleop(drive);
-
-  private final ClimbArm climbArm = new ClimbArm();
-
-  public final Command adjustCommand = new AdjustCommand(limelight, turret);
-
-  private final DriveTeleop driveTeleopCommand = new DriveTeleop(drive);
-  private final IntakeRun intakeRunCommand = new IntakeRun(intakeMotor);
-  private final ShooterWheelManual shooterWheelComamand = new ShooterWheelManual(shooterWheel);
-  private final TurretManual turretCommand = new TurretManual(turret);
-  private final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
-
+  
+  // main commmands
+  private Command m_teleopCommand = new DriveTeleop();
+  private Command m_normalAutonCommand = new ManualAutonSequence(intakeMotor, indexer, shooterWheel, limelight, turret);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
-
-
-
     // Configure the button bindings
     configureButtonBindings();
-    m_teleopCommand = new DriveTeleop(Drive.getInstance());
-    
-    controller1 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 5));
-    controller2 = new ProfiledPIDController(kp, ki, kd, new TrapezoidProfile.Constraints(5, 5));    
 
-    drive.setDefaultCommand(driveTeleopCommand);
+    // these commands will be scheduled when nothing else is for the subsystems
+    drive.setDefaultCommand(m_teleopCommand);
     intakeMotor.setDefaultCommand(intakeRunCommand);
     shooterWheel.setDefaultCommand(shooterWheelComamand);
     indexer.setDefaultCommand(indexerManual);
     climbArm.setDefaultCommand(simpleClimb);
-    turret.setDefaultCommand(turretCommand); //this should hopefully work rather than doing all the stuff in robotPeriodic
-    // basicAutonSequence = new BasicAutonSequence(controller);
-    // climbArm.hold();
-
-    m_autonomousCommand = new BasicAutonSequence();
-    m_normalAutonCommand = new ManualAutonSequence(intakeMotor, indexer, shooterWheel, limelight, turret);
-    // chooser = new SendableChooser<>();
-    // chooser.setDefaultOption("PID Auton", m_autonomousCommand);
-    // chooser.addOption("Normal Auton", m_normalAutonCommand);
-    // Shuffleboard.getTab("Autonomous").add(chooser);
+    turret.setDefaultCommand(turretCommand); 
 
   }
+
 
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
@@ -125,57 +75,11 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // new JoystickButton(sticky, Button.kA.value).whenHeld(intakePushPull); //pneumatics temporarily fucked // not exactly temporarys
     new JoystickButton(sticky2, Button.kLeftBumper.value).whenHeld(adjustCommand);
-    new JoystickButton(sticky, Button.kRightBumper.value).whenHeld(adjustCommand);
-    // new JoystickButton(sticky, Button.kLeftBumper.value).whenHeld(shooterWheelCommand);
-    // new JoystickButton(sticky, Button.kLeftBumper.value).whenReleased(new InstantCommand(shooterWheel::stop, shooterWheel));
-    //// new JoystickButton(sticky, Button.kLeftBumper.value).whenHeld(new InstantCommand(indexer::run, indexer));
-    //// new JoystickButton(sticky, Button.kLeftBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
-    // new JoystickButton(sticky2, Button.kLeftBumper.value).whenHeld(new InstantCommand(indexer::run, indexer));
-    // new JoystickButton(sticky2, Button.kLeftBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
-    // new JoystickButton(sticky2, Button.kA.value).whenHeld(shooterWheelManual);
-    // new JoystickButton(sticky, Button.kA.value).whenReleased(new InstantCommand(indexer::stop, shooterWheel));
-    //- new JoystickButton(sticky2, Button.kB.value).whenHeld(new InstantCommand(indexer::reverse, indexer));
-    //- new JoystickButton(sticky2, Button.kB.value).whenHeld(new InstantCommand(intakeMotor::reverse, intakeMotor));
-    //- new JoystickButton(sticky2, Button.kB.value).whenReleased(new InstantCommand(indexer::stop, indexer));
-    //- new JoystickButton(sticky2, Button.kB.value).whenReleased(new InstantCommand(intakeMotor::stop, intakeMotor));
-    // new JoystickButton(sticky2, Button.kRightBumper.value).whenHeld(new InstantCommand(indexer::reverse, indexer));
-    // new JoystickButton(sticky2, Button.kRightBumper.value).whenHeld(new InstantCommand(intakeMotor::reverse, intakeMotor));
-    // new JoystickButton(sticky2, Button.kRightBumper.value).whenReleased(new InstantCommand(indexer::stop, indexer));
-    // new JoystickButton(sticky2, Button.kRightBumper.value).whenReleased(new InstantCommand(intakeMotor::stop, intakeMotor));
-    // new JoystickButton(sticky2, Button.kY.value).whenHeld(new InstantCommand(climbArm::extend, climbArm));
-    // new JoystickButton(sticky2, Button.kY.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
-    // new JoystickButton(sticky2, Button.kX.value).whenHeld(new InstantCommand(climbArm::retract, climbArm));
-    // new JoystickButton(sticky2, Button.kX.value).whenReleased(new InstantCommand(climbArm::stop, climbArm));
-
-    // new JoystickButton(sticky2, 4).whenHeld(indexerManual);
-    // new JoystickButton(sticky2, Button.kLeftBumper.value).whenReleased(new InstantCommand(indexer));
-
+    new JoystickButton(sticky1, Button.kRightBumper.value).whenHeld(adjustCommand);
   }
 
-  // public static final int RIGHT_AXIS_X = 4;
-  public static final int LEFT_AXIS_Y = 1;
-  // public static final int LEFT_AXIS_X = 0;
-  public static final int RIGHT_AXIS_Y = 5;
 
-    //button numbers, not sure if necessary
-
-    //controller deadzones
-
-  //joystick instantiations
-
-  public double getJoystickAxis(int axisNumber) {
-      return sticky.getRawAxis(axisNumber);
-  }
-  public boolean getButtonValue(int buttonNumber) {
-      return sticky.getRawButton(buttonNumber);
-  }  
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
   public Command getAutonomousCommand() {
     return m_normalAutonCommand;
   }
@@ -183,4 +87,5 @@ public class RobotContainer {
   public Command getTeleoperatedCommand() {
     return m_teleopCommand;
   }
+  
 }

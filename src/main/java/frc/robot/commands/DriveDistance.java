@@ -10,10 +10,6 @@ import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-// Implement PID and motion profiling here
-// motor.set(controller.calculate(encoder.getDistance(), goal));
-import frc.robot.subsystems.Drive;
-
 public class DriveDistance extends CommandBase {
   
   private ProfiledPIDController controller1, controller2;
@@ -25,7 +21,7 @@ public class DriveDistance extends CommandBase {
   /** Creates a new DriveDistance. */
   public DriveDistance(ProfiledPIDController pidController1, ProfiledPIDController pidController2, double rotations1, double rotations2, RelativeEncoder enc1, RelativeEncoder enc2, MotorController motor1, MotorController motor2, MotorController motor3, MotorController motor4,
       MotorController motor5, MotorController motor6) {
-    // Use addRequirements() here to declare subsystem dependencies.
+
     controller1 = pidController1;
     controller2 = pidController2;
     distance1 = enc1.getPosition() + rotations1;
@@ -39,28 +35,20 @@ public class DriveDistance extends CommandBase {
 
     encoder1 = enc1;
     encoder2 = enc2;
-
-
-
+    
   }
+
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
 
+
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // this is fucked so bad
-    double calc1 = controller1.calculate(encoder1.getPosition());
-    double calc2 = controller2.calculate(encoder2.getPosition());
-    System.out.println(calc1);
-    System.out.println(calc2);
-    System.out.println(encoder1.getPosition());
-    System.out.println(encoder2.getPosition());
-    System.out.println(distance1);
-    System.out.println(distance2);
-    System.out.println("----");
+    double calc1 = controller1.calculate(encoder1.getPosition() - distance1);
+    double calc2 = controller2.calculate(encoder2.getPosition() - distance2);
 
     motorcntrl1.set(calc1);
     motorcntrl2.set(calc1);
@@ -71,13 +59,16 @@ public class DriveDistance extends CommandBase {
     motorcntrl6.set(calc2);
   }
 
+
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}
+
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return Math.abs(encoder1.getPosition()) < 0.5 && Math.abs(encoder2.getPosition()) < 0.5;
   }
+
 }
