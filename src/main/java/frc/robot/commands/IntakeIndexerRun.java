@@ -40,7 +40,7 @@ public class IntakeIndexerRun extends CommandBase {
   public void execute() {
     if (Robot.auton) return;
 
-    if ((Robot.robotContainer.sticky1.getLeftBumperPressed() || Robot.robotContainer.sticky2.getAButtonPressed()) && Math.abs(Robot.robotContainer.sticky1.getLeftTriggerAxis()) < .1) {
+    if ((Robot.robotContainer.sticky1.getLeftBumperPressed() || Robot.robotContainer.sticky2.getAButtonPressed()) && Math.abs(Robot.robotContainer.sticky1.getLeftTriggerAxis()) <= .1) {
       on = !on;
     } else if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()) { 
       intakeMotor.reverse();
