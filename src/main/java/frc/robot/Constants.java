@@ -30,9 +30,11 @@ public final class Constants {
     public static final double defaultTurretSpeed = 0.25d;
     public static final double defaultFlywheelSpeed = 0.55d;
     public static       double currentFlywheelSpeed = defaultFlywheelSpeed;
-    public final static double intakeSpeed = 0.5d;
-    public final static double RightDrive = 0.47d;
-    public final static double LeftDrive = 0.47d;
+    public static final double intakeSpeed = 0.5d;
+    public static final double RightDrive = 0.47d;
+    public static final double LeftDrive = 0.47d;
+    public static final double RightDeadzone = 0.15d;
+    public static final double LeftDeadzone = 0.15d;
 
 
     // drive can ids
