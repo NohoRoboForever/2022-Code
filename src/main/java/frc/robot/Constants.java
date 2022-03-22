@@ -107,5 +107,11 @@ public final class Constants {
 
     // indexer limit switch
     public static final int IndexerLimitSwitchChannel = 0;
+
+    
+    // color sensor
+    public static final int ColorSensor1 = 0;
+    public static final int ColorSensor2 = 1;
+    public static final int ColorSensor3 = 2;
     
 }

@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import com.revrobotics.ColorSensorV3;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.IntakeMotor;
@@ -14,7 +16,10 @@ public class IntakeIndexerRun extends CommandBase {
 
   private IntakeMotor intakeMotor;
   private Indexer indexer;
-  private boolean on = false;
+  private ColorSensorV3 colorSensor1 = new ColorSensorV3(I2C.Port.kOnboard);
+  private ColorSensorV3 colorSensor2 = new ColorSensorV3(I2C.Port.kMXP);
+  public static boolean on = false;
+  public static boolean[] balls = new boolean[2];
 
 
   /** Creates a new IntakeRun. */
@@ -35,7 +40,7 @@ public class IntakeIndexerRun extends CommandBase {
   public void execute() {
     if (Robot.auton) return;
 
-    if (Robot.robotContainer.sticky1.getLeftBumperPressed() || Robot.robotContainer.sticky2.getAButtonPressed()) {
+    if ((Robot.robotContainer.sticky1.getLeftBumperPressed() || Robot.robotContainer.sticky2.getAButtonPressed()) && Math.abs(Robot.robotContainer.sticky1.getLeftTriggerAxis()) < .1) {
       on = !on;
     } else if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()) { 
       intakeMotor.reverse();
@@ -47,9 +52,22 @@ public class IntakeIndexerRun extends CommandBase {
       intakeMotor.stop();
       indexer.stop();
     }
+
+    if (colorSensor1.getBlue() > 70 || colorSensor1.getRed() > 70) {
+      balls[0] = true;
+    } else {
+      balls[0] = false;
+    }
+
+    if (colorSensor2.getBlue() > 70 || colorSensor2.getRed() > 70) {
+      balls[1] = true;
+    } else {
+      balls[1] = false;
+    }
     
   }
 
+  
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}
