@@ -8,6 +8,7 @@ import java.util.concurrent.Callable;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import frc.robot.Robot;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Turret;
 
@@ -17,7 +18,7 @@ public class AdjustCommand extends CommandBase {
 
   private Limelight limelight;
   private Turret turret;
-  private Callable<Double> callable = limelight::getTX;
+  private Callable<Double> callable;
   private ProfiledPIDController controller = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.05, .05)); //need to put this on a periodic timer eventually
   
   
@@ -25,6 +26,7 @@ public class AdjustCommand extends CommandBase {
   public AdjustCommand(Limelight limelight, Turret turret) {
     this.limelight = limelight;
     this.turret = turret;
+    callable = this.limelight::getTX;
   }
 
 
@@ -43,6 +45,7 @@ public class AdjustCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (Robot.robotContainer.sticky1.getPOV() != -1) return;
     try {
       if (Math.abs(this.callable.call()) < 10) return;
       turret.turn(controller.calculate(-this.callable.call()));

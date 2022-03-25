@@ -7,6 +7,8 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -15,6 +17,7 @@ public class Turret extends SubsystemBase {
 
   private CANSparkMax motor = new CANSparkMax(Constants.Turret, MotorType.kBrushless);
   private RelativeEncoder encoder = motor.getEncoder();
+  private DigitalInput hallEffectSensor = new DigitalInput(Constants.HallEffectSensorChannel);
   
 
   /** Creates a new Turret. */
@@ -33,6 +36,10 @@ public class Turret extends SubsystemBase {
 
   public double getEncoderPosition() {
     return encoder.getPosition();
+  }
+
+  public boolean getHallEffectSensor() {
+    return hallEffectSensor.get();
   }
 
 

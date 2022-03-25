@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.I2C;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -100,18 +102,16 @@ public final class Constants {
     // turrent calibration
     public static final double TurrentLimelightDegreeMultiplierTurn = 0.03;
 
-
-    // turret limit switch
-    public static final int TurretLimitSwitchChannel = 2;
-    
-
-    // indexer limit switch
-    public static final int IndexerLimitSwitchChannel = 0;
-
     
     // color sensor
-    public static final int ColorSensor1 = 0;
-    public static final int ColorSensor2 = 1;
-    public static final int ColorSensor3 = 2;
+    public static final I2C.Port ColorSensorI2CPort = I2C.Port.kOnboard;
+
+
+    // limit switch
+    public static final int LimitSwitchChannel = 0;
+
+
+    // hall effect sensor
+    public static final int HallEffectSensorChannel = 1;
     
 }
