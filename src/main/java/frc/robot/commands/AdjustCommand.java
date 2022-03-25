@@ -8,6 +8,7 @@ import java.util.concurrent.Callable;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Turret;
@@ -18,7 +19,17 @@ public class AdjustCommand extends CommandBase {
 
   private Limelight limelight;
   private Turret turret;
+  private boolean tracking = false;
+  private boolean lastHall = true;
+  private long start = System.currentTimeMillis();
+  private static int timeplus = 5000;
+
+  // returns the value to be plugged into the controller
   private Callable<Double> callable;
+
+  // returns true if it is in the fov and a value WILL be read from callable
+  private Callable<Boolean> isInFov;
+
   private ProfiledPIDController controller = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.05, .05)); //need to put this on a periodic timer eventually
   
   
@@ -27,13 +38,15 @@ public class AdjustCommand extends CommandBase {
     this.limelight = limelight;
     this.turret = turret;
     callable = this.limelight::getTX;
+    isInFov = this.limelight::getTV;
   }
 
 
-  public AdjustCommand(Limelight limelight, Turret turret, Callable<Double> positionCallable) {
+  public AdjustCommand(Limelight limelight, Turret turret, Callable<Double> positionCallable, Callable<Boolean> isInFovCollable) {
     this.limelight = limelight;
     this.turret = turret;
     this.callable = positionCallable;
+    this.isInFov = isInFovCollable;
   }
 
 
@@ -45,11 +58,33 @@ public class AdjustCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.robotContainer.sticky1.getPOV() != -1) return;
-    try {
-      if (Math.abs(this.callable.call()) < 10) return;
-      turret.turn(controller.calculate(-this.callable.call()));
-    } catch (Exception e) {} finally {} // ignore
+    if (Robot.robotContainer.sticky1.getPOV() != -1) return; // if there is input then return
+
+    if ((Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getLeftBumper()) && !tracking) {
+      tracking = true;
+      start = System.currentTimeMillis();
+    } else if (System.currentTimeMillis() >= start + timeplus) {
+      tracking = false;
+    }
+
+    if (tracking) {
+      try {
+        if (Math.abs(this.callable.call()) < 10) return; // deadzone
+
+        // searching for it if not in fov
+        if (Math.round(this.callable.call().doubleValue()) == -100) {
+          if (turret.getEncoderPosition() > 0 && lastHall)
+            turret.turn(Constants.DefaultTurretSpeed);
+          else if (turret.getEncoderPosition() <= 0)
+            turret.turn(-Constants.DefaultTurretSpeed);
+        } else {
+          turret.turn(controller.calculate(-this.callable.call()));
+        }
+
+      } catch (Exception e) {} finally {} // ignore potential error from callable
+    }
+
+    
   }
 
 

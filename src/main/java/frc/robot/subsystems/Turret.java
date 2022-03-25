@@ -25,6 +25,10 @@ public class Turret extends SubsystemBase {
 
 
   public void turn(double speed) {
+    if (!getHallEffectSensor()) {
+      stop();
+      return;
+    }
     motor.set(speed);
   }
 

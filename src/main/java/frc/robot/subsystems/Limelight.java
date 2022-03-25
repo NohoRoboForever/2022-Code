@@ -39,8 +39,8 @@ public class Limelight extends SubsystemBase {
     }
 
 
-    public double getTV() {
-        return tv.getDouble(0.0);
+    public boolean getTV() {
+        return tv.getBoolean(false);
     }
 
 
