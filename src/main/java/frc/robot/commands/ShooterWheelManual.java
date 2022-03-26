@@ -7,17 +7,20 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.ShooterWheel;
 
 public class ShooterWheelManual extends CommandBase {
 
   private ShooterWheel shooterWheel;
+  private Indexer indexer;
 
 
   /** Creates a new ShooterWheelManual. */
-  public ShooterWheelManual(ShooterWheel p_shooterWheel) {
+  public ShooterWheelManual(ShooterWheel p_shooterWheel, Indexer p_indexer) {
     shooterWheel = p_shooterWheel;
-    addRequirements(shooterWheel);
+    indexer = p_indexer;
+    addRequirements(shooterWheel, indexer);
   }
 
 
@@ -35,10 +38,13 @@ public class ShooterWheelManual extends CommandBase {
     double leftTriggerInput = Robot.robotContainer.sticky2.getLeftTriggerAxis();
 
     if (Math.abs(rightTriggerInput) > .1) {
+      indexer.run();
       shooterWheel.set(rightTriggerInput * Constants.DefaultFlywheelSpeed);
     } else if (Math.abs(leftTriggerInput) > .1) {
+      indexer.run();
       shooterWheel.set(leftTriggerInput * Constants.DefaultFlywheelSpeed);
     } else {
+      indexer.stop();
       shooterWheel.stop();
     }
     

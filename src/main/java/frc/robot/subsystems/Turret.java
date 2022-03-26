@@ -25,10 +25,6 @@ public class Turret extends SubsystemBase {
 
 
   public void turn(double speed) {
-    if (!getHallEffectSensor()) {
-      stop();
-      return;
-    }
     motor.set(speed);
   }
 
@@ -42,7 +38,7 @@ public class Turret extends SubsystemBase {
     return encoder.getPosition();
   }
 
-  public boolean getHallEffectSensor() {
+  public boolean getHallEffectReading() {
     return hallEffectSensor.get();
   }
 

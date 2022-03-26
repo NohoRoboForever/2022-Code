@@ -6,9 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -32,15 +30,16 @@ public class RobotContainer {
   public final Indexer indexer           = new Indexer();
   public final Turret turret             = new Turret();
   public final ClimbArm climbArm         = new ClimbArm();
+  public final Camera camera             = new Camera();
   public final Drive drive               = Drive.getInstance();
 
   // -- Commands --
   
+  public final CameraOperation cameraOperation = new CameraOperation(camera);
   public final TurretManual turretManual = new TurretManual(turret);
-  public final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel);  
   public final IndexerManual indexerManual = new IndexerManual(indexer);
+  public final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel, indexer);  
   public final IntakeIndexerRun intakeIndexerRunCommand = new IntakeIndexerRun(intakeMotor, indexer);
-  public final ShooterWheelManual shooterWheelComamand = new ShooterWheelManual(shooterWheel);
   public final TurretManual turretCommand = new TurretManual(turret);
   public final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
   public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret);
@@ -59,10 +58,12 @@ public class RobotContainer {
 
     // these commands will be scheduled when nothing else is for the subsystems
     drive.setDefaultCommand(m_teleopCommand);
-    shooterWheel.setDefaultCommand(shooterWheelComamand);
+    shooterWheel.setDefaultCommand(shooterWheelManual);
     indexer.setDefaultCommand(intakeIndexerRunCommand);
     climbArm.setDefaultCommand(simpleClimb);
-    turret.setDefaultCommand(turretCommand); 
+    turret.setDefaultCommand(turretCommand);
+    limelight.setDefaultCommand(adjustCommand);
+    camera.setDefaultCommand(cameraOperation);
 
   }
 
@@ -74,8 +75,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(sticky2, Button.kLeftBumper.value).whenHeld(adjustCommand);
-    new JoystickButton(sticky1, Button.kRightBumper.value).whenHeld(adjustCommand);
+
   }
 
 

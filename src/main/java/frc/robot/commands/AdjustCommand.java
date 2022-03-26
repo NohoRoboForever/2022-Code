@@ -39,6 +39,7 @@ public class AdjustCommand extends CommandBase {
     this.turret = turret;
     callable = this.limelight::getTX;
     isInFov = this.limelight::getTV;
+    addRequirements(limelight);
   }
 
 
@@ -47,6 +48,7 @@ public class AdjustCommand extends CommandBase {
     this.turret = turret;
     this.callable = positionCallable;
     this.isInFov = isInFovCollable;
+    addRequirements(limelight);
   }
 
 
@@ -58,7 +60,9 @@ public class AdjustCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.robotContainer.sticky1.getPOV() != -1) return; // if there is input then return
+    System.out.println(turret.getEncoderPosition());
+
+    if (Robot.robotContainer.sticky1.getPOV() != -1 || Robot.robotContainer.sticky2.getPOV() != -1) return; // if there is input then return
 
     if ((Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getLeftBumper()) && !tracking) {
       tracking = true;
@@ -72,11 +76,12 @@ public class AdjustCommand extends CommandBase {
         if (Math.abs(this.callable.call()) < 10) return; // deadzone
 
         // searching for it if not in fov
-        if (Math.round(this.callable.call().doubleValue()) == -100) {
-          if (turret.getEncoderPosition() > 0 && lastHall)
+        if (!isInFov.call()) {
+          if (turret.getEncoderPosition() <= 0 && !turret.getHallEffectReading() && lastHall)
             turret.turn(Constants.DefaultTurretSpeed);
-          else if (turret.getEncoderPosition() <= 0)
+          else if (turret.getEncoderPosition() > 0 && !turret.getHallEffectReading() && lastHall)
             turret.turn(-Constants.DefaultTurretSpeed);
+
         } else {
           turret.turn(controller.calculate(-this.callable.call()));
         }
@@ -84,13 +89,16 @@ public class AdjustCommand extends CommandBase {
       } catch (Exception e) {} finally {} // ignore potential error from callable
     }
 
+    lastHall = turret.getHallEffectReading();
     
   }
 
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    turret.stop();
+  }
 
 
   // Returns true when the command should end.
