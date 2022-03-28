@@ -32,7 +32,7 @@ public class SimpleClimb extends CommandBase {
       climbArm.extend();
     } else if (Robot.robotContainer.sticky2.getYButton()) {
       climbArm.retract();
-    } else if (Robot.robotContainer.sticky2.getRightBumper()) {
+    } else if (Robot.robotContainer.sticky2.getRightBumper()) {  //change to start button?
       climbArm.stop();
       climbArm.hold();
     }
