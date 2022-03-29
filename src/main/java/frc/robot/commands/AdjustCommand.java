@@ -74,7 +74,7 @@ public class AdjustCommand extends CommandBase {
 
     if (tracking) { //normal tracking not ads tracking
       try { 
-        if (Math.abs(this.callable.call()) < 10) return; // deadzone for turret so it runs smoother //if it sees the reflective tape then it will track within 10** //needs fixing 
+        if (Math.abs(this.callable.call()) < 10) return; // deadzone for turret so it runs smoother //if it sees the reflective tape then it will track within 10** //needs fixing- potential issue
 
         // searching for it if not in fov
         if (!isInFov.call()) { //if it is not FOV then.
