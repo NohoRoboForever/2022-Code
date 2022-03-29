@@ -113,5 +113,8 @@ public final class Constants {
 
     // hall effect sensor
     public static final int HallEffectSensorChannel = 1;
+
+    // ultrasonic sensor
+    public static final int UltrasonicAnalogPin = 0;
     
 }

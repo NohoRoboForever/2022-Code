@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import edu.wpi.first.wpilibj.AnalogInput;
+import frc.robot.Constants;
 
 
 /**
@@ -25,6 +27,9 @@ public class RobotContainer {
   // -- Subsystems --
 
   public final Limelight limelight       = new Limelight();
+
+  public final Ultrasonic ultrasonic     = new Ultrasonic(Constants.UltrasonicAnalogPin);
+
   public final ShooterWheel shooterWheel = new ShooterWheel();
   public final IntakeMotor intakeMotor   = new IntakeMotor();
   public final Indexer indexer           = new Indexer();
