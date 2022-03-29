@@ -8,6 +8,7 @@ import java.util.concurrent.Callable;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import frc.robot.subsystems.Ultrasonic;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.Limelight;
@@ -18,7 +19,8 @@ import frc.robot.subsystems.Turret;
 public class AdjustCommand extends CommandBase {
 
   private Limelight limelight; //defines the limelight
-  private Turret turret; //defines the turret 
+  private Turret turret; //defines the turret
+  private Ultrasonic ultrasonic; // defines the ultrasonic sensor
   private boolean tracking = false; //tracking for 5 second thingy, probably not on the robot 
   private boolean lastHall = true; //last value of Hall effect sensor (only meaasures true or false) -> false when it senses it 
   private long start = System.currentTimeMillis(); //for the 5 second thing to measure how much time has passed 
@@ -34,19 +36,21 @@ public class AdjustCommand extends CommandBase {
   
   
   /** Creates a new AdjustCommand. */
-  public AdjustCommand(Limelight limelight, Turret turret) { //turns the turret 
+  public AdjustCommand(Limelight limelight, Turret turret, Ultrasonic ultrasonic) { //turns the turret 
     this.limelight = limelight; //setting current limelight 
     this.turret = turret; //setting current turret
+    this.ultrasonic = ultrasonic; // setting the current ultrasonic sensor
     callable = this.limelight::getTX; //setting default - if there is no callable it just sets it to limelight one
     isInFov = this.limelight::getTV; //^^
     addRequirements(limelight, turret); //need to use the limelight (one subsystem at a time)
   }
 
 
-  public AdjustCommand(Limelight limelight, Turret turret, Callable<Double> positionCallable, Callable<Boolean> isInFovCollable) { //same thing but callables for the seeking limelight
+  public AdjustCommand(Limelight limelight, Turret turret, Ultrasonic ultrasonic, Callable<Double> positionCallable, Callable<Boolean> isInFovCollable) { //same thing but callables for the seeking limelight
     //have it adjust to zero, encoder - zero value 
     this.limelight = limelight;
     this.turret = turret;
+    this.ultrasonic = ultrasonic;
     this.callable = positionCallable;
     this.isInFov = isInFovCollable;
     addRequirements(limelight);
@@ -61,7 +65,10 @@ public class AdjustCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println(turret.getEncoderPosition()); //gets encoder position for turret
+    // commented out for other tests here
+    //System.out.println(turret.getEncoderPosition()); //gets encoder position for turret
+
+    System.out.println(ultrasonic.getInches());
 
     if (Robot.robotContainer.sticky1.getPOV() != -1 || Robot.robotContainer.sticky2.getPOV() != -1) return; // if there is manual input for the turret then return - manual>automatic
 

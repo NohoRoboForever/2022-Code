@@ -49,7 +49,7 @@ public class RobotContainer {
   public final IntakeIndexerRun intakeIndexerRunCommand = new IntakeIndexerRun(intakeMotor, indexer);
   public final TurretManual turretCommand = new TurretManual(turret);
   public final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
-  public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret);
+  public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret, ultrasonic);
 
   
   // main commmands
