@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.*;
+import frc.robot.commands.Autonomous.ManualAutonSequence;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.AnalogInput;
 import frc.robot.Constants;
@@ -59,7 +60,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
-    // Configure the button bindings
+    // Configure the button bindings (nothing currently runs here)
     configureButtonBindings();
 
     // these commands will be scheduled when nothing else is for the subsystems
@@ -80,9 +81,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {
-
-  }
+  private void configureButtonBindings() {}
 
 
   public Command getAutonomousCommand() {

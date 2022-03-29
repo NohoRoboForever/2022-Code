@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.Autonomous;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -11,7 +11,6 @@ import frc.robot.subsystems.ShooterWheel;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Turret;
-import frc.robot.commands.Autonomous.DriveNormal;
 import frc.robot.subsystems.Indexer;
 
 // -- 14pt auton --
