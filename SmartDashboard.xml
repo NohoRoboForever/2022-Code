@@ -1,0 +1,55 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Shooter Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="631" y="627"/>
+		<width>337</width>
+		<height>98</height>
+	</widget>
+	<widget field="Turret Hall Effect" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="632" y="501"/>
+		<width>335</width>
+		<height>98</height>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
+		<location x="42" y="742"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="1038" y="625"/>
+		<width>115</width>
+		<height>102</height>
+		<property name="Graphics" value="Engraved"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="75" y="300"/>
+		<width>508</width>
+		<height>419</height>
+		<property name="Camera Choice" value=""/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="76" y="271"/>
+		<width>110</width>
+		<property name="Text" value="Camera Connections"/>
+		<property name="Horizontal Alignment" value="Left"/>
+		<property name="Vertical Alignment" value="Down"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
+		<location x="393" y="742"/>
+		<width>894</width>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="1173" y="625"/>
+		<width>113</width>
+		<height>104</height>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="1036" y="590"/>
+		<width>102</width>
+		<height>22</height>
+		<property name="Text" value="Robot Connections"/>
+		<property name="Horizontal Alignment" value="Left"/>
+		<property name="Vertical Alignment" value="Down"/>
+	</static-widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>
