@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.*;
 import frc.robot.commands.Autonomous.ManualAutonSequence;
@@ -72,6 +73,13 @@ public class RobotContainer {
     limelight.setDefaultCommand(adjustCommand);
     camera.setDefaultCommand(cameraOperation);
 
+    SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not
+    SmartDashboard.putNumber("Shooter Speed", shooterWheel.getSpeed()); //shows shooter speed
+    SmartDashboard.putNumber("Turret Position", turret.getEncoderPosition()); //checks turret position
+    SmartDashboard.putBoolean("Limelight Tracking", limelight.getLimelightStatus()); //checks if the limelight is tracking or not
+    SmartDashboard.putBoolean("Intake", intakeMotor.getIntakeState()); //check if the intake is running
+    SmartDashboard.putBoolean("Indexer", indexer.getIndexerState()); //check if the indexer is running
+    
   }
 
 

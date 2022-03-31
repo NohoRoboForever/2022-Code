@@ -63,4 +63,7 @@ public class ShootSystemCombined extends CommandBase {
     return false;
   }
 
+  public boolean getLimelightStatus(){
+    return active;
+}
 }

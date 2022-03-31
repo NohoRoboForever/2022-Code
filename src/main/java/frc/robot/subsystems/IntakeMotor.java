@@ -13,6 +13,8 @@ import frc.robot.Constants;
 
 public class IntakeMotor extends SubsystemBase {
   
+  private static boolean intakestate = false;
+
   private CANSparkMax motor = new CANSparkMax(Constants.Intake, MotorType.kBrushless);
 
 
@@ -22,18 +24,24 @@ public class IntakeMotor extends SubsystemBase {
 
   public void run() {
     motor.set(Constants.IntakeSpeed);
+    intakestate = true; 
   }
 
 
   public void reverse() {
     motor.set(-Constants.OuttakeSpeed);
+    intakestate = true;
   }
 
   
   public void stop() {
     motor.stopMotor();
+    intakestate = false; 
   }
 
+  public boolean getIntakeState(){
+    return intakestate;
+  }
 
   @Override
   public void periodic() {

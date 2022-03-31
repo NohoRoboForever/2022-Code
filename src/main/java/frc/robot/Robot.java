@@ -48,7 +48,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    System.out.print("test");
+    System.out.println(robotContainer.ultrasonic.getInches());
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
@@ -81,7 +81,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-
+    System.out.println("message!");
     auton = false;
 
     if (robotContainer.getAutonomousCommand() != null) {
@@ -94,7 +94,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    
+  }
 
 
   @Override
@@ -111,7 +113,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when the robot is first started up. */
   @Override
-  public void simulationInit() {}
+  public void simulationInit() {
+    System.out.println("message!");
+  }
 
   
   /** This function is called periodically whilst in simulation. */
