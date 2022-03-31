@@ -48,6 +48,31 @@ public class ManualAutonSequence extends SequentialCommandGroup {
       new DriveNormal(-0.2, 0.2, 1),  // passes time to run but it doesn't do jack shit
       new WaitCommand(2),
       new DriveNormal(0, 0, 1)
+
+      // -- 10pt auton -- (assuming DriveNormal (time) works ) - all the numbers need physical tuning -- I dont know the actual code, but ill write what I believe should be happening when I write this
+      //Setup - Intake facing outwards, one of the side tarmacs, and preload ball on limit switch 1 (very bottom one)
+      // Run intake to drop, then to keep running
+      // Drive forwards towards ball
+      // Stop the drive from moving (wait or time?)
+      // If color sensor detects ball, 
+      // Run Indexer until a ball presses limit switch 2 (uppermost)
+      // Turn off the intake once the ball presses limit switch 2 
+      // Have the limelight run to see if the turret is aimed properly
+      // Revv Flywheel
+      // Run Indexer to shoot (keep running indexer until, LIMITSWITCH 1 is not pressed anymore, and LIMITSWITCH 2 is pressed) - means the ball left the flywheel, and another ball is there. 
+      // Wait a couple seconds 
+      // Revv Flywheel
+      // Run Indexer to shoot
+      
+      
+      
+      //Physical Code: 
+      //new InstantCommand(intakeMotor::run, intakeMotor), --runs the intake motor
+      //new InstantCommand(indexer::run, indexer), --runs the indexer at the same time as the intake (no wait comman
+      //new DriveNormal(-0.3, 0.3, 1.5),
+      //new WaitCommand(3),
+      //new DriveNormal(0, 0, 1), 
+      //new InstantCommand(intakeMotor::stop, intakeMotor),
     );
   }
 }
