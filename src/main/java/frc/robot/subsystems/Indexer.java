@@ -13,6 +13,7 @@ import frc.robot.Constants;
 
 public class Indexer extends SubsystemBase {
 
+  private static boolean indexerstate = false;
   private CANSparkMax motor = new CANSparkMax(Constants.Indexer, MotorType.kBrushless);
 
 
@@ -22,16 +23,19 @@ public class Indexer extends SubsystemBase {
 
   public void run() {
     motor.set(Constants.IndexerSpeed);
+    indexerstate = true;
   }
 
 
   public void reverse() {
     motor.set(-Constants.OuttakeSpeed);
+    indexerstate = true;
   }
 
 
   public void stop() {
     motor.stopMotor();
+    indexerstate = false;
   }
 
 
@@ -40,7 +44,9 @@ public class Indexer extends SubsystemBase {
 
   public void takeSecondBall() {}
 
-
+  public boolean getIndexerState(){
+    return indexerstate;
+  }
 
   @Override
   public void periodic() {

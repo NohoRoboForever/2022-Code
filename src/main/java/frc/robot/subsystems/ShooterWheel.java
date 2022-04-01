@@ -36,7 +36,9 @@ public class ShooterWheel extends SubsystemBase {
     rightMotor.stopMotor();
   }
 
-  
+  public double getSpeed(){
+    return 0.5; // (need to set up encoders for this blah)
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

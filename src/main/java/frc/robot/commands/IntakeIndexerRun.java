@@ -83,6 +83,10 @@ public class IntakeIndexerRun extends CommandBase {
     //if (colorSensor1.getBlue() > 100) System.out.println("Blue ball");
     //System.out.println(limitSwitch.get());
     
+    //put this code under the part where the right color ball is detected:: if right color ball is detected, then run indexer until the ball reaches limit switch 1
+    //if the ball in limit switch 1 is detected already, then run the indexer and intake until the limit switch 2 is pressed 
+    //if limit switch 2 is pressed then don't run indexer 
+    //if limit switch 2 is not pressed, but limit switch 1 is pressed then run indexer 
   }
 
   

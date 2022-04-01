@@ -46,6 +46,7 @@ public class ShootSystemCombined extends CommandBase {
       ).schedule();
       active = true;
     }
+   
     
   }
 
@@ -63,4 +64,7 @@ public class ShootSystemCombined extends CommandBase {
     return false;
   }
 
+  public boolean getLimelightStatus(){
+    return active;
+}
 }
