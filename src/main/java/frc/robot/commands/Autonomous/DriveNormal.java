@@ -18,7 +18,7 @@ public class DriveNormal extends CommandBase {
   public DriveNormal(double speedL, double speedR, double time) {
     this.speed1 = speedL;
     this.speed2 = speedR;
-    this.time = System.currentTimeMillis() + (time * 1000);
+    this.time = System.currentTimeMillis() + (time * 1000); //maybe time*1000 only rather than ccurrent time millis bc how they gonna know the current time?? current time out of what?
   }
 
 
