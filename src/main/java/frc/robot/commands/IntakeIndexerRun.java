@@ -7,6 +7,8 @@ package frc.robot.commands;
 import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -21,13 +23,13 @@ public class IntakeIndexerRun extends CommandBase {
   private ColorSensorV3 colorSensor1 = new ColorSensorV3(Constants.ColorSensorI2CPort);
   private DigitalInput limitSwitch = new DigitalInput(Constants.LimitSwitchChannel);
   public static boolean lastlimitSwitch = false;
-  public static boolean on = false;
+  public static boolean indexing = false;
   public static boolean[] balls = new boolean[2];
 
 
   /** Creates a new IntakeRun. */
   public IntakeIndexerRun(IntakeMotor intake, Indexer indexer) {
-    intakeMotor = intake;
+    this.intakeMotor = intake;
     this.indexer = indexer;
     addRequirements(intakeMotor, indexer);
   }
@@ -85,10 +87,23 @@ public class IntakeIndexerRun extends CommandBase {
     
     //put this code under the part where the right color ball is detected::
     //if the ball is detected as the right color
+
+    // always run intake
+    intakeMotor.run();
+
+    if (limitSwitch.get() && !ShooterWheelManual.isShooting) {
+      indexer.stop();
+    } else if ((((colorSensor1.getBlue() < 150 && DriverStation.getAlliance() == Alliance.Red) || (colorSensor1.getRed() < 150 && DriverStation.getAlliance() == Alliance.Blue)) && !limitSwitch.get()) /* is the right ball */
+      || indexing) {
+      indexer.run();
+    }
+
+
     //run indexer until the ball reaches limit 2
     //if limit switch 2 is already pressed, keep running intake
     //shoot button runs the indexer until limit 2 is not pressed. 
     //^ then if the intake ball is detected, run indexer again
+    
 
   }
 

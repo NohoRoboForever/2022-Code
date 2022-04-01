@@ -14,6 +14,7 @@ public class ShooterWheelManual extends CommandBase {
 
   private ShooterWheel shooterWheel;
   private Indexer indexer;
+  public static boolean isShooting = false;
 
 
   /** Creates a new ShooterWheelManual. */
@@ -39,12 +40,15 @@ public class ShooterWheelManual extends CommandBase {
 
     if (Math.abs(rightTriggerInput) > .1) {
       indexer.run();
+      isShooting = true;
       shooterWheel.set(rightTriggerInput * Constants.DefaultFlywheelSpeed);
     } else if (Math.abs(leftTriggerInput) > .1) {
       indexer.run();
+      isShooting = true;
       shooterWheel.set(leftTriggerInput * Constants.DefaultFlywheelSpeed);
     } else {
       indexer.stop();
+      isShooting = false;
       shooterWheel.stop();
     }
     
