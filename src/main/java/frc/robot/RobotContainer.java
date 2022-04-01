@@ -49,7 +49,6 @@ public class RobotContainer {
   public final IndexerManual indexerManual = new IndexerManual(indexer);
   public final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel, indexer);  
   public final IntakeIndexerRun intakeIndexerRunCommand = new IntakeIndexerRun(intakeMotor, indexer);
-  public final TurretManual turretCommand = new TurretManual(turret);
   public final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
   //public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret);
   public final ShootSystemCombined shootSystemCombined = new ShootSystemCombined(indexer, shooterWheel);
@@ -70,8 +69,13 @@ public class RobotContainer {
     shooterWheel.setDefaultCommand(shooterWheelManual);
     indexer.setDefaultCommand(intakeIndexerRunCommand);
     climbArm.setDefaultCommand(simpleClimb);
+<<<<<<< HEAD
+    turret.setDefaultCommand(turretManual);
+    limelight.setDefaultCommand(adjustCommand);
+=======
     turret.setDefaultCommand(turretCommand);
     //limelight.setDefaultCommand(adjustCommand);
+>>>>>>> e57b0df139d5c0ae720927b488ebfb2b7a3d1519
     camera.setDefaultCommand(cameraOperation);
 
     SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not

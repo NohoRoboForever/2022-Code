@@ -35,13 +35,13 @@ public class DriveTeleop extends CommandBase {
     double rightAxisInput = Robot.robotContainer.sticky1.getRightY();
 
     if (Math.abs(leftAxisInput) > Constants.LeftDeadzone) {
-      drive.setDriveL(leftAxisInput*0.1);
+      drive.setDriveL(Math.pow(leftAxisInput, 3));
     } else {
        drive.setDriveL(0);
     }
 
     if (Math.abs(rightAxisInput) > Constants.RightDeadzone) {
-      drive.setDriveR(-rightAxisInput*0.1);
+      drive.setDriveR(Math.pow(-rightAxisInput, 3));
     } else {
       drive.setDriveR(0);
     }
