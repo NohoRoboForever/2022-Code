@@ -32,7 +32,7 @@ public class RobotContainer {
   public final Limelight limelight       = new Limelight();
 
   public final Ultrasonic ultrasonic     = new Ultrasonic(Constants.UltrasonicAnalogPin);
-
+  //DigitalInput LimitSwitch upperlimit    = new LimitSwitch(); 
   public final ShooterWheel shooterWheel = new ShooterWheel();
   public final IntakeMotor intakeMotor   = new IntakeMotor();
   public final Indexer indexer           = new Indexer();
@@ -40,7 +40,7 @@ public class RobotContainer {
   public final ClimbArm climbArm         = new ClimbArm();
   public final Camera camera             = new Camera();
   public final Drive drive               = Drive.getInstance();
-
+  
   // -- Commands --
   
   public final CameraOperation cameraOperation = new CameraOperation(camera);
@@ -51,7 +51,7 @@ public class RobotContainer {
   public final TurretManual turretCommand = new TurretManual(turret);
   public final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
   public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret);
-
+  public final ShootSystemCombined shootSystemCombined = new ShootSystemCombined(indexer, shooterWheel);
   
   // main commmands
   private final Command m_teleopCommand = new DriveTeleop();
@@ -76,10 +76,11 @@ public class RobotContainer {
     SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not
     SmartDashboard.putNumber("Shooter Speed", shooterWheel.getSpeed()); //shows shooter speed
     SmartDashboard.putNumber("Turret Position", turret.getEncoderPosition()); //checks turret position
-    SmartDashboard.putBoolean("Limelight Tracking", limelight.getLimelightStatus()); //checks if the limelight is tracking or not
+    SmartDashboard.putBoolean("Shooting Status", shootSystemCombined.getLimelightStatus()); //checks if the limelight is tracking or not
     SmartDashboard.putBoolean("Intake", intakeMotor.getIntakeState()); //check if the intake is running
     SmartDashboard.putBoolean("Indexer", indexer.getIndexerState()); //check if the indexer is running
-    
+
+
   }
 
 

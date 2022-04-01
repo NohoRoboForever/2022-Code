@@ -23,8 +23,8 @@ public class IntakeMotor extends SubsystemBase {
 
 
   public void run() {
-    motor.set(Constants.IntakeSpeed);
-    intakestate = true; 
+  intakestate = true; 
+  motor.set(Constants.IntakeSpeed);
   }
 
 
