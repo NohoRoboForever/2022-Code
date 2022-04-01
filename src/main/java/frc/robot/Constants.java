@@ -68,7 +68,7 @@ public final class Constants {
     public static final int XBOX_CONTROLLER1 = 0;
     public static final int XBOX_CONTROLLER2 = 1;
 
-    public static final int XButton = 1;
+    //public static final int XButton = 1;
     
     public static final int RIGHT_AXIS_X = 4;
     public static final int LEFT_AXIS_X = 0;
@@ -85,10 +85,10 @@ public final class Constants {
 
 
     // pneumatic channels
-    public static final int IntakeLeftForward = 1;
-    public static final int IntakeLeftReverse = 2;
-    public static final int IntakeRightForward = 3;
-    public static final int IntakeRightReverse = 4;
+    public static final int IntakeLeftForward = 12;
+    public static final int IntakeLeftReverse = 3;
+    public static final int IntakeRightForward = 0;
+    public static final int IntakeRightReverse = 1;
     public static final int HoodLeftForward = 5;
     public static final int HoodLeftReverse = 6;
     public static final int HoodRightForward = 7;

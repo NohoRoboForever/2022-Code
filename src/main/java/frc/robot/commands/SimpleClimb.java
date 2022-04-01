@@ -28,14 +28,14 @@ public class SimpleClimb extends CommandBase {
   public void execute() {
     if (Robot.auton) return;
 
-    if (Robot.robotContainer.sticky2.getXButton()) {
-      climbArm.extend();
-    } else if (Robot.robotContainer.sticky2.getYButton()) {
-      climbArm.retract();
-    } else if (Robot.robotContainer.sticky2.getRightBumper()) {  //change to start button?
-      climbArm.stop();
-      climbArm.hold();
-    }
+    // if (Robot.robotContainer.sticky2.getXButton()) {
+    //   climbArm.extend();
+    // } else if (Robot.robotContainer.sticky2.getYButton()) {
+    //   climbArm.retract();
+    // } else if (Robot.robotContainer.sticky2.getRightBumper()) {  //change to start button?
+    //   climbArm.stop();
+    //   climbArm.hold();
+    // }
     
   }
 
