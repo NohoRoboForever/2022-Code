@@ -89,7 +89,7 @@ public class IntakeIndexerRun extends CommandBase {
     //if the ball is detected as the right color
 
     // always run intake
-    intakeMotor.run();
+    //intakeMotor.run();
 
     if (ShooterWheelManual.isShooting) return;
 

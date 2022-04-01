@@ -30,8 +30,6 @@ public class RobotContainer {
   // -- Subsystems --
 
   public final Limelight limelight       = new Limelight();
-  public final DigitalInput upperlimit   = new DigitalInput(0);
-  public final DigitalInput lowerlimit   = new DigitalInput(1);
   public final Ultrasonic ultrasonic     = new Ultrasonic(Constants.UltrasonicAnalogPin);
  
   public final ShooterWheel shooterWheel = new ShooterWheel();
