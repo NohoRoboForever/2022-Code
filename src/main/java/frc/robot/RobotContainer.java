@@ -47,7 +47,6 @@ public class RobotContainer {
   public final IndexerManual indexerManual = new IndexerManual(indexer);
   public final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel, indexer);  
   public final IntakeIndexerRun intakeIndexerRunCommand = new IntakeIndexerRun(intakeMotor, indexer);
-  public final TurretManual turretCommand = new TurretManual(turret);
   public final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
   public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret, ultrasonic);
 
@@ -68,7 +67,7 @@ public class RobotContainer {
     shooterWheel.setDefaultCommand(shooterWheelManual);
     indexer.setDefaultCommand(intakeIndexerRunCommand);
     climbArm.setDefaultCommand(simpleClimb);
-    turret.setDefaultCommand(turretCommand);
+    turret.setDefaultCommand(turretManual);
     limelight.setDefaultCommand(adjustCommand);
     camera.setDefaultCommand(cameraOperation);
 
