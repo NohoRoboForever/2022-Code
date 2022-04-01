@@ -32,7 +32,7 @@ public class RobotContainer {
   public final Limelight limelight       = new Limelight();
   public final DigitalInput upperlimit   = new DigitalInput(0);
   public final DigitalInput lowerlimit   = new DigitalInput(1);
-  public final Ultrasonic ultrasonic     = new Ultrasonic(Constants.UltrasonicAnalogPin);
+  //public final Ultrasonic ultrasonic     = new Ultrasonic(Constants.UltrasonicAnalogPin);
  
   public final ShooterWheel shooterWheel = new ShooterWheel();
   public final IntakeMotor intakeMotor   = new IntakeMotor();

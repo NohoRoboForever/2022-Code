@@ -70,7 +70,7 @@ public class AdjustCommand extends CommandBase {
 
     //System.out.println(ultrasonic.getInches());
 
-    if (Robot.robotContainer.sticky1.getPOV() != -1 || Robot.robotContainer.sticky2.getPOV() != -1) return; // if there is manual input for the turret then return - manual>automatic
+    // if (Robot.robotContainer.sticky1.getPOV() != -1 || Robot.robotContainer.sticky2.getPOV() != -1) return; // if there is manual input for the turret then return - manual>automatic
 
     if ((Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getLeftBumper()) && !tracking) { //first if block is for the 5 seconds of tracking
       tracking = true;
@@ -79,24 +79,24 @@ public class AdjustCommand extends CommandBase {
       tracking = false;
     }
 
-    if (tracking) { //normal tracking not ads tracking
-      try { 
-        if (Math.abs(this.callable.call()) < 10) return; // deadzone for turret so it runs smoother //if it sees the reflective tape then it will track within 10** //needs fixing- potential issue
+    // if (tracking) { //normal tracking not ads tracking
+    //   try { 
+    //     if (Math.abs(this.callable.call()) < 10) return; // deadzone for turret so it runs smoother //if it sees the reflective tape then it will track within 10** //needs fixing- potential issue
 
-        // searching for it if not in fov
-        if (!isInFov.call()) { //if it is not FOV then.
+    //     // searching for it if not in fov
+    //     if (!isInFov.call()) { //if it is not FOV then.
       
-          if (turret.getEncoderPosition() <= 0 && !turret.getHallEffectReading() && lastHall) //turns to one side until it hits hall effect sensor then goes to the other side
-            turret.turn(Constants.DefaultTurretSpeed); //moves turret
-          else if (turret.getEncoderPosition() > 0 && !turret.getHallEffectReading() && lastHall) //goes the opposite side until it rebounds to the other hall effect sensor
-            turret.turn(-Constants.DefaultTurretSpeed); 
+    //       if (turret.getEncoderPosition() <= 0 && !turret.getHallEffectReading() && lastHall) //turns to one side until it hits hall effect sensor then goes to the other side
+    //         turret.turn(Constants.DefaultTurretSpeed); //moves turret
+    //       else if (turret.getEncoderPosition() > 0 && !turret.getHallEffectReading() && lastHall) //goes the opposite side until it rebounds to the other hall effect sensor
+    //         turret.turn(-Constants.DefaultTurretSpeed); 
 
-        } else {
-          turret.turn(controller.calculate(-this.callable.call())); //seeks it, if it already is in FOV just gives to PID controller to track it 
-        }
+    //     } else {
+    //       turret.turn(controller.calculate(-this.callable.call())); //seeks it, if it already is in FOV just gives to PID controller to track it 
+    //     }
 
-      } catch (Exception e) {} finally {} // ignore potential error from callable
-    }
+    //   } catch (Exception e) {} finally {} // ignore potential error from callable
+    // }
 
     lastHall = turret.getHallEffectReading(); //keeps checking for hall effect sensor to be on
     

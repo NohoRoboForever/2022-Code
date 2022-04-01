@@ -18,8 +18,8 @@ public class IntakeIndexerRun extends CommandBase {
 
   private IntakeMotor intakeMotor;
   private Indexer indexer;
-  private ColorSensorV3 colorSensor1 = new ColorSensorV3(Constants.ColorSensorI2CPort);
-  private DigitalInput limitSwitch = new DigitalInput(Constants.LimitSwitchChannel);
+  //private ColorSensorV3 colorSensor1 = new ColorSensorV3(Constants.ColorSensorI2CPort);
+  //private DigitalInput limitSwitch = new DigitalInput(Constants.LimitSwitchChannel);
   public static boolean lastlimitSwitch = false;
   public static boolean on = false;
   public static boolean[] balls = new boolean[2];
