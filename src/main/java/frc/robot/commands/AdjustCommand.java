@@ -68,7 +68,7 @@ public class AdjustCommand extends CommandBase {
     // commented out for other tests here
     //System.out.println(turret.getEncoderPosition()); //gets encoder position for turret
 
-    System.out.println(ultrasonic.getInches());
+    //System.out.println(ultrasonic.getInches());
 
     if (Robot.robotContainer.sticky1.getPOV() != -1 || Robot.robotContainer.sticky2.getPOV() != -1) return; // if there is manual input for the turret then return - manual>automatic
 
