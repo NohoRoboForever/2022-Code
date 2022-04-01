@@ -67,13 +67,8 @@ public class RobotContainer {
     shooterWheel.setDefaultCommand(shooterWheelManual);
     indexer.setDefaultCommand(intakeIndexerRunCommand);
     climbArm.setDefaultCommand(simpleClimb);
-<<<<<<< HEAD
     turret.setDefaultCommand(turretManual);
-    limelight.setDefaultCommand(adjustCommand);
-=======
-    turret.setDefaultCommand(turretCommand);
     //limelight.setDefaultCommand(adjustCommand);
->>>>>>> e57b0df139d5c0ae720927b488ebfb2b7a3d1519
     camera.setDefaultCommand(cameraOperation);
 
     SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not
