@@ -1,12 +1,32 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Indexer" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="629" y="404"/>
+		<width>338</width>
+		<height>101</height>
+	</widget>
+	<widget field="Shooting Status" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="18" y="20"/>
+		<width>630</width>
+		<height>234</height>
+	</widget>
+	<widget field="Turret Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="994" y="297"/>
+		<width>317</width>
+		<height>93</height>
+	</widget>
+	<widget field="Intake" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="644" y="285"/>
+		<width>322</width>
+		<height>107</height>
+	</widget>
 	<widget field="Shooter Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
 		<location x="631" y="627"/>
 		<width>337</width>
 		<height>98</height>
 	</widget>
 	<widget field="Turret Hall Effect" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="632" y="501"/>
+		<location x="632" y="519"/>
 		<width>335</width>
 		<height>98</height>
 	</widget>
@@ -51,5 +71,49 @@
 	</static-widget>
 </dashboard>
 <live-window>
+	<widget field="Ultrasonic" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="184"/>
+	</widget>
+	<widget field="IntakeMotor" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="161"/>
+	</widget>
+	<widget field="ShooterWheel" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="138"/>
+	</widget>
+	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="DigitalInput[0]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="16"/>
+			<height>20</height>
+			<width>89</width>
+		</widget>
+		<widget field="AnalogInput[0]" type="Analog Input" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="6" y="36"/>
+			<height>20</height>
+			<width>89</width>
+		</widget>
+		<widget field="DigitalInput[1]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="56"/>
+			<height>20</height>
+			<width>89</width>
+		</widget>
+		<location x="0" y="115"/>
+		<width>101</width>
+		<height>82</height>
+	</widget>
+	<widget field="ClimbArm" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="92"/>
+	</widget>
+	<widget field="Limelight" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="69"/>
+	</widget>
+	<widget field="Camera" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="46"/>
+	</widget>
+	<widget field="Turret" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="23"/>
+	</widget>
+	<widget field="Indexer" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="0"/>
+	</widget>
 </live-window>
 </xml>

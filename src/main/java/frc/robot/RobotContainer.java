@@ -13,7 +13,7 @@ import frc.robot.commands.Autonomous.ManualAutonSequence;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.AnalogInput;
 import frc.robot.Constants;
-
+import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -30,9 +30,10 @@ public class RobotContainer {
   // -- Subsystems --
 
   public final Limelight limelight       = new Limelight();
-
+  public final DigitalInput upperlimit   = new DigitalInput(0);
+  public final DigitalInput lowerlimit   = new DigitalInput(1);
   public final Ultrasonic ultrasonic     = new Ultrasonic(Constants.UltrasonicAnalogPin);
-  //DigitalInput LimitSwitch upperlimit    = new LimitSwitch(); 
+ 
   public final ShooterWheel shooterWheel = new ShooterWheel();
   public final IntakeMotor intakeMotor   = new IntakeMotor();
   public final Indexer indexer           = new Indexer();
@@ -50,7 +51,7 @@ public class RobotContainer {
   public final IntakeIndexerRun intakeIndexerRunCommand = new IntakeIndexerRun(intakeMotor, indexer);
   public final TurretManual turretCommand = new TurretManual(turret);
   public final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
-  public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret);
+  //public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret);
   public final ShootSystemCombined shootSystemCombined = new ShootSystemCombined(indexer, shooterWheel);
   
   // main commmands
@@ -70,7 +71,7 @@ public class RobotContainer {
     indexer.setDefaultCommand(intakeIndexerRunCommand);
     climbArm.setDefaultCommand(simpleClimb);
     turret.setDefaultCommand(turretCommand);
-    limelight.setDefaultCommand(adjustCommand);
+    //limelight.setDefaultCommand(adjustCommand);
     camera.setDefaultCommand(cameraOperation);
 
     SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not

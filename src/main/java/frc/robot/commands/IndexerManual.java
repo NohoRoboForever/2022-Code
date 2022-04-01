@@ -10,6 +10,7 @@ import frc.robot.subsystems.Indexer;
 
 public class IndexerManual extends CommandBase {
 
+  
   private Indexer indexer;
 
 
