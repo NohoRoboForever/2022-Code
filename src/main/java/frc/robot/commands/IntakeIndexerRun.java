@@ -93,8 +93,11 @@ public class IntakeIndexerRun extends CommandBase {
 
     if (limitSwitch.get() && !ShooterWheelManual.isShooting) {
       indexer.stop();
-    } else if ((((colorSensor1.getBlue() < 150 && DriverStation.getAlliance() == Alliance.Red) || (colorSensor1.getRed() < 150 && DriverStation.getAlliance() == Alliance.Blue)) && !limitSwitch.get()) /* is the right ball */
-      || indexing) {
+    } else if ((((colorSensor1.getBlue() < 150 && DriverStation.getAlliance() == Alliance.Red) || (colorSensor1.getRed() < 150 && DriverStation.getAlliance() == Alliance.Blue)) /* is the right ball */ && !limitSwitch.get())) {
+      indexing = true;
+    } else if (!((colorSensor1.getBlue() < 150 && DriverStation.getAlliance() == Alliance.Red) || (colorSensor1.getRed() < 150 && DriverStation.getAlliance() == Alliance.Blue)) &&)
+
+    if (indexing) {
       indexer.run();
     }
 
