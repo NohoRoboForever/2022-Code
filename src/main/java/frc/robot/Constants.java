@@ -23,7 +23,9 @@ public final class Constants {
     // pressure limits
     // CAN IDs
     // Voltage distribution hub numbers
-
+    
+    //!change this to change teams and ball settings
+    public static final Team FRC_TEAM = Team.Red; 
 
     // constant speeds
     public static final double IndexerSpeed = 0.7;
@@ -107,8 +109,11 @@ public final class Constants {
     public static final I2C.Port ColorSensorI2CPort = I2C.Port.kOnboard;
 
 
-    // limit switch
+    // limit switch (upper)
     public static final int LimitSwitchChannel = 0;
+
+    // limit switch (lower)
+    public static final int LimitSwitchChannel2 = 1;
 
 
     // hall effect sensor

@@ -14,6 +14,7 @@ import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.AnalogInput;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.DigitalInput;
+import frc.robot.commands.IntakeIndexerRun;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -28,10 +29,9 @@ public class RobotContainer {
   public XboxController sticky2 = new XboxController(Constants.XBOX_CONTROLLER2);
 
   // -- Subsystems --
-
+  public static DigitalInput limitSwitch = new DigitalInput(Constants.LimitSwitchChannel);
+  public static DigitalInput lowerSwitch = new DigitalInput(Constants.LimitSwitchChannel2);
   public final Limelight limelight       = new Limelight();
-  public final DigitalInput upperlimit   = new DigitalInput(0);
-  public final DigitalInput lowerlimit   = new DigitalInput(1);
   //public final Ultrasonic ultrasonic     = new Ultrasonic(Constants.UltrasonicAnalogPin);
  
   public final ShooterWheel shooterWheel = new ShooterWheel();
@@ -48,9 +48,9 @@ public class RobotContainer {
   public final TurretManual turretManual = new TurretManual(turret);
   public final IndexerManual indexerManual = new IndexerManual(indexer);
   public final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel, indexer);  
-  public final IntakeIndexerRun intakeIndexerRunCommand = new IntakeIndexerRun(intakeMotor, indexer);
+  public final IntakeIndexerRun intakeIndexerRunCommand = new IntakeIndexerRun(intakeMotor, indexer, limitSwitch, lowerSwitch);
   public final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
-  //public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret);
+  public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret);
   public final ShootSystemCombined shootSystemCombined = new ShootSystemCombined(indexer, shooterWheel);
   
   // main commmands
@@ -69,13 +69,8 @@ public class RobotContainer {
     shooterWheel.setDefaultCommand(shooterWheelManual);
     indexer.setDefaultCommand(intakeIndexerRunCommand);
     climbArm.setDefaultCommand(simpleClimb);
-<<<<<<< HEAD
     turret.setDefaultCommand(turretManual);
     limelight.setDefaultCommand(adjustCommand);
-=======
-    turret.setDefaultCommand(turretCommand);
-    //limelight.setDefaultCommand(adjustCommand);
->>>>>>> e57b0df139d5c0ae720927b488ebfb2b7a3d1519
     camera.setDefaultCommand(cameraOperation);
 
     SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not
@@ -84,7 +79,8 @@ public class RobotContainer {
     SmartDashboard.putBoolean("Shooting Status", shootSystemCombined.getLimelightStatus()); //checks if the limelight is tracking or not
     SmartDashboard.putBoolean("Intake", intakeMotor.getIntakeState()); //check if the intake is running
     SmartDashboard.putBoolean("Indexer", indexer.getIndexerState()); //check if the indexer is running
-
+    SmartDashboard.putBoolean("Upper Switch", limitSwitch.get()); //check if the upperswitch is pressed
+    SmartDashboard.putBoolean("Lower Switch", lowerSwitch.get()); //check if the lowerswitch is pressed 
 
   }
 

@@ -37,17 +37,17 @@ public class ManualAutonSequence extends SequentialCommandGroup {
 
     // this weirdly works
     addCommands(
-      new InstantCommand(shooterWheel::run, shooterWheel),
-      new WaitCommand(1.5),
-      new InstantCommand(shooterWheel::run, shooterWheel),
-      new InstantCommand(indexer::run, indexer),
-      new WaitCommand(1.5),
+      new InstantCommand(shooterWheel::run, shooterWheel), //runs flywheel
+      new WaitCommand(1.5), //runs for 1.5 seconds
+      new InstantCommand(shooterWheel::run, shooterWheel), //keeps running flywheel
+      new InstantCommand(indexer::run, indexer), //run indexer to shoot
+      new WaitCommand(1.5), //run for 1.5 seconds
       // it has shot
-      new InstantCommand(shooterWheel::stop, shooterWheel),
-      new InstantCommand(indexer::stop, indexer),
+      new InstantCommand(shooterWheel::stop, shooterWheel), //stop the flywheel (coast brake mode)
+      new InstantCommand(indexer::stop, indexer), //stops indexer from moving
       new DriveNormal(-0.2, 0.2, 1),  // passes time to run but it doesn't do jack shit
-      new WaitCommand(2),
-      new DriveNormal(0, 0, 1)
+      new WaitCommand(2), //wait for 2 seconds (drive)
+      new DriveNormal(0, 0, 1) // stops all the drive motors
 
       // -- 10pt auton -- (assuming DriveNormal (time) works ) - all the numbers need physical tuning -- I dont know the actual code, but ill write what I believe should be happening when I write this
       //Setup - Intake facing outwards, one of the side tarmacs, and preload ball on limit switch 1 (very bottom one)

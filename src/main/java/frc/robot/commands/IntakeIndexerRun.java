@@ -11,26 +11,39 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.IndexerFSM;
 import frc.robot.Robot;
 import frc.robot.subsystems.IntakeMotor;
 import frc.robot.subsystems.Indexer;
-
+import frc.robot.RobotContainer;
 
 public class IntakeIndexerRun extends CommandBase {
 
-  private IntakeMotor intakeMotor;
-  private Indexer indexer;
-  //private ColorSensorV3 colorSensor1 = new ColorSensorV3(Constants.ColorSensorI2CPort);
-  //private DigitalInput limitSwitch = new DigitalInput(Constants.LimitSwitchChannel);
+  public static IntakeMotor intakeMotor;
+  public static Indexer indexer;
+  private ColorSensorV3 colorSensor1 = new ColorSensorV3(Constants.ColorSensorI2CPort);
   public static boolean lastlimitSwitch = false;
-  public static boolean indexing = false;
+  //public static boolean indexing = false; //value for limit switch
+  public static IndexerFSM indexerState = IndexerFSM.WaitingForBall;
   public static boolean[] balls = new boolean[2];
+  public static boolean upperstate = false; 
+  public static boolean lowerstate = false; 
 
+  public static long ms_outtaking = 0;
+  public static long outtake_begin = 0;
+
+  public static DigitalInput upperSwitch;
+  public static DigitalInput lowerSwitch;
+
+  public static int blueThreshold = 70;
+  public static int redThreshold = 70;
 
   /** Creates a new IntakeRun. */
-  public IntakeIndexerRun(IntakeMotor intake, Indexer indexer) {
-    this.intakeMotor = intake;
-    this.indexer = indexer;
+  public IntakeIndexerRun(IntakeMotor intake, Indexer indexer, DigitalInput upper, DigitalInput lower) {
+    IntakeIndexerRun.upperSwitch = upper;
+    IntakeIndexerRun.lowerSwitch = lower;
+    IntakeIndexerRun.intakeMotor = intake;
+    IntakeIndexerRun.indexer = indexer;
     addRequirements(intakeMotor, indexer);
   }
 
@@ -43,79 +56,74 @@ public class IntakeIndexerRun extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.auton) return;
+    if (Robot.auton) { return;}
 
-    // if ((Robot.robotContainer.sticky1.getLeftBumperPressed() || Robot.robotContainer.sticky2.getAButtonPressed()) && Math.abs(Robot.robotContainer.sticky1.getLeftTriggerAxis()) <= .1) {
-    //   on = !on;
-    // } else if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()) { 
-    //   intakeMotor.reverse();
-    //   indexer.reverse();
-    // } else if (on) {
-    //   intakeMotor.run();
-    //   indexer.run();
-    // } else {
-    //   intakeMotor.stop();
-    //   indexer.stop();
-    // }
+    boolean value =  upperSwitch.get();
+    upperstate = value;
 
-    // if (colorSensor1.getBlue() > 70 || colorSensor1.getRed() > 70) {
-    //   balls[0] = true;
-    // } else {
-    //   balls[0] = false;
-    // }
-
-    // if (colorSensor2.getBlue() > 70 || colorSensor2.getRed() > 70) {
-    //   balls[1] = true;
-    // } else {
-    //   balls[1] = false;
-    // }
-    // if (colorSensor1.getRed() > 120) System.out.println("Red ball");
-    //System.out.println("blue: " + colorSensor1.getBlue());
-    //System.out.println("red: " + colorSensor1.getRed());
-
-
-    // if (colorSensor1.getBlue() < 150) {
-    //   System.out.println("red ball");
-    // } else if (colorSensor1.getRed() < 150){
-    //   System.out.println("blue ball");
-    // } else {
-    //   System.out.println("none");
-    // }
-
-    //if (colorSensor1.getBlue() > 100) System.out.println("Blue ball");
-    //System.out.println(limitSwitch.get());
-    
-    //put this code under the part where the right color ball is detected::
-    //if the ball is detected as the right color
-
-    // always run intake
-    intakeMotor.run();
-
-    if (ShooterWheelManual.isShooting) return;
-
-    if (limitSwitch.get()) {
-      indexing = false;
-    } else if (!limitSwitch.get()) {
-      indexing = true;
+    switch (indexerState) {
+      case WaitingForBall:
+        
+        switch( Constants.FRC_TEAM) {
+          case Blue:
+            if (colorSensor1.getBlue() > blueThreshold) {
+              indexerState = IndexerFSM.LoadingBall;
+            } else if (colorSensor1.getRed() > redThreshold) {
+              indexerState = IndexerFSM.Outtaking;
+            }
+          case Red:
+            if (colorSensor1.getRed() > redThreshold) {
+              indexerState = IndexerFSM.LoadingBall;
+            } else if (colorSensor1.getBlue() > blueThreshold) {
+              indexerState = IndexerFSM.Outtaking;
+            }
+        }
+        break;
+      case BallLoaded:
+        
+        if (value == true) { // switch pressed
+          indexer.stop();
+        } else { 
+          indexerState = IndexerFSM.WaitingForBall;
+        }
+        
+        break;
+      case LoadingBall:
+        if (value == true) { // switch pressed
+          indexer.stop();
+          indexerState = IndexerFSM.BallLoaded;
+        } else { 
+          indexer.run();
+        }
+        break;
+      case Outtaking:
+        long start = System.currentTimeMillis();
+        if (ms_outtaking >= 5000) {
+          ms_outtaking = 0;
+          outtake_begin = 0;
+          indexerState = IndexerFSM.WaitingForBall;
+          break;
+        }
+        if (outtake_begin == 0) {
+          outtake_begin = System.currentTimeMillis();
+        }
+        indexer.reverse();
+        intakeMotor.reverse();
+        ms_outtaking += System.currentTimeMillis() - start;
+        break;
     }
 
-    if (indexing) {
-      indexer.run();
-    } else {
-      indexer.stop();
-    }
-
-
-
-    //run indexer until the ball reaches limit 2
-    //if limit switch 2 is already pressed, keep running intake
-    //shoot button runs the indexer until limit 2 is not pressed. 
-    //^ then if the intake ball is detected, run indexer again
-    
 
   }
 
-  
+  public boolean getUpperState (){
+    return upperstate;
+  }
+
+  public boolean getLowerState (){
+    return lowerstate;
+  }
+
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}
@@ -127,4 +135,12 @@ public class IntakeIndexerRun extends CommandBase {
     return false;
   }
 
-}
+  public DigitalInput getLimitSwitch () {
+    return upperSwitch;
+  }
+
+  public DigitalInput getLowerSwitch () {
+    return lowerSwitch;
+  }
+
+ }
