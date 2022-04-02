@@ -1,0 +1,83 @@
+
+
+{
+    "nodes": [
+      {
+        "x": 386,
+        "y": 256,
+        "text": "WaitingForBall",
+        "isAcceptState": false,
+        "textOnly": false
+      },
+      {
+        "x": 687,
+        "y": 291,
+        "text": "BallLoaded",
+        "isAcceptState": false,
+        "textOnly": false
+      },
+      {
+        "x": 386,
+        "y": 494,
+        "text": "LoadingBall",
+        "isAcceptState": false,
+        "textOnly": false
+      },
+      {
+        "x": 91,
+        "y": 84,
+        "text": "Outtaking",
+        "isAcceptState": false,
+        "textOnly": false
+      }
+    ],
+    "links": [
+      {
+        "type": "Link",
+        "nodeA": 0,
+        "nodeB": 2,
+        "text": "Correct ball is loaded",
+        "lineAngleAdjust": 0,
+        "parallelPart": 0.5,
+        "perpendicularPart": 0
+      },
+      {
+        "type": "Link",
+        "nodeA": 0,
+        "nodeB": 3,
+        "text": "Wrong ball is loaded",
+        "lineAngleAdjust": 0,
+        "parallelPart": 0.36944717325359216,
+        "perpendicularPart": 74.87596002551365
+      },
+      {
+        "type": "Link",
+        "nodeA": 1,
+        "nodeB": 0,
+        "text": "Ball is shot",
+        "lineAngleAdjust": 0,
+        "parallelPart": 0.6,
+        "perpendicularPart": 77
+      },
+      {
+        "type": "Link",
+        "nodeA": 2,
+        "nodeB": 1,
+        "text": "Ball reaches switch",
+        "lineAngleAdjust": 0,
+        "parallelPart": 0.6824119861244372,
+        "perpendicularPart": 40.14598884938886
+      },
+      {
+        "type": "Link",
+        "nodeA": 3,
+        "nodeB": 0,
+        "text": "Ball released",
+        "lineAngleAdjust": 0,
+        "parallelPart": 0.5011281076938024,
+        "perpendicularPart": 83.7504155974524
+      }
+    ],
+    "nodeRadius": 30
+  }
+  
