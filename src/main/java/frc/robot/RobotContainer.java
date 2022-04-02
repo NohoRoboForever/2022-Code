@@ -41,6 +41,8 @@ public class RobotContainer {
   public final ClimbArm climbArm         = new ClimbArm();
   public final Camera camera             = new Camera();
   public final Drive drive               = Drive.getInstance();
+  public final IntakePistons intakePistons = new IntakePistons();
+
   
   // -- Commands --
   
@@ -52,6 +54,7 @@ public class RobotContainer {
   public final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
   public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret);
   public final ShootSystemCombined shootSystemCombined = new ShootSystemCombined(indexer, shooterWheel);
+  public final IntakePushPull intakePushPull = new IntakePushPull(intakePistons);
   
   // main commmands
   private final Command m_teleopCommand = new DriveTeleop();

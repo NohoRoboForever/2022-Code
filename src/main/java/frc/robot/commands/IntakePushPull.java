@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.subsystems.IntakePistons;
 
 public class IntakePushPull extends CommandBase {
@@ -27,7 +28,11 @@ public class IntakePushPull extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    pistons.toggle();
+    if (Robot.robotContainer.sticky2.getXButton()){
+      pistons.extend();
+    } else if (Robot.robotContainer.sticky2.getYButton()){
+      pistons.retract();
+    }
   }
 
 

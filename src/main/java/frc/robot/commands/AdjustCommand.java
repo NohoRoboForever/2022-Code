@@ -73,12 +73,12 @@ public class AdjustCommand extends CommandBase {
 
     // if (Robot.robotContainer.sticky1.getPOV() != -1 || Robot.robotContainer.sticky2.getPOV() != -1) return; // if there is manual input for the turret then return - manual>automatic
 
-    if ((Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getLeftBumper()) && !tracking) { //first if block is for the 5 seconds of tracking
-      tracking = true;
-      start = System.currentTimeMillis();
-    } else if (System.currentTimeMillis() >= start + timeplus) {
-      tracking = false;
-    }
+    // if ((Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getLeftBumper()) && !tracking) { //first if block is for the 5 seconds of tracking
+    //   tracking = true;
+    //   start = System.currentTimeMillis();
+    // } else if (System.currentTimeMillis() >= start + timeplus) {
+    //   tracking = false;
+    // }
 
     // if (tracking) { //normal tracking not ads tracking
     //   try { 
