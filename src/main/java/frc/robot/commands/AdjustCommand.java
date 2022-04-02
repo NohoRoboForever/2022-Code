@@ -36,10 +36,11 @@ public class AdjustCommand extends CommandBase {
   
   
   /** Creates a new AdjustCommand. */
-  public AdjustCommand(Limelight limelight, Turret turret, Ultrasonic ultrasonic) { //turns the turret 
+
+  public AdjustCommand(Limelight limelight, Turret turret/*, Ultrasonic ultrasonic*/) { //turns the turret 
     this.limelight = limelight; //setting current limelight 
     this.turret = turret; //setting current turret
-    this.ultrasonic = ultrasonic; // setting the current ultrasonic sensor
+    //this.ultrasonic = ultrasonic; // setting the current ultrasonic sensor
     callable = this.limelight::getTX; //setting default - if there is no callable it just sets it to limelight one
     isInFov = this.limelight::getTV; //^^
     addRequirements(limelight, turret); //need to use the limelight (one subsystem at a time)
@@ -50,7 +51,7 @@ public class AdjustCommand extends CommandBase {
     //have it adjust to zero, encoder - zero value 
     this.limelight = limelight;
     this.turret = turret;
-    this.ultrasonic = ultrasonic;
+    //this.ultrasonic = ultrasonic;
     this.callable = positionCallable;
     this.isInFov = isInFovCollable;
     addRequirements(limelight);
