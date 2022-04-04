@@ -20,20 +20,12 @@ public class AdjustCommand extends CommandBase {
 
   private Limelight limelight; //defines the limelight
   private Turret turret; //defines the turret
-  private Ultrasonic ultrasonic; // defines the ultrasonic sensor
   private boolean tracking = false; //tracking for 5 second thingy, probably not on the robot 
+  private boolean finished = false;
+
   private boolean lastHall = true; //last value of Hall effect sensor (only meaasures true or false) -> false when it senses it 
-  private long start = System.currentTimeMillis(); //for the 5 second thing to measure how much time has passed 
-  private static int timeplus = 5000; //defines 5 seconds for the 5 second thingy
-
-  // returns the value to be plugged into the controller
-  private Callable<Double> callable;  
-
-  // returns true if it is in the fov and a value WILL be read from callable
-  private Callable<Boolean> isInFov;
 
   private ProfiledPIDController controller = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.05, .05)); //defines pid for turret 
-  
   
   /** Creates a new AdjustCommand. */
 
@@ -46,22 +38,9 @@ public class AdjustCommand extends CommandBase {
     addRequirements(limelight, turret); //need to use the limelight (one subsystem at a time)
   }
 
-
-  public AdjustCommand(Limelight limelight, Turret turret, Ultrasonic ultrasonic, Callable<Double> positionCallable, Callable<Boolean> isInFovCollable) { //same thing but callables for the seeking limelight
-    //have it adjust to zero, encoder - zero value 
-    this.limelight = limelight;
-    this.turret = turret;
-    //this.ultrasonic = ultrasonic;
-    this.callable = positionCallable;
-    this.isInFov = isInFovCollable;
-    addRequirements(limelight);
-  }
-
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {} 
- 
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -79,6 +58,8 @@ public class AdjustCommand extends CommandBase {
     // } else if (System.currentTimeMillis() >= start + timeplus) {
     //   tracking = false;
     // }
+
+
 
     // if (tracking) { //normal tracking not ads tracking
     //   try { 
@@ -99,8 +80,15 @@ public class AdjustCommand extends CommandBase {
     //   } catch (Exception e) {} finally {} // ignore potential error from callable
     // }
 
+    if(this.limelight.getTV()) { //check is limelight is in fov or not
+      tracking = true;
+    }
+
+    if(tracking){
+      
+    }
+
     lastHall = turret.getHallEffectReading(); //keeps checking for hall effect sensor to be on
-    
   }
 
 
@@ -108,13 +96,13 @@ public class AdjustCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     turret.stop();
+    finished = true;
   }
 
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return !lastHall || finished;
   }
-
 }

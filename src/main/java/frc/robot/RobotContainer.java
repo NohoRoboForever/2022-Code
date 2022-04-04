@@ -42,10 +42,11 @@ public class RobotContainer {
   public final Camera camera             = new Camera();
   public final Drive drive               = Drive.getInstance();
   public final IntakePistons intakePistons = new IntakePistons();
+  public final HoodPistons hoodPistons   = new HoodPistons();
 
   
   // -- Commands --
-  
+  public final HoodAdjust hoodAdjust = new HoodAdjust(hoodPistons);
   public final CameraOperation cameraOperation = new CameraOperation(camera);
   public final TurretManual turretManual = new TurretManual(turret);
   public final IndexerManual indexerManual = new IndexerManual(indexer);
@@ -75,6 +76,8 @@ public class RobotContainer {
     turret.setDefaultCommand(turretManual);
     limelight.setDefaultCommand(adjustCommand);
     camera.setDefaultCommand(cameraOperation);
+    intakePistons.setDefaultCommand(intakePushPull);
+    hoodPistons.setDefaultCommand(hoodAdjust);
 
     SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not
     SmartDashboard.putNumber("Shooter Speed", shooterWheel.getSpeed()); //shows shooter speed
@@ -84,6 +87,8 @@ public class RobotContainer {
     SmartDashboard.putBoolean("Indexer", indexer.getIndexerState()); //check if the indexer is running
     SmartDashboard.putBoolean("Upper Switch", limitSwitch.get()); //check if the upperswitch is pressed
     SmartDashboard.putBoolean("Lower Switch", lowerSwitch.get()); //check if the lowerswitch is pressed 
+
+    //need to add pneumatic actuation + whether compressor is on
 
   }
 
