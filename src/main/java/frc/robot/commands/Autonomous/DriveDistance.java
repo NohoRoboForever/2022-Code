@@ -19,8 +19,8 @@ public class DriveDistance extends CommandBase {
   public DriveDistance(ProfiledPIDController pidControllerL, ProfiledPIDController pidControllerR, double rotationsL, double rotationsR) {
     controllerL = pidControllerL;
     controllerR = pidControllerR;
-    distanceL = drive.LMEncoder.getPosition() + rotationsL;
-    distanceR = drive.RMEncoder.getPosition() + rotationsR;
+    // distanceL = drive.LMEncoder.getPosition() + rotationsL;
+    // distanceR = drive.RMEncoder.getPosition() + rotationsR;
   }
 
 
@@ -32,11 +32,11 @@ public class DriveDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled. 
   @Override
   public void execute() {
-    double calcL = controllerL.calculate(drive.LMEncoder.getPosition() - distanceL);
-    double calcR = controllerR.calculate(drive.RMEncoder.getPosition() - distanceR);
+    // double calcL = controllerL.calculate(drive.LMEncoder.getPosition() - distanceL);
+    // double calcR = controllerR.calculate(drive.RMEncoder.getPosition() - distanceR);
 
-    drive.setDriveL(calcL);
-    drive.setDriveR(calcR);
+    // drive.setDriveL(calcL);
+    // drive.setDriveR(calcR);
   }
 
 
@@ -48,7 +48,8 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Math.abs(drive.LMEncoder.getPosition()) < 0.5 && Math.abs(drive.RMEncoder.getPosition()) < 0.5;
+    return true;
+    //return Math.abs(drive.LMEncoder.getPosition()) < 0.5 && Math.abs(drive.RMEncoder.getPosition()) < 0.5;
   }
 
 }

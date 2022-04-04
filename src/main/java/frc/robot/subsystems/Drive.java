@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.RelativeEncoder;
@@ -18,9 +20,11 @@ public class Drive extends SubsystemBase {
 
   private static Drive defaultInstance;
 
-  public CANSparkMax LF, LM, LB, RF, RM, RB;
-  public RelativeEncoder LFEncoder, LMEncoder, LBEncoder, RFEncoder, RMEncoder, RBEncoder;
+  private CANSparkMax LF, LM, LB, RF, RM, RB;
+  private RelativeEncoder LFEncoder, LMEncoder, LBEncoder, RFEncoder, RMEncoder, RBEncoder;
 
+  public MotorControllerGroup leftDrive;
+  public MotorControllerGroup rightDrive;
 
   /** Creates a new Drive. */
   public Drive() {
@@ -32,12 +36,17 @@ public class Drive extends SubsystemBase {
     RM = new CANSparkMax(Constants.RMWheel, MotorType.kBrushless);
     RB = new CANSparkMax(Constants.RBWheel, MotorType.kBrushless);
 
+    leftDrive = new MotorControllerGroup(LF, LM, LB);
+    rightDrive = new MotorControllerGroup(RF, RM, RB);
+
+
     LFEncoder = LF.getEncoder();
     LMEncoder = LM.getEncoder();
     LBEncoder = LB.getEncoder();
     RFEncoder = RF.getEncoder();
     RMEncoder = RM.getEncoder();
     RBEncoder = RB.getEncoder();
+
 
   }
 
@@ -59,16 +68,12 @@ public class Drive extends SubsystemBase {
 
 
   public void setDriveL(double speed) {
-    LF.set(speed);
-    LM.set(speed);
-    LB.set(speed);
+    leftDrive.set(speed);
   }
 
 
   public void setDriveR(double speed) {
-    RF.set(speed);
-    RM.set(speed);
-    RB.set(speed);
+    rightDrive.set(speed);
   }
 
 
@@ -76,7 +81,6 @@ public class Drive extends SubsystemBase {
     setDriveL(leftSpeed);
     setDriveR(rightSpeed);
   }
-
 
   public void driveBrake() {
     LF.setIdleMode(IdleMode.kBrake);
@@ -87,7 +91,6 @@ public class Drive extends SubsystemBase {
     RB.setIdleMode(IdleMode.kBrake);
   }
 
-
   public void driveCoast() {
     LF.setIdleMode(IdleMode.kCoast);
     LM.setIdleMode(IdleMode.kCoast);
@@ -96,7 +99,6 @@ public class Drive extends SubsystemBase {
     RM.setIdleMode(IdleMode.kCoast);
     RB.setIdleMode(IdleMode.kCoast);
   }
-
 
   public void driveStop() {
     LF.stopMotor();
