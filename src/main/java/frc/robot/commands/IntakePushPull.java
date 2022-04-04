@@ -31,17 +31,17 @@ public class IntakePushPull extends CommandBase {
   @Override
   public void execute() {
     System.out.println("poopie");
-    if (Robot.robotContainer.sticky2.getXButton() || Robot.robotContainer.sticky1.getXButton()){
-      pistons.extend();
-      System.out.println("extend");
+    // if (Robot.robotContainer.sticky2.getXButton() || Robot.robotContainer.sticky1.getXButton()){
+    //   pistons.extend();
+    //   System.out.println("extend");
 
-    } else if (Robot.robotContainer.sticky2.getYButton() || Robot.robotContainer.sticky1.getYButton()){
-      pistons.retract();
-      System.out.println("retract");
-    } else if (Robot.robotContainer.sticky2.getAButton() || Robot.robotContainer.sticky1.getAButton()) {
-      pistons.toggle();
-      System.out.println("toggie");
-    }
+    // } else if (Robot.robotContainer.sticky2.getYButton() || Robot.robotContainer.sticky1.getYButton()){
+    //   pistons.retract();
+    //   System.out.println("retract");
+    // } else if (Robot.robotContainer.sticky2.getAButton() || Robot.robotContainer.sticky1.getAButton()) {
+    //   pistons.toggle();  
+    //   System.out.println("toggie");
+    // }
   }
 
 
