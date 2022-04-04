@@ -12,12 +12,15 @@ import frc.robot.Constants;
 
 public class IntakePistons extends SubsystemBase {
 
-  private DoubleSolenoid leftPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.IntakeLeftForward, Constants.IntakeLeftReverse);
-  private DoubleSolenoid rightPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.IntakeRightForward, Constants.IntakeRightReverse);
+  private DoubleSolenoid leftPiston;
+  private DoubleSolenoid rightPiston;
 
 
   /** Creates a new IntakePisforwardChanneltons. */
-  public IntakePistons() {}
+  public IntakePistons() {
+    rightPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.IntakeRightForward, Constants.IntakeRightReverse);
+    leftPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.IntakeLeftForward, Constants.IntakeLeftReverse);
+  }
 
 
   public void toggle() {
