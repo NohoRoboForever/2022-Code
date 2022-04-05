@@ -10,7 +10,7 @@ import frc.robot.subsystems.HoodPistons;
 
 public class HoodAdjust extends CommandBase {
 
-   private HoodPistons pistons;
+  private HoodPistons pistons;
 
   /** Creates a new HoodAdjust. */
   public HoodAdjust(HoodPistons p_pistons) {

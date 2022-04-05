@@ -52,6 +52,4 @@ public class Limelight extends SubsystemBase {
     public double getFlywheelSpeed() {
         return getDistanceFromGoalInches() * Constants.GoalInchesMultiplier;
     }
-
-  
 }

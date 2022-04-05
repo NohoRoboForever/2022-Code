@@ -9,7 +9,6 @@ import frc.robot.Robot;
 import frc.robot.subsystems.IntakePistons;
 
 public class IntakePushPull extends CommandBase {
-
   public IntakePistons pistons;
 
 
@@ -25,13 +24,19 @@ public class IntakePushPull extends CommandBase {
   public void initialize() {}
 
 
+  boolean pressed = false;
+
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.robotContainer.sticky2.getXButton()){
+    
+    if ((Robot.robotContainer.sticky2.getXButton() || Robot.robotContainer.sticky1.getXButton()) && !pressed){
+      pressed = true;
       pistons.extend();
-    } else if (Robot.robotContainer.sticky2.getYButton()){
-      pistons.retract();
+    }
+    if ((Robot.robotContainer.sticky2.getYButton() || Robot.robotContainer.sticky1.getYButton()) && pressed){
+      pressed = false;
+      pistons.extend();
     }
   }
 

@@ -16,34 +16,34 @@ public class IntakePistons extends SubsystemBase {
   private DoubleSolenoid rightPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.IntakeLeftForward, Constants.IntakeLeftReverse); 
 
 
-  /** Creates a new IntakePisforwardChanneltons. */
+  /** Creates a new IntakePistons. */
   public IntakePistons() {
     //rightPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.IntakeRightForward, Constants.IntakeRightReverse);
     //leftPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.IntakeLeftForward, Constants.IntakeLeftReverse);
   }
 
-
   public void toggle() {
+    System.out.println("Toggled");
     leftPiston.toggle();
     rightPiston.toggle();
   }
 
-
   public void extend() {
+    System.out.println("Extended");
     leftPiston.set(Value.kForward);
-    leftPiston.set(Value.kForward);
+    rightPiston.set(Value.kForward);
   }
 
-
   public void retract() {
+    System.out.println("Retracted");
     leftPiston.set(Value.kReverse);
-    leftPiston.set(Value.kReverse);
+    rightPiston.set(Value.kReverse);
   }
 
 
   public void turnOff() {
     leftPiston.set(Value.kOff);
-    leftPiston.set(Value.kOff);
+    rightPiston.set(Value.kOff);
   }
 
 
