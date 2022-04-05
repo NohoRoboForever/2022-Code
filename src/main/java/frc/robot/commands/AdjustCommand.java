@@ -89,12 +89,13 @@ public class AdjustCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     turret.stop();
+    finished = true;
   }
 
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return !lastHall || finished;
   }
 }
