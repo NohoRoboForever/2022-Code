@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drive;
@@ -22,6 +24,8 @@ public class Robot extends TimedRobot {
   public static RobotContainer robotContainer;
 
   public final static Drive drive = Drive.getInstance();
+
+  Compressor phCompressor = new Compressor(Constants.PneumaticHub, PneumaticsModuleType.REVPH);
   
   // so our setDefaultCommands can know they shouldn't run
   public static boolean auton = false;

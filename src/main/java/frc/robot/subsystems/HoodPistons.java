@@ -11,14 +11,14 @@ import frc.robot.Constants;
 
 public class HoodPistons extends SubsystemBase {
 
-  private DoubleSolenoid leftPiston;
-  private DoubleSolenoid rightPiston;
+  private DoubleSolenoid leftPiston  = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodLeftForward, Constants.HoodLeftReverse);
+  private DoubleSolenoid rightPiston  = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodRightForward, Constants.HoodRightReverse);
 
 
   /** Creates a new HoodPistons. */
   public HoodPistons() {
-    leftPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodLeftForward, Constants.HoodLeftReverse);
-    rightPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodRightForward, Constants.HoodRightReverse);
+   // leftPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodLeftForward, Constants.HoodLeftReverse);
+   // rightPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodRightForward, Constants.HoodRightReverse);
   }
 
 

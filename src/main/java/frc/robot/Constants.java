@@ -62,8 +62,8 @@ public final class Constants {
 
 
     // pneumatics
-    public static final int PDH = 15;
-    public static final int PneumaticHub = 16;
+    public static final int PDH = 20;
+    public static final int PneumaticHub = 15;
 
 
     // controller
@@ -88,9 +88,10 @@ public final class Constants {
 
     // pneumatic channels
     public static final int IntakeLeftForward = 12;
-    public static final int IntakeLeftReverse = 3;
+    public static final int IntakeLeftReverse = 13;
     public static final int IntakeRightForward = 0;
     public static final int IntakeRightReverse = 1;
+
     public static final int HoodLeftForward = 5;
     public static final int HoodLeftReverse = 6;
     public static final int HoodRightForward = 7;
