@@ -9,7 +9,6 @@ import frc.robot.Robot;
 import frc.robot.subsystems.IntakePistons;
 
 public class IntakePushPull extends CommandBase {
-
   public IntakePistons pistons;
 
 
@@ -22,26 +21,23 @@ public class IntakePushPull extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    System.out.println("\n\n INTAKEPUSHPULL STARTING \n\n");
-  }
+  public void initialize() {}
 
+
+  boolean pressed = false;
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("poopie");
-    // if (Robot.robotContainer.sticky2.getXButton() || Robot.robotContainer.sticky1.getXButton()){
-    //   pistons.extend();
-    //   System.out.println("extend");
-
-    // } else if (Robot.robotContainer.sticky2.getYButton() || Robot.robotContainer.sticky1.getYButton()){
-    //   pistons.retract();
-    //   System.out.println("retract");
-    // } else if (Robot.robotContainer.sticky2.getAButton() || Robot.robotContainer.sticky1.getAButton()) {
-    //   pistons.toggle();  
-    //   System.out.println("toggie");
-    // }
+    
+    if ((Robot.robotContainer.sticky2.getXButton() || Robot.robotContainer.sticky1.getXButton()) && !pressed){
+      pressed = true;
+      pistons.extend();
+    }
+    if ((Robot.robotContainer.sticky2.getYButton() || Robot.robotContainer.sticky1.getYButton()) && pressed){
+      pressed = false;
+      pistons.extend();
+    }
   }
 
 

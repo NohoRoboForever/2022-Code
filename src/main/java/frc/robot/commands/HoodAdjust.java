@@ -10,7 +10,7 @@ import frc.robot.subsystems.HoodPistons;
 
 public class HoodAdjust extends CommandBase {
 
-   private HoodPistons pistons;
+  private HoodPistons pistons;
 
   /** Creates a new HoodAdjust. */
   public HoodAdjust(HoodPistons p_pistons) {
@@ -30,12 +30,11 @@ public class HoodAdjust extends CommandBase {
   public void execute() {
     if (Robot.auton) return;
 
-    if (Robot.robotContainer.sticky2.getPOV() < 45 || Robot.robotContainer.sticky2.getPOV() > 315) {
-      pistons.extend();
-    } else if (Robot.robotContainer.sticky2.getPOV() < 225 && Robot.robotContainer.sticky2.getPOV() > 135) {
-      pistons.retract();
+    if ((Robot.robotContainer.sticky2.getPOV() < 45 || Robot.robotContainer.sticky2.getPOV() > 315) || (Robot.robotContainer.sticky1.getPOV() < 45 || Robot.robotContainer.sticky1.getPOV() > 315)) {
+      //pistons.extend();
+    } else if ((Robot.robotContainer.sticky2.getPOV() < 225 && Robot.robotContainer.sticky2.getPOV() > 135) || (Robot.robotContainer.sticky1.getPOV() < 225 && Robot.robotContainer.sticky1.getPOV() > 135)) {
+      //pistons.retract();
     }
-
   }
 
 

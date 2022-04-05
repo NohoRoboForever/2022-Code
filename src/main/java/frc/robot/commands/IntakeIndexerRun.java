@@ -64,7 +64,7 @@ public class IntakeIndexerRun extends CommandBase {
     switch (indexerState) {
       case WaitingForBall:
         
-        switch( Constants.FRC_TEAM) {
+        switch(Constants.FRC_TEAM) {
           case Blue:
             if (colorSensor1.getBlue() > blueThreshold) {
               indexerState = IndexerFSM.LoadingBall;

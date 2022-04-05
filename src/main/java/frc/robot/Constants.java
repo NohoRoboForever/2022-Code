@@ -24,7 +24,8 @@ public final class Constants {
     // CAN IDs
     // Voltage distribution hub numbers
     
-    //!change this to change teams and ball settings
+    //
+    //change this to change teams and ball settings
     public static final Team FRC_TEAM = Team.Red; 
 
     // constant speeds
@@ -87,12 +88,10 @@ public final class Constants {
 
 
     // pneumatic channels
-    public static final int IntakeLeftForward = 13;
-    public static final int IntakeLeftReverse = 12;
+    public static final int IntakeLeftForward = 12;
+    public static final int IntakeLeftReverse = 3;
     public static final int IntakeRightForward = 0;
     public static final int IntakeRightReverse = 1;
-
-
     public static final int HoodLeftForward = 5;
     public static final int HoodLeftReverse = 6;
     public static final int HoodRightForward = 7;
@@ -124,4 +123,6 @@ public final class Constants {
     // ultrasonic sensor
     public static final int UltrasonicAnalogPin = 2;
     
+    //limelight 
+    public static final double AdjustHaltThreshold = 5;
 }

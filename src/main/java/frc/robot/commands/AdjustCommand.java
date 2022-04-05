@@ -12,6 +12,7 @@ import frc.robot.subsystems.Ultrasonic;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.ShooterWheel;
 import frc.robot.subsystems.Turret;
 
 
@@ -20,87 +21,67 @@ public class AdjustCommand extends CommandBase {
 
   private Limelight limelight; //defines the limelight
   private Turret turret; //defines the turret
-  private Ultrasonic ultrasonic; // defines the ultrasonic sensor
-  private boolean tracking = false; //tracking for 5 second thingy, probably not on the robot 
-  private boolean lastHall = true; //last value of Hall effect sensor (only meaasures true or false) -> false when it senses it 
-  private long start = System.currentTimeMillis(); //for the 5 second thing to measure how much time has passed 
-  private static int timeplus = 5000; //defines 5 seconds for the 5 second thingy
+  private ShooterWheel shooterWheel;
 
-  // returns the value to be plugged into the controller
-  private Callable<Double> callable;  
-
-  // returns true if it is in the fov and a value WILL be read from callable
-  private Callable<Boolean> isInFov;
+  private double zeroPosition;
+  private double turnSpeed;
+  
+  //private boolean lastHall = true; //last value of Hall effect sensor (only meaasures true or false) -> false when it senses it 
 
   private ProfiledPIDController controller = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.05, .05)); //defines pid for turret 
   
-  
   /** Creates a new AdjustCommand. */
 
-  public AdjustCommand(Limelight limelight, Turret turret/*, Ultrasonic ultrasonic*/) { //turns the turret 
+  public AdjustCommand(Limelight limelight, Turret turret, ShooterWheel shooterWheel) { //turns the turret 
     this.limelight = limelight; //setting current limelight 
     this.turret = turret; //setting current turret
-    //this.ultrasonic = ultrasonic; // setting the current ultrasonic sensor
-    callable = this.limelight::getTX; //setting default - if there is no callable it just sets it to limelight one
-    isInFov = this.limelight::getTV; //^^
+    this.shooterWheel = shooterWheel;
+    this.zeroPosition = turret.getEncoderPosition();
+    this.turnSpeed = Constants.DefaultTurretSpeed;
+
     addRequirements(limelight, turret); //need to use the limelight (one subsystem at a time)
   }
-
-
-  public AdjustCommand(Limelight limelight, Turret turret, Ultrasonic ultrasonic, Callable<Double> positionCallable, Callable<Boolean> isInFovCollable) { //same thing but callables for the seeking limelight
-    //have it adjust to zero, encoder - zero value 
-    this.limelight = limelight;
-    this.turret = turret;
-    //this.ultrasonic = ultrasonic;
-    this.callable = positionCallable;
-    this.isInFov = isInFovCollable;
-    addRequirements(limelight);
-  }
-
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {} 
- 
+
+  private void goToTargetEncoding(double target){
+    ProfiledPIDController positionController = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.05, .05));
+    double adjust;
+    do{
+      double error = turret.getEncoderPosition() - target;
+      adjust = positionController.calculate(error);
+    } while(adjust > Math.abs(Constants.AdjustHaltThreshold));
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // commented out for other tests here
-    //System.out.println(turret.getEncoderPosition()); //gets encoder position for turret
+    if(Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getLeftBumper()){
+      if(!this.limelight.getTV()) { //check is limelight is in fov or not
+        if(turret.getEncoderPosition() < this.zeroPosition){
+          this.turnSpeed = Constants.DefaultTurretSpeed;
+        }
+        else if(turret.getHallEffectReading()){
+          this.turnSpeed = -Constants.DefaultTurretSpeed;
+        }
+        turret.turn(turnSpeed);
+      }
+      else {
+        double turnAmount = controller.calculate(this.limelight.getTX());
 
-    //System.out.println(ultrasonic.getInches());
-
-    // if (Robot.robotContainer.sticky1.getPOV() != -1 || Robot.robotContainer.sticky2.getPOV() != -1) return; // if there is manual input for the turret then return - manual>automatic
-
-    // if ((Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getLeftBumper()) && !tracking) { //first if block is for the 5 seconds of tracking
-    //   tracking = true;
-    //   start = System.currentTimeMillis();
-    // } else if (System.currentTimeMillis() >= start + timeplus) {
-    //   tracking = false;
-    // }
-
-    // if (tracking) { //normal tracking not ads tracking
-    //   try { 
-    //     if (Math.abs(this.callable.call()) < 10) return; // deadzone for turret so it runs smoother //if it sees the reflective tape then it will track within 10** //needs fixing- potential issue
-
-    //     // searching for it if not in fov
-    //     if (!isInFov.call()) { //if it is not FOV then.
-      
-    //       if (turret.getEncoderPosition() <= 0 && !turret.getHallEffectReading() && lastHall) //turns to one side until it hits hall effect sensor then goes to the other side
-    //         turret.turn(Constants.DefaultTurretSpeed); //moves turret
-    //       else if (turret.getEncoderPosition() > 0 && !turret.getHallEffectReading() && lastHall) //goes the opposite side until it rebounds to the other hall effect sensor
-    //         turret.turn(-Constants.DefaultTurretSpeed); 
-
-    //     } else {
-    //       turret.turn(controller.calculate(-this.callable.call())); //seeks it, if it already is in FOV just gives to PID controller to track it 
-    //     }
-
-    //   } catch (Exception e) {} finally {} // ignore potential error from callable
-    // }
-
-    lastHall = turret.getHallEffectReading(); //keeps checking for hall effect sensor to be on
-    
+        if(turnAmount > Math.abs(Constants.AdjustHaltThreshold))
+          turret.turn(turnAmount);
+        else{
+          shooterWheel.run();
+        }
+      }
+    }
+    else {
+      goToTargetEncoding(this.zeroPosition);
+      shooterWheel.set(0);
+    }
   }
 
 
@@ -116,5 +97,4 @@ public class AdjustCommand extends CommandBase {
   public boolean isFinished() {
     return false;
   }
-
 }

@@ -4,12 +4,9 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drive;
-import frc.robot.commands.*;
 
 
 
@@ -25,9 +22,6 @@ public class Robot extends TimedRobot {
   public static RobotContainer robotContainer;
 
   public final static Drive drive = Drive.getInstance();
-
-  Compressor phCompressor = new Compressor(Constants.PneumaticHub, PneumaticsModuleType.REVPH);
-
   
   // so our setDefaultCommands can know they shouldn't run
   public static boolean auton = false;
@@ -94,26 +88,13 @@ public class Robot extends TimedRobot {
     }
     
     robotContainer.getTeleoperatedCommand().schedule();
-
-    Robot.robotContainer.intakePushPull.pistons.retract();
-
-    
   }
 
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    // if (Robot.robotContainer.sticky2.getXButton() || Robot.robotContainer.sticky1.getXButton()){
-    //   Robot.robotContainer.intakePushPull.pistons.extend();
-    //   System.out.println("extend");
-    // } else if (Robot.robotContainer.sticky2.getYButton() || Robot.robotContainer.sticky1.getYButton()){
-    //   Robot.robotContainer.intakePushPull.pistons.retract();
-    //   System.out.println("retract");
-    // } else if (Robot.robotContainer.sticky2.getAButton() || Robot.robotContainer.sticky1.getAButton()) {
-    //   Robot.robotContainer.intakePushPull.pistons.toggle();  
-    //   System.out.println("toggie");
-    // }
+    
   }
 
 
