@@ -2,22 +2,23 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.ManualTeleop;
+
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.Robot;
-import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Indexer;
+
+public class IndexerManual extends CommandBase {
+
+  
+  private Indexer indexer;
 
 
-public class DriveTeleop extends CommandBase {
-
-  private Drive drive = Drive.getInstance();
-
-
-  /** Creates a new DriveTeleop. */
-  public DriveTeleop() {
-    addRequirements(drive);
+  /** Creates a new IndexerManual. */
+  public IndexerManual(Indexer p_indexer) {
+    indexer = p_indexer;
+    addRequirements(indexer);
   }
 
 
@@ -31,21 +32,14 @@ public class DriveTeleop extends CommandBase {
   public void execute() {
     if (Robot.auton) return;
 
-    double leftAxisInput = Robot.robotContainer.sticky1.getLeftY();
-    double rightAxisInput = Robot.robotContainer.sticky1.getRightY();
-
-    if (Math.abs(leftAxisInput) > Constants.LeftDeadzone) {
-      drive.setDriveL(Math.pow(leftAxisInput, 3));
+    if ( Math.abs(Robot.robotContainer.sticky2.getLeftTriggerAxis()) > .1 || Robot.robotContainer.sticky1.getLeftBumper() ) {
+      indexer.run();
+    } else if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()) {
+      indexer.reverse();
     } else {
-       drive.setDriveL(0);
+      indexer.stop();
     }
-
-    if (Math.abs(rightAxisInput) > Constants.RightDeadzone) {
-      drive.setDriveR(Math.pow(-rightAxisInput, 3));
-    } else {
-      drive.setDriveR(0);
-    }
-
+    
   }
 
 
@@ -59,5 +53,5 @@ public class DriveTeleop extends CommandBase {
   public boolean isFinished() {
     return false;
   }
-  
+
 }

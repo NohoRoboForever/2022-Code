@@ -35,17 +35,17 @@ public class ShootSystemCombined extends CommandBase {
   @Override
   public void execute() {
 
-    if (Math.abs(Robot.robotContainer.sticky1.getLeftTriggerAxis()) > .1 && Robot.robotContainer.sticky1.getLeftBumperPressed() && !active) {
-      new SequentialCommandGroup(
-        new InstantCommand(shooterWheel::run, shooterWheel),
-        new WaitCommand(1.5),
-        new InstantCommand(indexer::run, indexer),
-        new WaitCommand(0.5),
-        new InstantCommand(indexer::stop, indexer),
-        new InstantCommand(shooterWheel::stop, shooterWheel)
-      ).schedule();
-      active = true;
-    }
+    // if (Math.abs(Robot.robotContainer.sticky1.getLeftTriggerAxis()) > .1 && Robot.robotContainer.sticky1.getLeftBumperPressed() && !active) {
+    //   new SequentialCommandGroup(
+    //     new InstantCommand(shooterWheel::run, shooterWheel),
+    //     new WaitCommand(1.5),
+    //     new InstantCommand(indexer::run, indexer),
+    //     new WaitCommand(0.5),
+    //     new InstantCommand(indexer::stop, indexer),
+    //     new InstantCommand(shooterWheel::stop, shooterWheel)
+    //   ).schedule();
+    //   active = true;
+    // }
    
     
   }

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.ShooterWheel;
 
 
 
@@ -98,6 +99,20 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+
+    if (robotContainer.sticky1.getBackButtonPressed() || robotContainer.sticky2.getBackButtonPressed()){
+      robotContainer.shooterWheel.run();
+      robotContainer.indexer.run();
+
+      robotContainer.intakePistons.extend();
+    }
+
+    if (robotContainer.sticky1.getBackButtonReleased() || robotContainer.sticky2.getBackButtonReleased()){
+      robotContainer.shooterWheel.stop();
+      robotContainer.indexer.stop();
+
+      robotContainer.intakePistons.retract();
+    }
     
   }
 

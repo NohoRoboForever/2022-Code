@@ -59,30 +59,30 @@ public class AdjustCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getLeftBumper()){
-      if(!this.limelight.getTV()) { //check is limelight is in fov or not
-        if(turret.getEncoderPosition() < this.zeroPosition){
-          this.turnSpeed = Constants.DefaultTurretSpeed;
-        }
-        else if(turret.getHallEffectReading()){
-          this.turnSpeed = -Constants.DefaultTurretSpeed;
-        }
-        turret.turn(turnSpeed);
-      }
-      else {
-        double turnAmount = controller.calculate(this.limelight.getTX());
+    // if(Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getLeftBumper()){
+    //   if(!this.limelight.getTV()) { //check is limelight is in fov or not
+    //     if(turret.getEncoderPosition() < this.zeroPosition){
+    //       this.turnSpeed = Constants.DefaultTurretSpeed;
+    //     }
+    //     else if(turret.getHallEffectReading()){
+    //       this.turnSpeed = -Constants.DefaultTurretSpeed;
+    //     }
+    //     turret.turn(turnSpeed);
+    //   }
+    //   else {
+    //     double turnAmount = controller.calculate(this.limelight.getTX());
 
-        if(turnAmount > Math.abs(Constants.AdjustHaltThreshold))
-          turret.turn(turnAmount);
-        else{
-          shooterWheel.run();
-        }
-      }
-    }
-    else {
-      goToTargetEncoding(this.zeroPosition);
-      shooterWheel.set(0);
-    }
+    //     if(turnAmount > Math.abs(Constants.AdjustHaltThreshold))
+    //       turret.turn(turnAmount);
+    //     else{
+    //       shooterWheel.run();
+    //     }
+    //   }
+    // }
+    // else {
+    //   goToTargetEncoding(this.zeroPosition);
+    //   shooterWheel.set(0);
+    // }
   }
 
 
