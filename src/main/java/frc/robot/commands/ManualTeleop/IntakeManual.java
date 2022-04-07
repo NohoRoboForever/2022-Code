@@ -7,11 +7,15 @@ package frc.robot.commands.ManualTeleop;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+<<<<<<< HEAD
 import frc.robot.subsystems.Indexer;
+=======
+>>>>>>> 03b1cf0df51719abab0961eebd48c0fa8638414f
 import frc.robot.subsystems.IntakeMotor;
 
 public class IntakeManual extends CommandBase {
 
+<<<<<<< HEAD
   private boolean buttonSkip = false;
   private IntakeMotor intakeMotor;
 
@@ -20,6 +24,13 @@ public class IntakeManual extends CommandBase {
     intakeMotor = p_intake;
     addRequirements(intakeMotor);
 
+=======
+  private IntakeMotor intake;
+
+  /** Creates a new IntakeManual. */
+  public IntakeManual(IntakeMotor p_intake) {
+    intake = p_intake;
+>>>>>>> 03b1cf0df51719abab0961eebd48c0fa8638414f
   }
 
   // Called when the command is initially scheduled.
@@ -30,12 +41,20 @@ public class IntakeManual extends CommandBase {
   @Override
   public void execute() {
     if (Robot.robotContainer.sticky1.getAButton()){
+<<<<<<< HEAD
       intakeMotor.run();
     } else if (Robot.robotContainer.sticky1.getBButton()){
       intakeMotor.reverse();
     } else {
       buttonSkip = true;
       intakeMotor.stop();
+=======
+      intake.run();
+    } else if (Robot.robotContainer.sticky1.getBButton()){
+      intake.reverse();
+    } else {
+      intake.stop();
+>>>>>>> 03b1cf0df51719abab0961eebd48c0fa8638414f
     }
   }
 
@@ -48,9 +67,12 @@ public class IntakeManual extends CommandBase {
   public boolean isFinished() {
     return false;
   }
+<<<<<<< HEAD
 
   public boolean ButtonSkip () {
     System.out.println("elloMate");
     return buttonSkip;
   }
+=======
+>>>>>>> 03b1cf0df51719abab0961eebd48c0fa8638414f
 }

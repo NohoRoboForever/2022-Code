@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.ManualTeleop;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
@@ -36,21 +36,28 @@ public class ShooterWheelManual extends CommandBase {
     if (Robot.auton) return;
     
     double rightTriggerInput = Robot.robotContainer.sticky1.getRightTriggerAxis();
-    double leftTriggerInput = Robot.robotContainer.sticky2.getLeftTriggerAxis();
+    //double leftTriggerInput = Robot.robotContainer.sticky2.getLeftTriggerAxis();
 
-    if (Math.abs(rightTriggerInput) > .1) {
+    if (rightTriggerInput > 0.1){
+      shooterWheel.set(0.4);
       indexer.run();
-      isShooting = true;
-      shooterWheel.set(rightTriggerInput * Constants.DefaultFlywheelSpeed);
-    } else if (Math.abs(leftTriggerInput) > .1) {
-      indexer.run();
-      isShooting = true;
-      shooterWheel.set(leftTriggerInput * Constants.DefaultFlywheelSpeed);
     } else {
-      indexer.stop();
-      isShooting = false;
       shooterWheel.stop();
+      indexer.stop();
     }
+    // if (Math.abs(rightTriggerInput) > .1) {
+    //   indexer.run();
+    //   isShooting = true;
+    //   shooterWheel.set(rightTriggerInput * Constants.DefaultFlywheelSpeed);
+    // } else if (Math.abs(leftTriggerInput) > .1) {
+    //   indexer.run();
+    //   isShooting = true;
+    //   shooterWheel.set(leftTriggerInput * Constants.DefaultFlywheelSpeed);
+    // } else {
+    //   indexer.stop();
+    //   isShooting = false;
+    //   shooterWheel.stop();
+    // }
     
   }
 

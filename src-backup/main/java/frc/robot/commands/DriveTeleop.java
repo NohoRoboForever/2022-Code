@@ -2,7 +2,8 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.ManualTeleop;
+
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
@@ -35,13 +36,13 @@ public class DriveTeleop extends CommandBase {
     double rightAxisInput = Robot.robotContainer.sticky1.getRightY();
 
     if (Math.abs(leftAxisInput) > Constants.LeftDeadzone) {
-      drive.setDriveL(Math.pow(leftAxisInput, 3));
+      drive.setDriveL(0.3*Math.pow(leftAxisInput, 3));
     } else {
        drive.setDriveL(0);
     }
 
     if (Math.abs(rightAxisInput) > Constants.RightDeadzone) {
-      drive.setDriveR(Math.pow(-rightAxisInput, 3));
+      drive.setDriveR(0.3*Math.pow(-rightAxisInput, 3));
     } else {
       drive.setDriveR(0);
     }

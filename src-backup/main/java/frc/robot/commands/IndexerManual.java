@@ -2,7 +2,8 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.ManualTeleop;
+
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
@@ -31,7 +32,7 @@ public class IndexerManual extends CommandBase {
   public void execute() {
     if (Robot.auton) return;
 
-    if ( Math.abs(Robot.robotContainer.sticky2.getRightTriggerAxis()) > .1 || Robot.robotContainer.sticky1.getLeftBumper() ) {
+    if ( Math.abs(Robot.robotContainer.sticky2.getLeftTriggerAxis()) > .1 || Robot.robotContainer.sticky1.getLeftBumper() ) {
       indexer.run();
     } else if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()) {
       indexer.reverse();

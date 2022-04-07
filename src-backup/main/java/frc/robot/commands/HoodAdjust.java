@@ -2,18 +2,19 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.ManualTeleop;
+
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.HoodPistons;
 
-public class HoodAdjust extends CommandBase {
+public class HoodAdjustManual extends CommandBase {
 
   private HoodPistons pistons;
 
   /** Creates a new HoodAdjust. */
-  public HoodAdjust(HoodPistons p_pistons) {
+  public HoodAdjustManual(HoodPistons p_pistons) {
     pistons = p_pistons;
     addRequirements(pistons);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -28,13 +29,18 @@ public class HoodAdjust extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.auton) return;
 
+<<<<<<<< HEAD:src-backup/main/java/frc/robot/commands/HoodAdjust.java
     if ((Robot.robotContainer.sticky2.getPOV() < 45 || Robot.robotContainer.sticky2.getPOV() > 315) || 
     (Robot.robotContainer.sticky1.getPOV() < 45 || Robot.robotContainer.sticky1.getPOV() > 315)) {
       pistons.extend();
     } else if ((Robot.robotContainer.sticky2.getPOV() < 225 && Robot.robotContainer.sticky2.getPOV() > 135) || 
     (Robot.robotContainer.sticky1.getPOV() < 225 && Robot.robotContainer.sticky1.getPOV() > 135)) {
+========
+    if ((Robot.robotContainer.sticky2.getPOV() == 0) || (Robot.robotContainer.sticky1.getPOV() == 0)) {
+      pistons.extend();
+    } else if ((Robot.robotContainer.sticky2.getPOV() == 180) || (Robot.robotContainer.sticky1.getPOV() == 180)) {
+>>>>>>>> 03b1cf0df51719abab0961eebd48c0fa8638414f:src/main/java/frc/robot/commands/ManualTeleop/HoodAdjustManual.java
       pistons.retract();
     }
   }

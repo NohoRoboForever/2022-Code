@@ -100,8 +100,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
+<<<<<<< HEAD
     System.out.println(robotContainer.intakeManual.ButtonSkip());
 
+=======
+>>>>>>> 03b1cf0df51719abab0961eebd48c0fa8638414f
     if (robotContainer.sticky1.getBackButtonPressed() || robotContainer.sticky2.getBackButtonPressed()){
       robotContainer.shooterWheel.run();
       robotContainer.indexer.run();
