@@ -32,22 +32,9 @@ public class IntakePushPull extends CommandBase {
       pistons.retract();
       System.out.println("intake retract");
     }
-<<<<<<< HEAD
     if ((Robot.robotContainer.sticky2.getXButton() || Robot.robotContainer.sticky1.getYButton())){
       pistons.extend();
       System.out.println("intake extend");
-=======
-<<<<<<<< HEAD:src-backup/main/java/frc/robot/commands/IntakePushPull.java
-    if ((Robot.robotContainer.sticky2.getYButton() || Robot.robotContainer.sticky1.getYButton()) && pressed){
-      pressed = false;
-      pistons.extend(); //shouldn't this be retract?
-========
-    if ((Robot.robotContainer.sticky2.getXButton() || Robot.robotContainer.sticky1.getYButton())){
-      pistons.extend();
-      System.out.println("intake extend");
-
->>>>>>>> 03b1cf0df51719abab0961eebd48c0fa8638414f:src/main/java/frc/robot/commands/ManualTeleop/IntakePushPull.java
->>>>>>> 03b1cf0df51719abab0961eebd48c0fa8638414f
     }
   }
 

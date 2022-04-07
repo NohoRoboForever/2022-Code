@@ -36,11 +36,7 @@ public class ShooterWheelManual extends CommandBase {
     if (Robot.auton) return;
     
     double rightTriggerInput = Robot.robotContainer.sticky1.getRightTriggerAxis();
-<<<<<<< HEAD
-    double leftTriggerInput = Robot.robotContainer.sticky2.getLeftTriggerAxis();
-=======
     //double leftTriggerInput = Robot.robotContainer.sticky2.getLeftTriggerAxis();
->>>>>>> 03b1cf0df51719abab0961eebd48c0fa8638414f
 
     if (rightTriggerInput > 0.1){
       shooterWheel.set(0.4);

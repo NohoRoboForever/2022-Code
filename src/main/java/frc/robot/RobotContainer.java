@@ -84,10 +84,7 @@ public class RobotContainer {
     camera.setDefaultCommand(cameraOperation);
     intakePistons.setDefaultCommand(intakePushPull);
     hoodPistons.setDefaultCommand(hoodAdjustManual);
-<<<<<<< HEAD
     intakeMotor.setDefaultCommand(intakeManual);
-=======
->>>>>>> 03b1cf0df51719abab0961eebd48c0fa8638414f
 
     SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not
     SmartDashboard.putNumber("Shooter Speed", shooterWheel.getSpeed()); //shows shooter speed

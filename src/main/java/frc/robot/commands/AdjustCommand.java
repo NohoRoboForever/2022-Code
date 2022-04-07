@@ -58,36 +58,22 @@ public class AdjustCommand extends CommandBase {
     // if(Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getLeftBumper()){
     //   if(!this.limelight.getTV()) { //check is limelight is in fov or not
     //     if(turret.getEncoderPosition() < this.zeroPosition){
-<<<<<<< HEAD
     //       System.out.println("Lower bound reached, scanning forward");
     //       this.turnSpeed = Constants.DefaultTurretSpeed;
     //     }
     //     else if(turret.getHallEffectReading()){
     //       System.out.println("Upper bound reached, scanning backwards");
-=======
-    //       this.turnSpeed = Constants.DefaultTurretSpeed;
-    //     }
-    //     else if(turret.getHallEffectReading()){
->>>>>>> 03b1cf0df51719abab0961eebd48c0fa8638414f
     //       this.turnSpeed = -Constants.DefaultTurretSpeed;
     //     }
     //     turret.turn(turnSpeed);
     //   }
     //   else {
     //     double turnAmount = controller.calculate(this.limelight.getTX());
-<<<<<<< HEAD
     //     if(turnAmount > Math.abs(Constants.AdjustHaltThreshold))
     //        turret.turn(turnAmount);
     //     else{
     //       shooterWheel.run();
           
-=======
-
-    //     if(turnAmount > Math.abs(Constants.AdjustHaltThreshold))
-    //       turret.turn(turnAmount);
-    //     else{
-    //       shooterWheel.run();
->>>>>>> 03b1cf0df51719abab0961eebd48c0fa8638414f
     //     }
     //   }
     // }
