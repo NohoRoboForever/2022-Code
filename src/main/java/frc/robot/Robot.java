@@ -85,7 +85,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    System.out.println("message!");
     auton = false;
 
     if (robotContainer.getAutonomousCommand() != null) {
@@ -100,7 +99,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
-    System.out.println(robotContainer.intakeManual.ButtonSkip());
+    //System.out.println(robotContainer.intakeManual.ButtonSkip());
   }
 
 
@@ -119,7 +118,6 @@ public class Robot extends TimedRobot {
   /** This function is called once when the robot is first started up. */
   @Override
   public void simulationInit() {
-    System.out.println("message!");
   }
 
   

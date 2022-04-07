@@ -58,7 +58,7 @@ public class RobotContainer {
   public final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel, indexer);  
   public final IntakeIndexerRun intakeIndexerRunCommand = new IntakeIndexerRun(intakeMotor, indexer, limitSwitch, lowerSwitch);
   public final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
-  public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret, shooterWheel);
+  //public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret, shooterWheel);
   public final ShootSystemCombined shootSystemCombined = new ShootSystemCombined(indexer, shooterWheel);
   public final IntakePushPull intakePushPull = new IntakePushPull(intakePistons);
   public final IntakeManual intakeManual = new IntakeManual(intakeMotor);
@@ -80,7 +80,7 @@ public class RobotContainer {
     indexer.setDefaultCommand(intakeIndexerRunCommand);
     climbArm.setDefaultCommand(simpleClimb);
     turret.setDefaultCommand(turretManual);
-    limelight.setDefaultCommand(adjustCommand);
+    //limelight.setDefaultCommand(adjustCommand);
     camera.setDefaultCommand(cameraOperation);
     intakePistons.setDefaultCommand(intakePushPull);
     hoodPistons.setDefaultCommand(hoodAdjustManual);
@@ -107,10 +107,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    * @param Button 
    */
-  private void configureButtonBindings() {
-    //new JoystickButton(sticky1, Button.kA.value).whenPressed(new InstantCommand(intakePistons::toggle, intakePistons));
-    //new JoystickButton(sticky2, Button.kA.value).whenPressed(new InstantCommand(intakePistons::toggle, intakePistons));
-  }
+  private void configureButtonBindings() { }
 
 
   public Command getAutonomousCommand() {

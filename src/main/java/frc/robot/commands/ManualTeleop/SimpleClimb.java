@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.ManualTeleop;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
@@ -26,16 +26,21 @@ public class SimpleClimb extends CommandBase {
 
   @Override
   public void execute() {
-    if (Robot.auton) return;
+    //if (Robot.auton) return;
+    //CONFIGURED FOR RATCHET MODE
+    if (Robot.robotContainer.sticky1.getBackButton()) {
+      climbArm.extend();
+      System.out.println("climb retracting");
+    } else if (Robot.robotContainer.sticky1.getStartButton()) {
+      climbArm.retract();
+      System.out.println("climb extending");
 
-    // if (Robot.robotContainer.sticky2.getXButton()) {
-    //   climbArm.extend();
-    // } else if (Robot.robotContainer.sticky2.getYButton()) {
-    //   climbArm.retract();
-    // } else if (Robot.robotContainer.sticky2.getRightBumper()) {  //change to start button?
-    //   climbArm.stop();
-    //   climbArm.hold();
-    // }
+    } else { 
+      climbArm.stop();
+      climbArm.hold();
+      System.out.println("climb held");
+
+    }
     
   }
 

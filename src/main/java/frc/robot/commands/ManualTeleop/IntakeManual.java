@@ -50,7 +50,6 @@ public class IntakeManual extends CommandBase {
   }
 
   public boolean ButtonSkip () {
-    System.out.println("elloMate");
     return buttonSkip;
   }
 }

@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.ManualTeleop;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
@@ -20,15 +20,12 @@ public class TurretManual extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.auton) return;
-    
-    int sticky1POV = Robot.robotContainer.sticky1.getPOV();
-    int sticky2POV = Robot.robotContainer.sticky2.getPOV();
+    //if (Robot.auton) return;
 
     if ( (Robot.robotContainer.sticky1.getPOV() == 90 ) || (Robot.robotContainer.sticky2.getPOV() == 90)/* && !turret.getHallEffectReading() && turret.getEncoderPosition() < 0.6*/) {
       turret.turn(Constants.DefaultTurretSpeed);

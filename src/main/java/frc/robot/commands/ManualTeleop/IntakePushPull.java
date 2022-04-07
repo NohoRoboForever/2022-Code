@@ -28,11 +28,11 @@ public class IntakePushPull extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if ((Robot.robotContainer.sticky2.getYButton() || Robot.robotContainer.sticky1.getXButton())){
+    if ((Robot.robotContainer.sticky1.getYButton() /*|| Robot.robotContainer.sticky2.getXButton()*/)){
       pistons.retract();
       System.out.println("intake retract");
     }
-    if ((Robot.robotContainer.sticky2.getXButton() || Robot.robotContainer.sticky1.getYButton())){
+    if ((Robot.robotContainer.sticky1.getXButton() /*|| Robot.robotContainer.sticky2.getYButton()*/)){
       pistons.extend();
       System.out.println("intake extend");
     }
