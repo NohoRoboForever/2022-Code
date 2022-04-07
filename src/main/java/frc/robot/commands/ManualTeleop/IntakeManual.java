@@ -13,6 +13,7 @@ import frc.robot.subsystems.IntakeMotor;
 public class IntakeManual extends CommandBase {
 
   private boolean buttonSkip = false;
+  private boolean intakeOn = false;
   private IntakeMotor intakeMotor;
 
   /** Creates a new IntakeManual. */
@@ -29,13 +30,22 @@ public class IntakeManual extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.robotContainer.sticky1.getAButton()){
-      intakeMotor.run();
-    } else if (Robot.robotContainer.sticky1.getBButton()){
+    if (Robot.robotContainer.sticky1.getRightBumperPressed()){
+
+      if (!intakeOn){
+        intakeMotor.run();
+        intakeOn = true;
+      } else {
+        intakeMotor.stop();
+        intakeOn = false;
+      }
+    } else if ((Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()) && !Robot.robotContainer.indexerManual.isRunning){
       intakeMotor.reverse();
+      Robot.robotContainer.indexer.reverse();
     } else {
       buttonSkip = true;
       intakeMotor.stop();
+      intakeOn = false;
     }
   }
 

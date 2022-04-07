@@ -20,8 +20,7 @@ public class ShooterWheelManual extends CommandBase {
   /** Creates a new ShooterWheelManual. */
   public ShooterWheelManual(ShooterWheel p_shooterWheel, Indexer p_indexer) {
     shooterWheel = p_shooterWheel;
-    indexer = p_indexer;
-    addRequirements(shooterWheel, indexer);
+    addRequirements(shooterWheel);
   }
 
 
@@ -35,10 +34,10 @@ public class ShooterWheelManual extends CommandBase {
   public void execute() {
     if (Robot.auton) return;
     
-    double rightTriggerInput = Robot.robotContainer.sticky1.getRightTriggerAxis();
-    //double leftTriggerInput = Robot.robotContainer.sticky2.getLeftTriggerAxis();
+    //double rightTriggerInput = Robot.robotContainer.sticky1.getRightTriggerAxis();
+    boolean a2 = Robot.robotContainer.sticky2.getAButton();
 
-    if (rightTriggerInput > 0.1){
+    if (a2 ==true /*||*/){
       shooterWheel.set(0.4);
       indexer.run();
     } else {
