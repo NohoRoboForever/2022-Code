@@ -12,43 +12,38 @@ import frc.robot.Constants;
 
 public class HoodPistons extends SubsystemBase {
 
-  private DoubleSolenoid leftPiston  = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodLeftForward, Constants.HoodLeftReverse);
-  private DoubleSolenoid rightPiston  = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodRightForward, Constants.HoodRightReverse);
-
+  private DoubleSolenoid leftPiston = new DoubleSolenoid(Constants.PneumaticHub, PneumaticsModuleType.REVPH, Constants.HoodLeftForward, Constants.HoodLeftReverse);
+  private DoubleSolenoid rightPiston = new DoubleSolenoid(Constants.PneumaticHub, PneumaticsModuleType.REVPH, Constants.HoodRightForward, Constants.HoodRightReverse);
 
   /** Creates a new HoodPistons. */
-  public HoodPistons() {
-   // leftPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodLeftForward, Constants.HoodLeftReverse);
-   // rightPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodRightForward, Constants.HoodRightReverse);
-  }
-
+  public HoodPistons() {}
 
   public DoubleSolenoid.Value getValue(){
     return leftPiston.get();
   }
-
 
   public void toggle() {
     leftPiston.toggle();
     rightPiston.toggle();
   }
 
-
   public void extend() {
     leftPiston.set(Value.kForward);
     rightPiston.set(Value.kForward);
   }
-
 
   public void retract() {
     leftPiston.set(Value.kReverse);
     rightPiston.set(Value.kReverse);
   }
 
+  public void turnOff() {
+    leftPiston.set(Value.kOff);
+    rightPiston.set(Value.kOff);
+  }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
-  
 }

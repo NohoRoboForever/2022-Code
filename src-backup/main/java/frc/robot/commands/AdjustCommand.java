@@ -25,6 +25,10 @@ public class AdjustCommand extends CommandBase {
 
   private double zeroPosition;
   private double turnSpeed;
+  
+  private boolean lastHall = true; //last value of Hall effect sensor (only meaasures true or false) -> false when it senses it 
+
+  private boolean finished;
   private ProfiledPIDController controller = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.05, .05)); //defines pid for turret 
   
   /** Creates a new AdjustCommand. */
@@ -55,32 +59,30 @@ public class AdjustCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // if(Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getLeftBumper()){
-    //   if(!this.limelight.getTV()) { //check is limelight is in fov or not
-    //     if(turret.getEncoderPosition() < this.zeroPosition){
-    //       System.out.println("Lower bound reached, scanning forward");
-    //       this.turnSpeed = Constants.DefaultTurretSpeed;
-    //     }
-    //     else if(turret.getHallEffectReading()){
-    //       System.out.println("Upper bound reached, scanning backwards");
-    //       this.turnSpeed = -Constants.DefaultTurretSpeed;
-    //     }
-    //     turret.turn(turnSpeed);
-    //   }
-    //   else {
-    //     double turnAmount = controller.calculate(this.limelight.getTX());
-    //     if(turnAmount > Math.abs(Constants.AdjustHaltThreshold))
-    //        turret.turn(turnAmount);
-    //     else{
-    //       shooterWheel.run();
-          
-    //     }
-    //   }
-    // }
-    // else {
-    //   goToTargetEncoding(this.zeroPosition);
-    //   shooterWheel.set(0);
-    // }
+    if(Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getLeftBumper()){
+      if(!this.limelight.getTV()) { //check is limelight is in fov or not
+        if(turret.getEncoderPosition() < this.zeroPosition){
+          this.turnSpeed = Constants.DefaultTurretSpeed;
+        }
+        else if(turret.getHallEffectReading()){
+          this.turnSpeed = -Constants.DefaultTurretSpeed;
+        }
+        turret.turn(turnSpeed);
+      }
+      else {
+        double turnAmount = controller.calculate(this.limelight.getTX());
+
+        if(turnAmount > Math.abs(Constants.AdjustHaltThreshold))
+          turret.turn(turnAmount);
+        else{
+          shooterWheel.run();
+        }
+      }
+    }
+    else {
+      goToTargetEncoding(this.zeroPosition);
+      shooterWheel.set(0);
+    }
   }
 
 
@@ -88,12 +90,13 @@ public class AdjustCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     turret.stop();
+    finished = true;
   }
 
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return !lastHall || finished;
   }
 }

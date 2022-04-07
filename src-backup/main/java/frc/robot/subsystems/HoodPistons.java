@@ -10,24 +10,34 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class IntakePistons extends SubsystemBase {
+public class HoodPistons extends SubsystemBase {
 
-  private DoubleSolenoid leftPiston = new DoubleSolenoid(Constants.PneumaticHub, PneumaticsModuleType.REVPH, Constants.IntakeRightForward, Constants.IntakeRightReverse);
-  private DoubleSolenoid rightPiston = new DoubleSolenoid(Constants.PneumaticHub, PneumaticsModuleType.REVPH, Constants.IntakeLeftForward, Constants.IntakeLeftReverse); 
+  private DoubleSolenoid leftPiston  = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodLeftForward, Constants.HoodLeftReverse);
+  private DoubleSolenoid rightPiston  = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodRightForward, Constants.HoodRightReverse);
+
+  /** Creates a new HoodPistons. */
+  public HoodPistons() {
+   // leftPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodLeftForward, Constants.HoodLeftReverse);
+   // rightPiston = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.HoodRightForward, Constants.HoodRightReverse);
+  }
 
 
-  /** Creates a new IntakePistons. */
-  public IntakePistons() {}
+  public DoubleSolenoid.Value getValue(){
+    return leftPiston.get();
+  }
+
 
   public void toggle() {
     leftPiston.toggle();
     rightPiston.toggle();
   }
 
+
   public void extend() {
     leftPiston.set(Value.kForward);
     rightPiston.set(Value.kForward);
   }
+
 
   public void retract() {
     leftPiston.set(Value.kReverse);
@@ -35,15 +45,8 @@ public class IntakePistons extends SubsystemBase {
   }
 
 
-  public void turnOff() {
-    leftPiston.set(Value.kOff);
-    rightPiston.set(Value.kOff);
-  }
-
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
-
 }

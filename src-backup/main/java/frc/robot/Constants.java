@@ -34,7 +34,7 @@ public final class Constants {
     public static final double OuttakeSpeed = 0.5d;
     public static final double ClimbSpeed = 0.4d;
     public static final double DefaultTurretSpeed = 0.15d;
-    public static final double DefaultFlywheelSpeed = 0.7;
+    public static final double DefaultFlywheelSpeed = 0.55d;
     public static       double CurrentFlywheelSpeed = DefaultFlywheelSpeed;
     public static final double IntakeSpeed = 0.5d;
     public static final double RightDrive = 0.2d;
@@ -93,10 +93,10 @@ public final class Constants {
     public static final int IntakeRightForward = 0;
     public static final int IntakeRightReverse = 1;
 
-    public static final int HoodLeftForward = 8;
-    public static final int HoodLeftReverse = 9;
-    public static final int HoodRightForward = 10;
-    public static final int HoodRightReverse = 11;
+    public static final int HoodLeftForward = 5;
+    public static final int HoodLeftReverse = 6;
+    public static final int HoodRightForward = 7;
+    public static final int HoodRightReverse = 8;
 
 
     // flywheel
@@ -125,5 +125,5 @@ public final class Constants {
     public static final int UltrasonicAnalogPin = 2;
     
     //limelight 
-    public static final double AdjustHaltThreshold = 1;
+    public static final double AdjustHaltThreshold = 5;
 }

@@ -6,15 +6,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj.XboxController.Button;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.commands.Autonomous.ManualAutonSequence;
-import frc.robot.commands.ManualTeleop.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.AnalogInput;
 import frc.robot.Constants;
@@ -51,7 +46,7 @@ public class RobotContainer {
 
   
   // -- Commands --
-  public final HoodAdjustManual hoodAdjustManual = new HoodAdjustManual(hoodPistons);
+  public final HoodAdjust hoodAdjust = new HoodAdjust(hoodPistons);
   public final CameraOperation cameraOperation = new CameraOperation(camera);
   public final TurretManual turretManual = new TurretManual(turret);
   public final IndexerManual indexerManual = new IndexerManual(indexer);
@@ -61,8 +56,7 @@ public class RobotContainer {
   public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret, shooterWheel);
   public final ShootSystemCombined shootSystemCombined = new ShootSystemCombined(indexer, shooterWheel);
   public final IntakePushPull intakePushPull = new IntakePushPull(intakePistons);
-  public final IntakeManual intakeManual = new IntakeManual(intakeMotor);
-
+  
   // main commmands
   private final Command m_teleopCommand = new DriveTeleop();
   private final Command m_normalAutonCommand = new ManualAutonSequence(intakeMotor, indexer, shooterWheel, limelight, turret);
@@ -83,8 +77,7 @@ public class RobotContainer {
     limelight.setDefaultCommand(adjustCommand);
     camera.setDefaultCommand(cameraOperation);
     intakePistons.setDefaultCommand(intakePushPull);
-    hoodPistons.setDefaultCommand(hoodAdjustManual);
-    intakeMotor.setDefaultCommand(intakeManual);
+    hoodPistons.setDefaultCommand(hoodAdjust);
 
     SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not
     SmartDashboard.putNumber("Shooter Speed", shooterWheel.getSpeed()); //shows shooter speed
@@ -105,12 +98,8 @@ public class RobotContainer {
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   * @param Button 
    */
-  private void configureButtonBindings() {
-    //new JoystickButton(sticky1, Button.kA.value).whenPressed(new InstantCommand(intakePistons::toggle, intakePistons));
-    //new JoystickButton(sticky2, Button.kA.value).whenPressed(new InstantCommand(intakePistons::toggle, intakePistons));
-  }
+  private void configureButtonBindings() {}
 
 
   public Command getAutonomousCommand() {

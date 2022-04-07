@@ -30,13 +30,14 @@ public class HoodAdjust extends CommandBase {
   public void execute() {
     if (Robot.auton) return;
 
-    if ((Robot.robotContainer.sticky2.getPOV() < 45 || Robot.robotContainer.sticky2.getPOV() > 315) || (Robot.robotContainer.sticky1.getPOV() < 45 || Robot.robotContainer.sticky1.getPOV() > 315)) {
+    if ((Robot.robotContainer.sticky2.getPOV() < 45 || Robot.robotContainer.sticky2.getPOV() > 315) || 
+    (Robot.robotContainer.sticky1.getPOV() < 45 || Robot.robotContainer.sticky1.getPOV() > 315)) {
       pistons.extend();
-    } else if ((Robot.robotContainer.sticky2.getPOV() < 225 && Robot.robotContainer.sticky2.getPOV() > 135) || (Robot.robotContainer.sticky1.getPOV() < 225 && Robot.robotContainer.sticky1.getPOV() > 135)) {
+    } else if ((Robot.robotContainer.sticky2.getPOV() < 225 && Robot.robotContainer.sticky2.getPOV() > 135) || 
+    (Robot.robotContainer.sticky1.getPOV() < 225 && Robot.robotContainer.sticky1.getPOV() > 135)) {
       pistons.retract();
     }
   }
-
 
   // Called once the command ends or is interrupted.
   @Override
@@ -48,5 +49,4 @@ public class HoodAdjust extends CommandBase {
   public boolean isFinished() {
     return false;
   }
-  
 }
