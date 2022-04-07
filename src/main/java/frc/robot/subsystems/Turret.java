@@ -28,6 +28,13 @@ public class Turret extends SubsystemBase {
     motor.set(speed);
   }
 
+  public void turnClockwise(double speed){
+    motor.set(speed);
+  }
+
+  public void turnCounterclockwise(double speed){
+    motor.set(-speed);
+  }
 
   public void stop() {
     motor.stopMotor();

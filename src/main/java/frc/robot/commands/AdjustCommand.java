@@ -21,10 +21,12 @@ public class AdjustCommand extends CommandBase {
 
   private Limelight limelight; //defines the limelight
   private Turret turret; //defines the turret
-  private ShooterWheel shooterWheel;
 
+
+  private ShooterWheel shooterWheel;
   private double zeroPosition;
   private double turnSpeed;
+  
   private ProfiledPIDController controller = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.05, .05)); //defines pid for turret 
   
   /** Creates a new AdjustCommand. */
@@ -55,6 +57,17 @@ public class AdjustCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+    // MITCHELL OLD CODE
+    if (Math.abs(limelight.getTX()) < 10) return;
+    //if (limelight.getTV() > 0.5) return;
+    System.out.println(limelight.getTX());
+    double shit = controller.calculate(-limelight.getTX());
+    System.out.println(shit);
+    turret.turnClockwise(shit);
+
+
+    // ! MICHAEL NEW CODE
     // if(Robot.robotContainer.sticky1.getLeftBumper() || Robot.robotContainer.sticky2.getLeftBumper()){
     //   if(!this.limelight.getTV()) { //check is limelight is in fov or not
     //     if(turret.getEncoderPosition() < this.zeroPosition){

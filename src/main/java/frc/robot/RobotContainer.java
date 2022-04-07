@@ -58,7 +58,6 @@ public class RobotContainer {
   public final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel, indexer);  
   //public final IntakeIndexerRun intakeIndexerRunCommand = new IntakeIndexerRun(intakeMotor, indexer, limitSwitch, lowerSwitch);
   public final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
-  //public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret, shooterWheel);
   public final ShootSystemCombined shootSystemCombined = new ShootSystemCombined(indexer, shooterWheel);
   public final IntakePushPull intakePushPull = new IntakePushPull(intakePistons);
   public final IntakeManual intakeManual = new IntakeManual(intakeMotor);
@@ -68,11 +67,15 @@ public class RobotContainer {
   private final Command m_normalAutonCommand = new ManualAutonSequence(intakeMotor, indexer, shooterWheel, limelight, turret);
 
 
+
+  public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret, shooterWheel);
+
+
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
     // Configure the button bindings (nothing currently runs here)
-    configureButtonBindings();
 
     // these commands will be scheduled when nothing else is for the subsystems
     drive.setDefaultCommand(m_teleopCommand);
@@ -86,6 +89,10 @@ public class RobotContainer {
     hoodPistons.setDefaultCommand(hoodAdjustManual);
     intakeMotor.setDefaultCommand(intakeManual);
 
+
+    configureButtonBindings();
+
+
     SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not
     SmartDashboard.putNumber("Shooter Speed", shooterWheel.getSpeed()); //shows shooter speed
     SmartDashboard.putNumber("Turret Position", turret.getEncoderPosition()); //checks turret position
@@ -96,7 +103,6 @@ public class RobotContainer {
     SmartDashboard.putBoolean("Lower Switch", lowerSwitch.get()); //check if the lowerswitch is pressed 
 
     //need to add pneumatic actuation + whether compressor is on
-
   }
 
 
@@ -107,7 +113,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    * @param Button 
    */
-  private void configureButtonBindings() { }
+  private void configureButtonBindings() { 
+    new JoystickButton(sticky2, Button.kLeftBumper.value).whenHeld(adjustCommand);
+    new JoystickButton(sticky1, Button.kLeftBumper.value).whenHeld(adjustCommand);
+  }
 
 
   public Command getAutonomousCommand() {
