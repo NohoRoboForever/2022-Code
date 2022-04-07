@@ -34,7 +34,7 @@ public final class Constants {
     public static final double OuttakeSpeed = 0.5d;
     public static final double ClimbSpeed = 0.4d;
     public static final double DefaultTurretSpeed = 0.15d;
-    public static final double DefaultFlywheelSpeed = 0.7;
+    public static final double DefaultFlywheelSpeed = 0.38;
     public static       double CurrentFlywheelSpeed = DefaultFlywheelSpeed;
     public static final double IntakeSpeed = 0.5d;
     public static final double RightDrive = 0.2d;

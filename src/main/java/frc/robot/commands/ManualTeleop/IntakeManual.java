@@ -7,20 +7,17 @@ package frc.robot.commands.ManualTeleop;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.IntakeMotor;
 
 public class IntakeManual extends CommandBase {
 
-  private boolean buttonSkip = false;
+  private IntakeMotor intake;
   private boolean intakeOn = false;
-  private IntakeMotor intakeMotor;
 
   /** Creates a new IntakeManual. */
-  public IntakeManual(IntakeMotor p_intake ) {
-    intakeMotor = p_intake;
-    addRequirements(intakeMotor);
-
+  public IntakeManual(IntakeMotor p_intake) {
+    intake = p_intake;
+    addRequirements(intake);
   }
 
   // Called when the command is initially scheduled.
@@ -30,22 +27,12 @@ public class IntakeManual extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.robotContainer.sticky1.getRightBumperPressed()){
-
-      if (!intakeOn){
-        intakeMotor.run();
-        intakeOn = true;
-      } else {
-        intakeMotor.stop();
-        intakeOn = false;
-      }
-    } else if ((Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()) && !Robot.robotContainer.indexerManual.isRunning){
-      intakeMotor.reverse();
-      Robot.robotContainer.indexer.reverse();
-    } else {
-      buttonSkip = true;
-      intakeMotor.stop();
-      intakeOn = false;
+    if (Robot.robotContainer.sticky1.getRightTriggerAxis() > 0.1){
+      intake.reverse();
+    } else if (Robot.robotContainer.sticky1.getBButton()){
+      intake.run();
+    }else{
+      intake.stop();
     }
   }
 
@@ -57,9 +44,5 @@ public class IntakeManual extends CommandBase {
   @Override
   public boolean isFinished() {
     return false;
-  }
-
-  public boolean ButtonSkip () {
-    return buttonSkip;
   }
 }

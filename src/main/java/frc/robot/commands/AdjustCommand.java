@@ -55,7 +55,7 @@ public class AdjustCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // if(Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getLeftBumper()){
+    // if(Robot.robotContainer.sticky1.getLeftBumper() || Robot.robotContainer.sticky2.getLeftBumper()){
     //   if(!this.limelight.getTV()) { //check is limelight is in fov or not
     //     if(turret.getEncoderPosition() < this.zeroPosition){
     //       System.out.println("Lower bound reached, scanning forward");

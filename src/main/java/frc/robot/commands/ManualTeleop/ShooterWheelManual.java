@@ -37,12 +37,13 @@ public class ShooterWheelManual extends CommandBase {
     //double rightTriggerInput = Robot.robotContainer.sticky1.getRightTriggerAxis();
     boolean a2 = Robot.robotContainer.sticky2.getAButton();
 
-    if (a2 ==true /*||*/){
-      shooterWheel.set(0.4);
-      indexer.run();
+
+    if (a2 ==true || Robot.robotContainer.sticky1.getLeftTriggerAxis() > 0.1){
+      shooterWheel.set(Constants.DefaultFlywheelSpeed);
+      //indexer.run();
     } else {
       shooterWheel.stop();
-      indexer.stop();
+      //indexer.stop();
     }
     // if (Math.abs(rightTriggerInput) > .1) {
     //   indexer.run();

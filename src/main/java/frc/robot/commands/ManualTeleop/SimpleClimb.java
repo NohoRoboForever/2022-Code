@@ -30,16 +30,12 @@ public class SimpleClimb extends CommandBase {
     //CONFIGURED FOR RATCHET MODE
     if (Robot.robotContainer.sticky1.getBackButton()) {
       climbArm.extend();
-      System.out.println("climb retracting");
     } else if (Robot.robotContainer.sticky1.getStartButton()) {
       climbArm.retract();
-      System.out.println("climb extending");
 
     } else { 
       climbArm.stop();
       climbArm.hold();
-      System.out.println("climb held");
-
     }
     
   }

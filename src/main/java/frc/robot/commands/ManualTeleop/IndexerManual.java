@@ -13,7 +13,7 @@ public class IndexerManual extends CommandBase {
 
   
   private Indexer indexer;
-  public boolean isRunning = false;
+  //public boolean isRunning = false;
 
   /** Creates a new IndexerManual. */
   public IndexerManual(Indexer p_indexer) {
@@ -32,14 +32,14 @@ public class IndexerManual extends CommandBase {
   public void execute() {
     if (Robot.auton) return;
 
-    if ( Math.abs(Robot.robotContainer.sticky2.getLeftTriggerAxis()) > .1 || Robot.robotContainer.sticky1.getLeftBumper() ) {
+    if (Robot.robotContainer.sticky1.getRightBumper()) {
       indexer.run();
-      isRunning = true;
+     // isRunning = true;
     } else if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()) {
       indexer.reverse();
     } else {
       indexer.stop();
-      isRunning = false;
+      //isRunning = false;
     }
     
   }

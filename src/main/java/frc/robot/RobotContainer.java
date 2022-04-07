@@ -56,7 +56,7 @@ public class RobotContainer {
   public final TurretManual turretManual = new TurretManual(turret);
   public final IndexerManual indexerManual = new IndexerManual(indexer);
   public final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel, indexer);  
-  public final IntakeIndexerRun intakeIndexerRunCommand = new IntakeIndexerRun(intakeMotor, indexer, limitSwitch, lowerSwitch);
+  //public final IntakeIndexerRun intakeIndexerRunCommand = new IntakeIndexerRun(intakeMotor, indexer, limitSwitch, lowerSwitch);
   public final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
   //public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret, shooterWheel);
   public final ShootSystemCombined shootSystemCombined = new ShootSystemCombined(indexer, shooterWheel);
@@ -77,7 +77,7 @@ public class RobotContainer {
     // these commands will be scheduled when nothing else is for the subsystems
     drive.setDefaultCommand(m_teleopCommand);
     shooterWheel.setDefaultCommand(shooterWheelManual);
-    indexer.setDefaultCommand(intakeIndexerRunCommand);
+    indexer.setDefaultCommand(indexerManual);
     climbArm.setDefaultCommand(simpleClimb);
     turret.setDefaultCommand(turretManual);
     //limelight.setDefaultCommand(adjustCommand);
