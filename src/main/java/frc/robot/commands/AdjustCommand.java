@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import java.nio.file.attribute.AclEntry;
 import java.util.concurrent.Callable;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -26,7 +27,7 @@ public class AdjustCommand extends CommandBase {
   private ShooterWheel shooterWheel;
   private double zeroPosition;
   private double turnSpeed;
-  
+
   private ProfiledPIDController controller = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.05, .05)); //defines pid for turret 
   
   /** Creates a new AdjustCommand. */
@@ -45,26 +46,53 @@ public class AdjustCommand extends CommandBase {
   @Override
   public void initialize() {} 
 
+  // private void goToTargetEncoding(double target){
+  //   ProfiledPIDController positionController = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.05, .05));
+  //   double adjust;
+  //   do{
+  //     double error = turret.getEncoderPosition() - target;
+  //     adjust = positionController.calculate(error);
+  //   } while(adjust > Math.abs(Constants.AdjustHaltThreshold));
+  // }
+
   private void goToTargetEncoding(double target){
-    ProfiledPIDController positionController = new ProfiledPIDController(0.01, 0.01, 0, new TrapezoidProfile.Constraints(.05, .05));
-    double adjust;
-    do{
-      double error = turret.getEncoderPosition() - target;
-      adjust = positionController.calculate(error);
-    } while(adjust > Math.abs(Constants.AdjustHaltThreshold));
+    // double turrPos = turret.getEncoderPosition();
+    double delta = target;//limelight.getTX();
+    double k = 4;
+
+    double acceptableDiff = 3;
+
+    if(Math.abs(delta) < acceptableDiff){
+      System.out.println("locked");
+      turret.turn(0);
+    // }else if (delta < acceptableDiff * 2){qi,
+    //   System.out.println("2");
+    //   turret.turn((delta/k) * Constants.DefaultTurretSpeed);
+    }else {
+      System.out.println("moving");
+      turret.turn( (Math.abs(delta)/delta) * Constants.DefaultTurretSpeed);
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
     // MITCHELL OLD CODE
-    if (Math.abs(limelight.getTX()) < 10) return;
-    //if (limelight.getTV() > 0.5) return;
-    System.out.println(limelight.getTX());
-    double shit = controller.calculate(-limelight.getTX());
-    System.out.println(shit);
-    turret.turnClockwise(shit);
+
+
+    if (Robot.robotContainer.sticky1.getLeftBumper()){
+      goToTargetEncoding(limelight.getTX());
+    } else {
+      System.out.println("4");
+
+      turret.stop();
+    }
+    // if (Math.abs(limelight.getTX()) < 10) return;
+    // //if (limelight.getTV() > 0.5) return;
+    // System.out.println(limelight.getTX());
+    // double shit = controller.calculate(-limelight.getTX());
+    // System.out.println(shit);
+    // turret.turnClockwise(shit);
 
 
     // ! MICHAEL NEW CODE

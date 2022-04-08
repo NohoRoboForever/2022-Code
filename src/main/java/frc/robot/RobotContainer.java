@@ -64,7 +64,7 @@ public class RobotContainer {
 
   // main commmands
   private final Command m_teleopCommand = new DriveTeleop();
-  private final Command m_normalAutonCommand = new ManualAutonSequence(intakeMotor, indexer, shooterWheel, limelight, turret);
+  private final Command m_normalAutonCommand = new ManualAutonSequence(intakeMotor, indexer, shooterWheel, limelight, turret, intakePistons);
 
 
 

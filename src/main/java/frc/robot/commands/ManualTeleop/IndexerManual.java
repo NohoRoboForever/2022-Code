@@ -32,7 +32,7 @@ public class IndexerManual extends CommandBase {
   public void execute() {
     if (Robot.auton) return;
 
-    if (Robot.robotContainer.sticky1.getRightBumper()) {
+    if (Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getRightBumper()) {
       indexer.run();
      // isRunning = true;
     } else if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()) {

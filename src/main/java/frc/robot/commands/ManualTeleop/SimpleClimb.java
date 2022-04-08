@@ -27,16 +27,35 @@ public class SimpleClimb extends CommandBase {
   @Override
   public void execute() {
     //if (Robot.auton) return;
-    //CONFIGURED FOR RATCHET MODE
-    if (Robot.robotContainer.sticky1.getBackButton()) {
-      climbArm.extend();
-    } else if (Robot.robotContainer.sticky1.getStartButton()) {
-      climbArm.retract();
+    //! ACTUAL CLIMB CODE
+    // if (Robot.robotContainer.sticky1.getBackButton() || Robot.robotContainer.sticky2.getBackButton()) {
+    //   climbArm.extend();
+    // } else if (Robot.robotContainer.sticky1.getStartButton() || Robot.robotContainer.sticky2.getStartButton()) {
+    //   climbArm.retract();
 
-    } else { 
-      climbArm.stop();
+    // } else { 
+    //   climbArm.stop();
+    //   climbArm.hold();
+    // }
+
+    //! GABY FUCKING AROUND CLIMB CODE:
+    if (Robot.robotContainer.sticky1.getStartButton()){
+      climbArm.extend1();
+      // climbArm.extend2();
+    } else if (Robot.robotContainer.sticky1.getBackButton()){
+      climbArm.retract1();
+      // climbArm.retract2();
+    } else {
       climbArm.hold();
     }
+    
+    // else if (Robot.robotContainer.sticky2.getStartButton()){
+    //   climbArm.extend2();
+    // } else if (Robot.robotContainer.sticky2.getBackButton()){
+    //   climbArm.retract2();
+    // } else {
+    //   climbArm.hold();
+    // }
     
   }
 

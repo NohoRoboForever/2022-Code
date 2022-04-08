@@ -20,6 +20,9 @@ public class ClimbArm extends SubsystemBase {
   public ClimbArm() {
     climb1 = new CANSparkMax(Constants.Climb1, MotorType.kBrushless);
     climb2 = new CANSparkMax(Constants.Climb2, MotorType.kBrushless);
+    climb1.setIdleMode(IdleMode.kCoast);
+    climb2.setIdleMode(IdleMode.kCoast);
+    climb1.setInverted(true);
   }
 
 
@@ -34,18 +37,35 @@ public class ClimbArm extends SubsystemBase {
     climb2.set(Constants.ClimbSpeed * -1);
   }
 
+  public void extend1(){
+    climb1.set(Constants.ClimbSpeed);
+  }
+
+  public void retract1(){
+    climb1.set(-Constants.ClimbSpeed);
+  }
+
+  public void extend2(){
+    climb2.set(Constants.ClimbSpeed);
+  }
+
+  public void retract2(){
+    climb2.set(-Constants.ClimbSpeed);
+  }
+
 
   public void hold() {
     // climb1.setSmartCurrentLimit(30, 35);
     // climb2.setSmartCurrentLimit(30, 35);
-    climb1.setIdleMode(IdleMode.kBrake);
-    climb1.setIdleMode(IdleMode.kBrake);
+    climb1.set(0);
+    climb2.set(0);
+    
   }
 
 
   public void unhold() {
     climb1.setIdleMode(IdleMode.kCoast);
-    climb1.setIdleMode(IdleMode.kCoast);
+    climb2.setIdleMode(IdleMode.kCoast);
   }
 
 

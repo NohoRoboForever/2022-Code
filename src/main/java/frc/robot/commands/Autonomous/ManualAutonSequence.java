@@ -7,6 +7,7 @@ package frc.robot.commands.Autonomous;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.IntakeMotor;
+import frc.robot.subsystems.IntakePistons;
 import frc.robot.subsystems.ShooterWheel;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Limelight;
@@ -33,20 +34,21 @@ import frc.robot.subsystems.Indexer;
 public class ManualAutonSequence extends SequentialCommandGroup {
 
   /** Creates a new ManualAutonSequence. */
-  public ManualAutonSequence(IntakeMotor intakeMotor, Indexer indexer, ShooterWheel shooterWheel, Limelight limelight, Turret turret) {
-
+  public ManualAutonSequence(IntakeMotor intakeMotor, Indexer indexer, ShooterWheel shooterWheel, Limelight limelight, Turret turret, IntakePistons intakePistons) {
     // this weirdly works
     addCommands(
       new InstantCommand(shooterWheel::run, shooterWheel), //runs flywheel
+      new InstantCommand(intakePistons::extend, intakePistons),
+      new InstantCommand(intakeMotor::run, intakeMotor),
       new WaitCommand(1.5), //runs for 1.5 seconds
-      new InstantCommand(shooterWheel::run, shooterWheel), //keeps running flywheel
+      //new InstantCommand(shooterWheel::run, shooterWheel), //keeps running flywheel
+      new DriveNormal(-0.25, 0.25, 1),
+      new DriveNormal(0, 0, 1),
       new InstantCommand(indexer::run, indexer), //run indexer to shoot
-      new WaitCommand(1.5), //run for 1.5 seconds
+      new WaitCommand(1), //run for 1.5 seconds
       // it has shot
       new InstantCommand(shooterWheel::stop, shooterWheel), //stop the flywheel (coast brake mode)
       new InstantCommand(indexer::stop, indexer), //stops indexer from moving
-      new DriveNormal(-0.2, 0.2, 1),  // passes time to run but it doesn't do jack shit
-      new WaitCommand(2), //wait for 2 seconds (drive)
       new DriveNormal(0, 0, 1) // stops all the drive motors
 
       // -- 10pt auton -- (assuming DriveNormal (time) works ) - all the numbers need physical tuning -- I dont know the actual code, but ill write what I believe should be happening when I write this

@@ -34,14 +34,17 @@ public class DriveTeleop extends CommandBase {
 
     double leftAxisInput = Robot.robotContainer.sticky1.getLeftY();
     double rightAxisInput = Robot.robotContainer.sticky1.getRightY();
+    double leftAxisInput2 = Robot.robotContainer.sticky2.getLeftY();
+    double rightAxisInput2 = Robot.robotContainer.sticky2.getRightY();
 
-    if (Math.abs(leftAxisInput) > Constants.LeftDeadzone) {
+
+    if (Math.abs(leftAxisInput) > Constants.LeftDeadzone || Math.abs(leftAxisInput2) > Constants.LeftDeadzone) {
       drive.setDriveL(Constants.LeftDrive*Math.pow(leftAxisInput, 3));
     } else {
        drive.setDriveL(0);
     }
 
-    if (Math.abs(rightAxisInput) > Constants.RightDeadzone) {
+    if (Math.abs(rightAxisInput) > Constants.RightDeadzone || Math.abs(rightAxisInput2) > Constants.RightDeadzone) {
       drive.setDriveR(Constants.RightDrive*Math.pow(-rightAxisInput, 3));
     } else {
       drive.setDriveR(0);
