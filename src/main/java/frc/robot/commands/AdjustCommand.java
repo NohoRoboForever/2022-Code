@@ -58,7 +58,7 @@ public class AdjustCommand extends CommandBase {
   private void goToTargetEncoding(double target){
     // double turrPos = turret.getEncoderPosition();
     double delta = target;//limelight.getTX();
-    double k = 4;
+    //double k = 4;
 
     double acceptableDiff = 3;
 
@@ -77,16 +77,18 @@ public class AdjustCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // MITCHELL OLD CODE
 
+    System.out.println("limelight auto moving");
+    goToTargetEncoding(limelight.getTX());
 
-    if (Robot.robotContainer.sticky1.getLeftBumper()){
-      goToTargetEncoding(limelight.getTX());
-    } else {
-      System.out.println("4");
+    // if (Robot.robotContainer.sticky1.getLeftBumper() || Robot.robotContainer.sticky2.getLeftBumper()){
+    //   System.out.println("limelight auto moving");
+    //   goToTargetEncoding(limelight.getTX());
+    // } else {
+    //   System.out.println("limelight manual");
 
-      turret.stop();
-    }
+    //   turret.stop();
+    // }
     // if (Math.abs(limelight.getTX()) < 10) return;
     // //if (limelight.getTV() > 0.5) return;
     // System.out.println(limelight.getTX());
