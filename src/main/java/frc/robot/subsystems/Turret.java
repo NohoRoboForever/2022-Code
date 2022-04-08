@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -21,7 +22,9 @@ public class Turret extends SubsystemBase {
   
 
   /** Creates a new Turret. */
-  public Turret() {}
+  public Turret() {
+    motor.setIdleMode(IdleMode.kBrake);
+  }
 
 
   public void turn(double speed) {
