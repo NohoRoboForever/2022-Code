@@ -39,10 +39,11 @@ public class ManualAutonSequence extends SequentialCommandGroup {
     addCommands(
       new InstantCommand(shooterWheel::run, shooterWheel), //runs flywheel
       new InstantCommand(intakePistons::extend, intakePistons),
+      new DriveNormal(-0.25, 0.25, 2),
       new InstantCommand(intakeMotor::run, intakeMotor),
       new WaitCommand(1.5), //runs for 1.5 seconds
       //new InstantCommand(shooterWheel::run, shooterWheel), //keeps running flywheel
-      new DriveNormal(-0.25, 0.25, 1),
+      
       new DriveNormal(0, 0, 1),
       new InstantCommand(indexer::run, indexer), //run indexer to shoot
       new WaitCommand(1), //run for 1.5 seconds
