@@ -55,22 +55,31 @@ public class AdjustCommand extends CommandBase {
   //   } while(adjust > Math.abs(Constants.AdjustHaltThreshold));
   // }
 
-  private void goToTargetEncoding(double target){
+  private void goToTargetEncoding(double p_angle){
     // double turrPos = turret.getEncoderPosition();
-    double delta = target;//limelight.getTX();
+    double angle = p_angle;//limelight.getTX();
     //double k = 4;
 
     double acceptableDiff = 3;
 
-    if(Math.abs(delta) < acceptableDiff){
+    if(Math.abs(angle) < acceptableDiff){
       System.out.println("locked");
       turret.turn(0);
     // }else if (delta < acceptableDiff * 2){qi,
     //   System.out.println("2");
     //   turret.turn((delta/k) * Constants.DefaultTurretSpeed);
     }else {
-      System.out.println("moving");
-      turret.turn( (Math.abs(delta)/delta) * Constants.DefaultTurretSpeed);
+
+      if (Math.abs(angle) > 20) {
+        System.out.println("moving big");
+        turret.turn( (Math.abs(angle)/angle) * Constants.DefaultTurretSpeed *2);
+      } else if (Math.abs(angle) > 10){
+        System.out.println("moving medium");
+        turret.turn( (Math.abs(angle)/angle) * Constants.DefaultTurretSpeed);
+      } else {
+        System.out.println("moving small");
+        turret.turn( (Math.abs(angle)/angle) * Constants.DefaultTurretSpeed * 0.5);
+      }
     }
   }
 
@@ -78,17 +87,17 @@ public class AdjustCommand extends CommandBase {
   @Override
   public void execute() {
 
-    System.out.println("limelight auto moving");
-    goToTargetEncoding(limelight.getTX());
+    // System.out.println("limelight auto moving");
+    // goToTargetEncoding(limelight.getTX());
 
-    // if (Robot.robotContainer.sticky1.getLeftBumper() || Robot.robotContainer.sticky2.getLeftBumper()){
-    //   System.out.println("limelight auto moving");
-    //   goToTargetEncoding(limelight.getTX());
-    // } else {
-    //   System.out.println("limelight manual");
+    if (Robot.robotContainer.sticky1.getLeftBumper() || Robot.robotContainer.sticky2.getLeftBumper()){
+      System.out.println("limelight auto moving");
+      goToTargetEncoding(limelight.getTX());
+    } else {
+      System.out.println("limelight manual");
 
-    //   turret.stop();
-    // }
+      turret.stop();
+    }
     // if (Math.abs(limelight.getTX()) < 10) return;
     // //if (limelight.getTV() > 0.5) return;
     // System.out.println(limelight.getTX());
