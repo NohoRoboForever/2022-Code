@@ -23,10 +23,11 @@ public final class Constants {
     // pressure limits
     // CAN IDs
     // Voltage distribution hub numbers
-    
+    //
+
     //
     //change this to change teams and ball settings
-    public static final Team FRC_TEAM = Team.Red; 
+    public static final Team FRC_TEAM = Team.Blue; 
 
     // constant speeds
     public static final double IndexerSpeed = 0.75;
