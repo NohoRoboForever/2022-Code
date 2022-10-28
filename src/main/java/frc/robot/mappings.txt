@@ -1,10 +1,10 @@
 [part]: [which sticky] [control] = [action] ...
 
-Hood adjust: either sticky pad botton = retract
-Indexer: either right bumper = reverse, either B button = run
-Intake: either right bumper = reverse, either B button = run
-        either Y button = retract, either X button = extend
-Flywheel: sticky2 A button OR either left trigger
-Climb: sticky1 Start button = extend, sticky1 Back button = retract
+Hood adjust: either pad top = extend, either pad botton = retract
+Indexer: either left bumper = run, either left trigger = reverse
+Intake: either left bumper = run, either left trigger = reverse
+//      either Y button = retract, either X button = extend
+Flywheel: either right bumper
+Climb: either Start button = extend, either Back button = retract
 Turret: either pad right = clockwise, either pad left = clockwise
 Limelight Adjust: either left bumper = adjust

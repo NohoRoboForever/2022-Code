@@ -32,10 +32,10 @@ public class IndexerManual extends CommandBase {
   public void execute() {
     if (Robot.auton) return;
 
-    if (Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getRightBumper()) {
+    if (Robot.robotContainer.sticky1.getLeftBumper() || Robot.robotContainer.sticky2.getLeftBumper()) {
       indexer.run();
      // isRunning = true;
-    } else if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()) {
+    } else if (Robot.robotContainer.sticky1.getLeftTriggerAxis() > 0.1 || Robot.robotContainer.sticky2.getLeftTriggerAxis() > 0.1) {
       indexer.reverse();
     } else {
       indexer.stop();

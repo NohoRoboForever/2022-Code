@@ -27,9 +27,9 @@ public class IntakeManual extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.robotContainer.sticky1.getRightTriggerAxis() > 0.1 || Robot.robotContainer.sticky2.getRightTriggerAxis() > 0.1){
+    if (Robot.robotContainer.sticky1.getLeftTriggerAxis() > 0.1 || Robot.robotContainer.sticky2.getLeftTriggerAxis() > 0.1){
       intake.reverse();
-    } else if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()){
+    } else if (Robot.robotContainer.sticky1.getLeftBumper() || Robot.robotContainer.sticky2.getLeftBumper()){
       intake.run();
     }else{
       intake.stop();

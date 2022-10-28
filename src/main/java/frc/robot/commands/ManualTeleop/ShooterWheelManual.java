@@ -35,10 +35,10 @@ public class ShooterWheelManual extends CommandBase {
     if (Robot.auton) return;
     
     //double rightTriggerInput = Robot.robotContainer.sticky1.getRightTriggerAxis();
-    boolean a2 = Robot.robotContainer.sticky2.getAButton();
+    //boolean a2 = Robot.robotContainer.sticky2.getAButton();
 
 
-    if (a2 || Robot.robotContainer.sticky1.getLeftTriggerAxis() > 0.1 || Robot.robotContainer.sticky2.getLeftTriggerAxis() > 0.1){
+    if (Robot.robotContainer.sticky1.getRightBumper() || Robot.robotContainer.sticky2.getRightBumper()){
       shooterWheel.run();
       //indexer.run();
     } else {

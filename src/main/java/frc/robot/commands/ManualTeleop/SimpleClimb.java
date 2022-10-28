@@ -39,10 +39,10 @@ public class SimpleClimb extends CommandBase {
     // }
 
     //! GABY FUCKING AROUND CLIMB CODE:
-    if (Robot.robotContainer.sticky1.getStartButton()){
+    if (Robot.robotContainer.sticky1.getStartButton() || Robot.robotContainer.sticky2.getStartButton()){
       climbArm.extend1();
       // climbArm.extend2();
-    } else if (Robot.robotContainer.sticky1.getBackButton()){
+    } else if (Robot.robotContainer.sticky1.getBackButton() || Robot.robotContainer.sticky2.getBackButton()){
       climbArm.retract1();
       // climbArm.retract2();
     } else {
