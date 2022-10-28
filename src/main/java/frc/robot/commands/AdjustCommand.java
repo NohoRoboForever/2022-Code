@@ -90,7 +90,7 @@ public class AdjustCommand extends CommandBase {
     // System.out.println("limelight auto moving");
     // goToTargetEncoding(limelight.getTX());
 
-    if (Robot.robotContainer.sticky1.getLeftBumper() || Robot.robotContainer.sticky2.getLeftBumper()){
+    if (Robot.robotContainer.sticky1.getBButton() || Robot.robotContainer.sticky2.getBButton()){
       System.out.println("limelight auto moving");
       goToTargetEncoding(limelight.getTX());
     } else {

@@ -7,4 +7,4 @@ Intake: either left bumper = run, either left trigger = reverse
 Flywheel: either right bumper
 Climb: either Start button = extend, either Back button = retract
 Turret: either pad right = clockwise, either pad left = clockwise
-Limelight Adjust: either left bumper = adjust
+Limelight Adjust: either B button = adjust
