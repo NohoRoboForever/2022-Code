@@ -18,7 +18,7 @@ public class ShooterWheel extends SubsystemBase {
   /** Creates a new ShooterWheel. */
   public ShooterWheel() {}
 
-
+  
   public void run() {
     leftMotor.set(-Constants.DefaultFlywheelSpeed);
     rightMotor.set(Constants.DefaultFlywheelSpeed);

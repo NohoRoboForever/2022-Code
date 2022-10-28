@@ -68,7 +68,7 @@ public class RobotContainer {
 
 
 
-  public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret, shooterWheel);
+  //public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret, shooterWheel);
 
 
 
@@ -90,7 +90,7 @@ public class RobotContainer {
     intakeMotor.setDefaultCommand(intakeManual);
 
 
-    configureButtonBindings();
+    //configureButtonBindings();
 
 
     SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not
@@ -113,10 +113,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    * @param Button 
    */
-  private void configureButtonBindings() { 
-    new JoystickButton(sticky2, Button.kLeftBumper.value).whenHeld(adjustCommand);
-    new JoystickButton(sticky1, Button.kLeftBumper.value).whenHeld(adjustCommand);
-  }
+  // private void configureButtonBindings() { 
+  //   new JoystickButton(sticky2, Button.kLeftBumper.value).whenHeld(adjustCommand);
+  //   new JoystickButton(sticky1, Button.kLeftBumper.value).whenHeld(adjustCommand);
+  // }
 
 
   public Command getAutonomousCommand() {

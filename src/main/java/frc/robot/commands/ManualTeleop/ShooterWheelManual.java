@@ -39,7 +39,7 @@ public class ShooterWheelManual extends CommandBase {
 
 
     if (a2 ==true || Robot.robotContainer.sticky1.getLeftTriggerAxis() > 0.1 || Robot.robotContainer.sticky2.getLeftTriggerAxis() > 0.1){
-      shooterWheel.set(Constants.DefaultFlywheelSpeed);
+      shooterWheel.run();
       //indexer.run();
     } else {
       shooterWheel.stop();
