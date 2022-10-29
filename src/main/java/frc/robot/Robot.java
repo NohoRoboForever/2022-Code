@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
 
   public final static Drive drive = Drive.getInstance();
 
-  Compressor phCompressor = new Compressor(Constants.PneumaticHub, PneumaticsModuleType.REVPH);
+  //Compressor phCompressor = new Compressor(Constants.PneumaticHub, PneumaticsModuleType.REVPH);
   
   // so our setDefaultCommands can know they shouldn't run
   public static boolean auton = false;

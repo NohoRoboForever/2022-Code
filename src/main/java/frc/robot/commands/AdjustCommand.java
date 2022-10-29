@@ -65,7 +65,7 @@ public class AdjustCommand extends CommandBase {
     if(Math.abs(angle) < acceptableDiff){
       System.out.println("locked");
       turret.turn(0);
-    // }else if (delta < acceptableDiff * 2){qi,
+    // }else if (delta < acceptableDiff * 2){
     //   System.out.println("2");
     //   turret.turn((delta/k) * Constants.DefaultTurretSpeed);
     }else {

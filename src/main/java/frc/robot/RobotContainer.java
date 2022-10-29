@@ -7,7 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Axis;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -64,7 +64,7 @@ public class RobotContainer {
 
   // main commmands
   private final Command m_teleopCommand = new DriveTeleop();
-  private final Command m_normalAutonCommand = new ManualAutonSequence(intakeMotor, indexer, shooterWheel, limelight, turret);
+  private final Command m_normalAutonCommand = new ManualAutonSequence(/*intakeMotor, */indexer, shooterWheel, limelight, turret);
 
 
 
@@ -83,7 +83,7 @@ public class RobotContainer {
     indexer.setDefaultCommand(indexerManual);
     climbArm.setDefaultCommand(simpleClimb);
     turret.setDefaultCommand(turretManual);
-    limelight.setDefaultCommand(adjustCommand);
+    //limelight.setDefaultCommand(adjustCommand);
     camera.setDefaultCommand(cameraOperation);
     //intakePistons.setDefaultCommand(intakePushPull);
     //hoodPistons.setDefaultCommand(hoodAdjustManual);
@@ -93,14 +93,14 @@ public class RobotContainer {
     //configureButtonBindings();
 
 
-    SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not
-    SmartDashboard.putNumber("Shooter Speed", shooterWheel.getSpeed()); //shows shooter speed
-    SmartDashboard.putNumber("Turret Position", turret.getEncoderPosition()); //checks turret position
-    SmartDashboard.putBoolean("Shooting Status", shootSystemCombined.getLimelightStatus()); //checks if the limelight is tracking or not
-    SmartDashboard.putBoolean("Intake", intakeMotor.getIntakeState()); //check if the intake is running
-    SmartDashboard.putBoolean("Indexer", indexer.getIndexerState()); //check if the indexer is running
-    SmartDashboard.putBoolean("Upper Switch", limitSwitch.get()); //check if the upperswitch is pressed
-    SmartDashboard.putBoolean("Lower Switch", lowerSwitch.get()); //check if the lowerswitch is pressed 
+    //SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not
+    // SmartDashboard.putNumber("Shooter Speed", shooterWheel.getSpeed()); //shows shooter speed
+    // SmartDashboard.putNumber("Turret Position", turret.getEncoderPosition()); //checks turret position
+    //SmartDashboard.putBoolean("Shooting Status", shootSystemCombined.getLimelightStatus()); //checks if the limelight is tracking or not
+    //SmartDashboard.putBoolean("Intake", intakeMotor.getIntakeState()); //check if the intake is running
+    // SmartDashboard.putBoolean("Indexer", indexer.getIndexerState()); //check if the indexer is running
+    //SmartDashboard.putBoolean("Upper Switch", limitSwitch.get()); //check if the upperswitch is pressed
+    //SmartDashboard.putBoolean("Lower Switch", lowerSwitch.get()); //check if the lowerswitch is pressed 
 
     //need to add pneumatic actuation + whether compressor is on
   }

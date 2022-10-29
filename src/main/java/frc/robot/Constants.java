@@ -35,12 +35,12 @@ public final class Constants {
     public static final double OuttakeSpeed = 0.5;
     public static final double ClimbSpeed = 0.2;
     public static final double DefaultTurretSpeed = 0.1;
-    public static final double DefaultFlywheelSpeed = 0.65;
+    public static final double DefaultFlywheelSpeed = 0.5;
     public static       double CurrentFlywheelSpeed = DefaultFlywheelSpeed;
-    public static final double IntakeSpeed = 0.5;
+    public static final double IntakeSpeed = 0.7d;
 
-    public static final double RightDrive = 0.65d;
-    public static final double LeftDrive = 0.70d;
+    public static final double RightDrive = 0.75d;
+    public static final double LeftDrive = 0.80d;
 
     public static final double RightDeadzone = 0.15d;
     public static final double LeftDeadzone = 0.15d;

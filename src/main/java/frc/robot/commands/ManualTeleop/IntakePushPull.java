@@ -7,16 +7,16 @@ package frc.robot.commands.ManualTeleop;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.subsystems.IntakePistons;
+// import frc.robot.subsystems.IntakePistons;
 
 public class IntakePushPull extends CommandBase {
-  public IntakePistons pistons;
+  // public IntakePistons pistons;
 
 
   /** Creates a new IntakePushPull. */
-  public IntakePushPull(IntakePistons p_pistons) {
-    pistons = p_pistons;
-    addRequirements(pistons);
+  public IntakePushPull() {
+    // pistons = p_pistons;
+    // addRequirements(pistons);
   }
 
 
@@ -28,14 +28,14 @@ public class IntakePushPull extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if ((Robot.robotContainer.sticky1.getYButton() || Robot.robotContainer.sticky2.getYButton())){
-      pistons.retract();
-      System.out.println("intake retract");
-    }
-    if ((Robot.robotContainer.sticky1.getXButton() || Robot.robotContainer.sticky2.getXButton())){
-      pistons.extend(); 
-      System.out.println("intake extend");
-    }
+  //   if ((Robot.robotContainer.sticky1.getYButton() || Robot.robotContainer.sticky2.getYButton())){
+  //     pistons.retract();
+  //     System.out.println("intake retract");
+  //   }
+  //   if ((Robot.robotContainer.sticky1.getXButton() || Robot.robotContainer.sticky2.getXButton())){
+  //     pistons.extend(); 
+  //     System.out.println("intake extend");
+  //   }
   }
 
 

@@ -7,16 +7,16 @@ package frc.robot.commands.ManualTeleop;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.subsystems.HoodPistons;
+// import frc.robot.subsystems.HoodPistons;
 
 public class HoodAdjustManual extends CommandBase {
 
-  private HoodPistons pistons;
+  //private HoodPistons pistons;
 
   /** Creates a new HoodAdjust. */
-  public HoodAdjustManual(HoodPistons p_pistons) {
-    pistons = p_pistons;
-    addRequirements(pistons);
+  public HoodAdjustManual() {
+    //pistons = p_pistons;
+    //addRequirements(pistons);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -30,11 +30,11 @@ public class HoodAdjustManual extends CommandBase {
   @Override
   public void execute() {
 
-    if ((Robot.robotContainer.sticky2.getPOV() == 0) || (Robot.robotContainer.sticky1.getPOV() == 0)) {
-      pistons.extend();
-    } else if ((Robot.robotContainer.sticky2.getPOV() == 180) || (Robot.robotContainer.sticky1.getPOV() == 180)) {
-      pistons.retract();
-    }
+    // if ((Robot.robotContainer.sticky2.getPOV() == 0) || (Robot.robotContainer.sticky1.getPOV() == 0)) {
+    //   pistons.extend();
+    // } else if ((Robot.robotContainer.sticky2.getPOV() == 180) || (Robot.robotContainer.sticky1.getPOV() == 180)) {
+    //   pistons.retract();
+    // }
   }
 
 
