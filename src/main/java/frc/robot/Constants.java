@@ -39,8 +39,8 @@ public final class Constants {
     public static       double CurrentFlywheelSpeed = DefaultFlywheelSpeed;
     public static final double IntakeSpeed = 0.5;
 
-    public static final double RightDrive = 0.55d;
-    public static final double LeftDrive = 0.55d;
+    public static final double RightDrive = 0.1d;
+    public static final double LeftDrive = 0.1d;
 
     public static final double RightDeadzone = 0.15d;
     public static final double LeftDeadzone = 0.15d;

@@ -34,13 +34,13 @@ import frc.robot.subsystems.Indexer;
 public class ManualAutonSequence extends SequentialCommandGroup {
 
   /** Creates a new ManualAutonSequence. */
-  public ManualAutonSequence(IntakeMotor intakeMotor, Indexer indexer, ShooterWheel shooterWheel, Limelight limelight, Turret turret, IntakePistons intakePistons) {
+  public ManualAutonSequence(/*IntakeMotor intakeMotor,*/ Indexer indexer, ShooterWheel shooterWheel, Limelight limelight/*Turret turret,*/) {
     // this weirdly works
     addCommands(
       new InstantCommand(shooterWheel::run, shooterWheel), //runs flywheel
-      new InstantCommand(intakePistons::extend, intakePistons),
+      //new InstantCommand(intakePistons::extend, intakePistons),
       new DriveNormal(-0.5, 0.5, 4),
-      new InstantCommand(intakeMotor::run, intakeMotor),
+      //new InstantCommand(intakeMotor::run, intakeMotor),
       new WaitCommand(4), //runs for 1.5 seconds
       //new InstantCommand(shooterWheel::run, shooterWheel), //keeps running flywheel
       
