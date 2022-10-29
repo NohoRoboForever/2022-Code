@@ -42,7 +42,7 @@ public class RobotContainer {
   public final ShooterWheel shooterWheel = new ShooterWheel();
   //public final IntakeMotor intakeMotor   = new IntakeMotor();
   public final Indexer indexer           = new Indexer();
-  //public final Turret turret             = new Turret();
+  public final Turret turret             = new Turret();
   public final ClimbArm climbArm         = new ClimbArm();
   public final Camera camera             = new Camera();
   public final Drive drive               = Drive.getInstance();
@@ -53,7 +53,7 @@ public class RobotContainer {
   // -- Commands --
   //public final HoodAdjustManual hoodAdjustManual = new HoodAdjustManual(hoodPistons);
   public final CameraOperation cameraOperation = new CameraOperation(camera);
-  //public final TurretManual turretManual = new TurretManual(turret);
+  public final TurretManual turretManual = new TurretManual(turret);
   public final IndexerManual indexerManual = new IndexerManual(indexer);
   public final ShooterWheelManual shooterWheelManual = new ShooterWheelManual(shooterWheel, indexer);  
   //public final IntakeIndexerRun intakeIndexerRunCommand = new IntakeIndexerRun(intakeMotor, indexer, limitSwitch, lowerSwitch);
@@ -64,11 +64,11 @@ public class RobotContainer {
 
   // main commmands
   private final Command m_teleopCommand = new DriveTeleop();
-  private final Command m_normalAutonCommand = new ManualAutonSequence(/*intakeMotor, */indexer, shooterWheel, limelight/*, turret*/);
+  private final Command m_normalAutonCommand = new ManualAutonSequence(/*intakeMotor, */indexer, shooterWheel, limelight, turret);
 
 
 
-  //public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret, shooterWheel);
+  public final AdjustCommand adjustCommand = new AdjustCommand(limelight, turret, shooterWheel);
 
 
 
@@ -82,7 +82,7 @@ public class RobotContainer {
     shooterWheel.setDefaultCommand(shooterWheelManual);
     indexer.setDefaultCommand(indexerManual);
     climbArm.setDefaultCommand(simpleClimb);
-    //turret.setDefaultCommand(turretManual);
+    turret.setDefaultCommand(turretManual);
     //limelight.setDefaultCommand(adjustCommand);
     camera.setDefaultCommand(cameraOperation);
     //intakePistons.setDefaultCommand(intakePushPull);
@@ -93,9 +93,9 @@ public class RobotContainer {
     //configureButtonBindings();
 
 
-    //SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not
+    SmartDashboard.putBoolean("Turret Hall Effect", turret.getHallEffectReading()); //checks if the hall effect is pressed or not
     SmartDashboard.putNumber("Shooter Speed", shooterWheel.getSpeed()); //shows shooter speed
-    //SmartDashboard.putNumber("Turret Position", turret.getEncoderPosition()); //checks turret position
+    SmartDashboard.putNumber("Turret Position", turret.getEncoderPosition()); //checks turret position
     SmartDashboard.putBoolean("Shooting Status", shootSystemCombined.getLimelightStatus()); //checks if the limelight is tracking or not
     //SmartDashboard.putBoolean("Intake", intakeMotor.getIntakeState()); //check if the intake is running
     SmartDashboard.putBoolean("Indexer", indexer.getIndexerState()); //check if the indexer is running

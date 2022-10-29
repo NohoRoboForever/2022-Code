@@ -34,7 +34,7 @@ import frc.robot.subsystems.Indexer;
 public class ManualAutonSequence extends SequentialCommandGroup {
 
   /** Creates a new ManualAutonSequence. */
-  public ManualAutonSequence(/*IntakeMotor intakeMotor,*/ Indexer indexer, ShooterWheel shooterWheel, Limelight limelight/*Turret turret,*/) {
+  public ManualAutonSequence(/*IntakeMotor intakeMotor,*/ Indexer indexer, ShooterWheel shooterWheel, Limelight limelight, Turret turret) {
     // this weirdly works
     addCommands(
       new InstantCommand(shooterWheel::run, shooterWheel), //runs flywheel
