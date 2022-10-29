@@ -39,9 +39,9 @@ public class ManualAutonSequence extends SequentialCommandGroup {
     addCommands(
       new InstantCommand(shooterWheel::run, shooterWheel), //runs flywheel
       //new InstantCommand(intakePistons::extend, intakePistons),
-      new DriveNormal(0.2,-0.2, 4),
+      new DriveNormal(0.25, -0.2, 4),
       //new InstantCommand(intakeMotor::run, intakeMotor),
-      new WaitCommand(2.2
+      new WaitCommand(3.5
       ), //runs for 1.5 seconds
       //new InstantCommand(shooterWheel::run, shooterWheel), //keeps running flywheel
       
@@ -51,8 +51,8 @@ public class ManualAutonSequence extends SequentialCommandGroup {
       // // it has shot
       new InstantCommand(shooterWheel::stop, shooterWheel), //stop the flywheel (coast brake mode)
       new InstantCommand(indexer::stop, indexer), //stops indexer from moving
-      new DriveNormal(0.4, -0.4, 2),
-      new WaitCommand(2),
+      new DriveNormal(0.25, -0.2, 4),
+      new WaitCommand(1.5),
       new DriveNormal(0, 0, 1) // stops all the drive motors
 
       // -- 10pt auton -- (assuming DriveNormal (time) works ) - all the numbers need physical tuning -- I dont know the actual code, but ill write what I believe should be happening when I write this

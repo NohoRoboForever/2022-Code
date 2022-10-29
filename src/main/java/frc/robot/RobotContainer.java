@@ -102,7 +102,6 @@ public class RobotContainer {
     //SmartDashboard.putBoolean("Upper Switch", limitSwitch.get()); //check if the upperswitch is pressed
     //SmartDashboard.putBoolean("Lower Switch", lowerSwitch.get()); //check if the lowerswitch is pressed 
 
-    //need to add pneumatic actuation + whether compressor is on
   }
 
 

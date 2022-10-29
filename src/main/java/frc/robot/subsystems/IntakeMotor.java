@@ -24,12 +24,12 @@ public class IntakeMotor extends SubsystemBase {
 
   public void run() {
   intakestate = true; 
-  motor.set(Constants.IntakeSpeed);
+  motor.set(-Constants.IntakeSpeed);
   }
 
 
   public void reverse() {
-    motor.set(-Constants.OuttakeSpeed);
+    motor.set(Constants.OuttakeSpeed);
     intakestate = true;
   }
 

@@ -22,13 +22,13 @@ public class Indexer extends SubsystemBase {
 
 
   public void run() {
-    motor.set(Constants.IndexerSpeed);
+    motor.set(-Constants.IndexerSpeed);
     indexerstate = true;
   }
 
 
   public void reverse() {
-    motor.set(-Constants.OuttakeSpeed);
+    motor.set(Constants.OuttakeSpeed);
     indexerstate = true;
   }
 
