@@ -35,7 +35,29 @@ public class Drive extends SubsystemBase {
     RF = new CANSparkMax(Constants.RFWheel, MotorType.kBrushless);
     RM = new CANSparkMax(Constants.RMWheel, MotorType.kBrushless);
     RB = new CANSparkMax(Constants.RBWheel, MotorType.kBrushless);
+    
+    
+    LF.setSmartCurrentLimit(40, 20);
+    LM.setSmartCurrentLimit(40, 20);
+    LB.setSmartCurrentLimit(40, 20);
+    RF.setSmartCurrentLimit(40, 20);
+    RM.setSmartCurrentLimit(40, 20);
+    RB.setSmartCurrentLimit(40, 20);
+    
+    LF.setSecondaryCurrentLimit(40);
+    LM.setSecondaryCurrentLimit(40);
+    LB.setSecondaryCurrentLimit(40);
+    RF.setSecondaryCurrentLimit(40);
+    RM.setSecondaryCurrentLimit(40);
+    RB.setSecondaryCurrentLimit(40);
 
+    LF.burnFlash();
+    LM.burnFlash();
+    LB.burnFlash();
+    RF.burnFlash();
+    RM.burnFlash();
+    RB.burnFlash();
+    
     leftDrive = new MotorControllerGroup(LF, LM, LB);
     rightDrive = new MotorControllerGroup(RF, RM, RB);
 

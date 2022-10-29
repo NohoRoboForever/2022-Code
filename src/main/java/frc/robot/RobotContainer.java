@@ -40,7 +40,7 @@ public class RobotContainer {
   //public final Ultrasonic ultrasonic     = new Ultrasonic(Constants.UltrasonicAnalogPin);
  
   public final ShooterWheel shooterWheel = new ShooterWheel();
-  //public final IntakeMotor intakeMotor   = new IntakeMotor();
+  public final IntakeMotor intakeMotor   = new IntakeMotor();
   public final Indexer indexer           = new Indexer();
   public final Turret turret             = new Turret();
   public final ClimbArm climbArm         = new ClimbArm();
@@ -60,11 +60,11 @@ public class RobotContainer {
   public final SimpleClimb simpleClimb = new SimpleClimb(climbArm);
   public final ShootSystemCombined shootSystemCombined = new ShootSystemCombined(indexer, shooterWheel);
   //public final IntakePushPull intakePushPull = new IntakePushPull(intakePistons);
-  //public final IntakeManual intakeManual = new IntakeManual(intakeMotor);
+  public final IntakeManual intakeManual = new IntakeManual(intakeMotor);
 
   // main commmands
   private final Command m_teleopCommand = new DriveTeleop();
-  private final Command m_normalAutonCommand = new ManualAutonSequence(/*intakeMotor, */indexer, shooterWheel, limelight, turret);
+  private final Command m_normalAutonCommand = new ManualAutonSequence(intakeMotor, indexer, shooterWheel, limelight, turret);
 
 
 
@@ -83,11 +83,11 @@ public class RobotContainer {
     indexer.setDefaultCommand(indexerManual);
     climbArm.setDefaultCommand(simpleClimb);
     turret.setDefaultCommand(turretManual);
-    //limelight.setDefaultCommand(adjustCommand);
+    limelight.setDefaultCommand(adjustCommand);
     camera.setDefaultCommand(cameraOperation);
     //intakePistons.setDefaultCommand(intakePushPull);
     //hoodPistons.setDefaultCommand(hoodAdjustManual);
-    //intakeMotor.setDefaultCommand(intakeManual);
+    intakeMotor.setDefaultCommand(intakeManual);
 
 
     //configureButtonBindings();
@@ -97,7 +97,7 @@ public class RobotContainer {
     SmartDashboard.putNumber("Shooter Speed", shooterWheel.getSpeed()); //shows shooter speed
     SmartDashboard.putNumber("Turret Position", turret.getEncoderPosition()); //checks turret position
     SmartDashboard.putBoolean("Shooting Status", shootSystemCombined.getLimelightStatus()); //checks if the limelight is tracking or not
-    //SmartDashboard.putBoolean("Intake", intakeMotor.getIntakeState()); //check if the intake is running
+    SmartDashboard.putBoolean("Intake", intakeMotor.getIntakeState()); //check if the intake is running
     SmartDashboard.putBoolean("Indexer", indexer.getIndexerState()); //check if the indexer is running
     SmartDashboard.putBoolean("Upper Switch", limitSwitch.get()); //check if the upperswitch is pressed
     SmartDashboard.putBoolean("Lower Switch", lowerSwitch.get()); //check if the lowerswitch is pressed 
